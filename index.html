@@ -1,0 +1,674 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Цветочный бар | Чайная и кафе-пекарня на Причальном проезде</title>
+<meta name="description" content="Завтраки, свежая выпечка, чай и домашняя русская кухня в «Цветочном баре» в Москве. Цветочная студия и доставка еды по ЖК Level Причальный за 20 минут.">
+<meta name="keywords" content="чайная Москва, чайная Level Причальный, кафе-пекарня Level Причальный, кафе Причальный проезд, завтраки Москва, доставка еды ЖК Level Причальный, домашняя кухня, свежая выпечка, борщ 1779, цветочный бар, цветочная студия">
+<meta property="og:title" content="Цветочный бар | Чайная и кафе-пекарня на Причальном проезде"><meta property="og:description" content="Завтраки, свежая выпечка, чай и домашняя русская кухня в Москве. Доставка еды по ЖК Level Причальный за 20 минут."><meta property="og:type" content="website"><meta property="og:image" content="assets/hero.jpg"><meta property="og:locale" content="ru_RU">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Цветочный бар","alternateName":"The Flower Bar","telephone":"+7 929 588-87-78","description":"Чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный: завтраки, домашняя кухня по старым русским рецептам, свежая выпечка, кофе, доставка по ЖК за 20 минут.","servesCuisine":["Русская","Домашняя","Чайная","Пекарня","Завтраки"],"address":{"@type":"PostalAddress","streetAddress":"Причальный проезд, 10к2","addressLocality":"Москва","addressRegion":"Москва","addressCountry":"RU"},"openingHours":"Mo-Su 08:00-21:00","slogan":"И чай попить, и цветы купить","hasMenu":"#pg-toc","priceRange":"₽₽"}</script>
+<style>
+@font-face{font-family:'Miama';src:url(assets/fonts/miamanueva.otf) format('opentype')}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/CormorantGaramond.ttf) format('truetype');font-weight:300 700}
+@font-face{font-family:'Montserrat';src:url(assets/fonts/Montserrat.ttf) format('truetype');font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#26231f;--muted:#5b564e;--blue:#7ea3c9;--blue-text:#4a6a92;--blue-action:#4f739b;--meta:#6b665e;--flag:#a0b4d6;--line:rgba(38,35,31,.55);--script:'Miama',cursive;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif}
+html{scroll-snap-type:y mandatory}
+html,body{background:#fff;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+
+/* ---------- книга: прокрутка крутит страницы ---------- */
+#slots .slot{height:100dvh;scroll-snap-align:start;scroll-snap-stop:always}
+#stage{position:fixed;inset:0;overflow:hidden;background:#e8e4dd;perspective:1500px;perspective-origin:50% 50%;z-index:1}
+.pg{position:absolute;inset:calc(env(safe-area-inset-top) + 14px) 22px calc(env(safe-area-inset-bottom) + 12px) 12px;border-radius:12px;box-shadow:0 12px 34px -14px rgba(30,30,40,.45);overflow:hidden;visibility:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:0 50%;will-change:transform}
+.pg.on{visibility:visible}
+.pg::before{content:'';position:absolute;inset:0;pointer-events:none;background:#141420;opacity:var(--dk,0);z-index:6}
+.pg::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(20,20,30,.5),rgba(20,20,30,0) 42%);opacity:var(--sh,0);z-index:6}
+
+/* ---------- шапка: флажок и клош ---------- */
+.chrome{position:fixed;top:0;left:0;right:0;height:0;z-index:20;transition:opacity .35s}
+.chrome.off{opacity:0;pointer-events:none}
+.chrome .home{position:absolute;top:calc(env(safe-area-inset-top) + 24px);left:18px;font:600 9px/1 var(--sans);letter-spacing:.18em;max-width:110px;text-transform:uppercase;color:var(--blue-text);cursor:pointer;padding:6px 0}
+.chrome .home::before{content:'←  '}.chrome .home b{font-weight:inherit}.chrome .home .full{display:none}.chrome .home .short{display:inline}
+.flag{position:absolute;top:0;left:50%;transform:translateX(-50%);width:124px;height:126px;background:var(--flag);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);display:flex;align-items:flex-start;justify-content:center;padding-top:calc(env(safe-area-inset-top) + 22px);box-shadow:0 6px 14px -6px rgba(40,60,90,.35);cursor:pointer}
+.flag img{width:80%}
+.flag .lbl{position:absolute;bottom:30px;left:0;right:0;text-align:center;font:600 8.5px/1 var(--sans);letter-spacing:.42em;text-transform:uppercase;color:#fff;opacity:.9;margin-right:-.42em}
+.chrome.season .flag{background:var(--sflag,#8a6a52)}
+
+/* ---------- толщина книги: блок страниц справа и снизу (на десктопе ещё слева) ---------- */
+.block{position:absolute;z-index:0;pointer-events:none}
+.block.r{top:calc(env(safe-area-inset-top) + 18px);bottom:calc(env(safe-area-inset-bottom) + 12px);right:5px;width:19px;background:repeating-linear-gradient(90deg,#fbf9f5 0 1px,#dcd6cb 1px 2px);border-radius:0 3px 3px 0;box-shadow:inset 6px 0 6px -4px rgba(40,35,30,.35),2px 2px 4px rgba(40,35,30,.25)}
+.block.b{left:12px;right:5px;bottom:5px;height:9px;background:repeating-linear-gradient(180deg,#fbf9f5 0 1px,#dcd6cb 1px 2px);border-radius:0 0 3px 3px;box-shadow:inset 0 5px 5px -4px rgba(40,35,30,.35),2px 2px 4px rgba(40,35,30,.25)}
+.block.c{top:calc(env(safe-area-inset-top) + 8px);bottom:calc(env(safe-area-inset-bottom) + 6px);left:6px;right:16px;background:#1f3f8f url(assets/v3-leather-blue.jpg) center/cover;border-radius:14px;box-shadow:0 14px 36px -16px rgba(20,20,40,.55),inset 0 0 0 1px rgba(255,255,255,.08)}
+.block.l{display:none}
+.block.s{display:none}
+/* ---------- ярлыки глав: толстые скруглённые язычки с боковой гранью и тенью на блок страниц (мокап Марии 26.10) ---------- */
+.tabs{position:fixed;right:3px;top:calc(env(safe-area-inset-top) + 92px);bottom:calc(env(safe-area-inset-bottom) + 40px);z-index:21;display:flex;flex-direction:column;gap:4px;transition:opacity .35s}
+.tabs.off{opacity:0;pointer-events:none}
+:focus-visible{outline:2px solid var(--blue-text);outline-offset:3px;border-radius:3px}
+.cover :focus-visible,.footer :focus-visible{outline-color:#f1e9d8}
+.tabs .t{position:relative;flex:1 1 0;min-height:0;width:18px;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;border-radius:4px;background:linear-gradient(90deg,#f8f4ec,#ece6da);color:#4a6a92;font:600 5.5px/1 var(--sans);letter-spacing:.02em;white-space:nowrap;padding:0;text-transform:uppercase;cursor:pointer;white-space:nowrap;overflow:hidden;
+ box-shadow:1px 0 0 #d9d2c5,2px 0 0 #cfc7b9,3px 1px 0 #c3bbad,4px 3px 6px rgba(50,40,30,.38),inset 1px 0 0 rgba(255,255,255,.9);-webkit-tap-highlight-color:transparent}
+.tabs .t.cur{width:22px;margin-right:-4px;z-index:3;background:linear-gradient(90deg,#93b6da,#7ea3c9);color:#fff;
+ box-shadow:1px 0 0 #6b90b7,2px 0 0 #6186ad,3px 1px 0 #567ba2,4px 3px 7px rgba(30,40,60,.45),inset 1px 0 0 rgba(255,255,255,.45)}
+.tabs .t.season{background:linear-gradient(90deg,#f6ecdf,#e9dbc8);color:#5d4533;box-shadow:1px 0 0 #d6c4ad,2px 0 0 #c9b59c,3px 1px 0 #bba68c,4px 3px 6px rgba(50,40,30,.38),inset 1px 0 0 rgba(255,255,255,.9)}
+.tabs .t.season.cur{background:linear-gradient(90deg,#6e5440,#5d4533);color:#fff;box-shadow:1px 0 0 #4e3a2b,2px 0 0 #684228,3px 1px 0 #5c3a22,4px 3px 7px rgba(40,25,15,.45),inset 1px 0 0 rgba(255,255,255,.3)}
+/* ---------- «О нас»: тёмное дерево с фото, картинка + текст ---------- */
+.about{background:#f8f8f8}
+.about .aimg{position:absolute;left:0;right:0;top:0;height:42%;background:#f8f8f8 url(assets/about-baba.jpg) center 40%/cover no-repeat;z-index:1}
+.about .aimg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,253,251,0) 70%,#f8f8f8 100%)}
+.about .atxt{position:absolute;left:26px;right:26px;top:calc(42% + 14px);bottom:calc(env(safe-area-inset-bottom) + 16px);color:var(--ink);z-index:1;overflow:auto;-webkit-overflow-scrolling:touch}
+.about .caps{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue)}
+.about h2{font:500 clamp(24px,3.6vh,34px)/1.15 var(--serif);letter-spacing:.1em;margin-top:12px}
+.about p{font:500 clamp(14px,1.9vh,17px)/1.5 var(--serif);color:var(--ink);margin-top:14px;max-width:60ch}
+.about .facts{font:600 9.5px/1.9 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#9a948a;margin-top:16px}
+.about .alinks{display:flex;flex-wrap:wrap;gap:22px 34px;margin-top:18px}
+.about .lk{position:relative;display:inline-flex;align-items:center;gap:12px;font:600 12px/1 var(--serif);letter-spacing:.26em;text-transform:uppercase;color:var(--ink);cursor:pointer;text-decoration:none;padding-bottom:10px;-webkit-tap-highlight-color:transparent}
+.about .lk i{display:block;width:44px;height:1px;background:currentColor;position:relative}
+.about .lk i::after{content:'';position:absolute;right:-1px;top:-3.5px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.about .lk::before{content:'';position:absolute;left:0;right:56px;bottom:0;height:1px;background:currentColor}
+.about .lk.main::before{height:5px;background:linear-gradient(currentColor 0 1px,transparent 1px 4px,currentColor 4px 5px)}
+/* ---------- подвал ---------- */
+.footer{background:#2a1a10}
+.pg.footer{inset:0 !important;border-radius:0 !important;box-shadow:none !important}
+.footer .fv{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:calc(env(safe-area-inset-top) + 96px) 26px calc(env(safe-area-inset-bottom) + 110px);color:#ede9e1;overflow:auto;-webkit-overflow-scrolling:touch}
+.footer .fgrid{display:grid;grid-template-columns:1fr;gap:26px}
+.footer .fcol h4{font:600 9.5px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#c9a98a;margin-bottom:12px}
+.footer .fcol a,.footer .fcol span.l{display:block;font:500 15px/1.9 var(--serif);letter-spacing:.04em;color:#ede9e1;text-decoration:none;cursor:pointer}
+.footer .fcol .addr{font:500 15px/1.6 var(--serif);color:#ede9e1}
+.footer .flogo{height:56px;margin-bottom:10px}
+.footer .slog{display:block;width:min(100%,260px);opacity:.9;margin-top:6px}
+.footer .legal{margin-top:26px;padding-top:16px;border-top:1px solid rgba(237,233,225,.22);display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.footer .legal a{color:inherit;text-decoration:none}.footer .legal span,.footer .legal a{font:500 9.5px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(237,233,225,.75);cursor:pointer;text-decoration:none}
+.footer .legal .copy{color:rgba(237,233,225,.55);cursor:default;letter-spacing:.1em;text-transform:none;margin-left:auto}
+.footer .req{font:400 11px/1.6 var(--sans);color:rgba(237,233,225,.55);margin-top:10px}
+/* cookie-баннер */
+.cookie{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;color:var(--ink);padding:14px 18px calc(env(safe-area-inset-bottom) + 14px);box-shadow:0 -12px 30px -16px rgba(0,0,0,.35);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cookie[hidden]{display:none}
+.cookie p{font:400 14px/1.45 var(--serif);flex:1 1 100%;margin:0}
+.cookie .cbtns{display:flex;gap:10px;flex:1 1 100%}.cookie .cbtns button{flex:1}.cookie p a{color:var(--blue);cursor:pointer;text-decoration:underline}
+.cookie button{height:40px;padding:0 18px;border-radius:20px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:600 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer}
+.cookie button.ghost{background:#fff;color:var(--blue)}
+/* юридические тексты в карточке */
+.info.legal-doc{width:min(94vw,760px);max-height:86dvh;text-align:left}
+.info.legal-doc h3{text-align:left;font-size:26px}.info.legal-doc .sub{text-align:left}
+.info.legal-doc .doc{margin-top:18px;font:400 15px/1.55 var(--serif);color:var(--ink)}
+.info.legal-doc .doc h5{font:600 10px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);margin:20px 0 8px}
+.info.legal-doc .doc p{text-align:left;margin:0 0 8px;font:inherit;color:inherit}.info.legal-doc .doc ul{margin:0 0 8px 18px}
+/* ---------- закрытая книга: синяя кожаная обложка (по кнопке «Меню»), раскрывается на оглавлении ---------- */
+.bookcover{background:#1f3f8f url(assets/v3-leather-blue.jpg) center/cover}
+.bookcover .bc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#f1e9d8;text-align:center}
+.bookcover .bc img{width:200px}
+.bookcover .bc .menu{font:500 15px/1 var(--sans);letter-spacing:.55em;text-transform:uppercase;margin-top:26px;margin-right:-.55em}
+.bookcover .bc .addr{font:500 10px/1.9 var(--sans);letter-spacing:.28em;text-transform:uppercase;opacity:.8;margin-top:28px}
+.bookcover .bc .hint{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 24px);left:0;right:0;font:600 9.5px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;opacity:.75}
+.bookcover .bc .hint i{display:block;width:1px;height:22px;background:currentColor;margin:10px auto 0;opacity:.7}
+/* ---------- страница оглавления и вкладыш сезона ---------- */
+.tocpg{background:#fff}.tocpg .left{display:none}.tocpg .tv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(env(safe-area-inset-top) + 150px) 22px 30px;text-align:center}
+.tocpg .script,.divider .script{font:400 clamp(56px,11vh,88px)/1 var(--script);color:var(--blue)}
+
+.tocpg .caps,.divider .caps{font:600 11px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin-top:4px}
+.tocpg ul,.divider ul{list-style:none;margin-top:2.4vh}
+.tocpg li{font:500 clamp(19px,3vh,26px)/1.65 var(--serif);letter-spacing:.1em;cursor:pointer}
+.tocpg li small,.divider li small{font:600 10.5px/1 var(--sans);letter-spacing:.18em;color:var(--blue-text);margin-left:10px;vertical-align:middle;text-transform:uppercase}
+.tocpg li.season{color:#5d4533}.tocpg li.season small{color:#5d4533}
+.tocpg li.season small::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#8a6a52;margin-right:7px;vertical-align:middle}
+.divider{background:var(--paper,#f7f2ea)}.divider .dv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 26px calc(env(safe-area-inset-bottom) + 20px);text-align:center}
+.divider .year{font:500 clamp(16px,2.4vh,20px)/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-top:1.4vh}
+.divider .rule{width:min(60%,260px);height:1px;background:var(--blue);opacity:.45;margin:2.6vh auto 0;position:relative}.divider .rule::after{content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:var(--blue)}
+.divider ul{width:min(100%,460px)}.divider li{font:500 clamp(18px,2.9vh,24px)/1.5 var(--serif);letter-spacing:.03em;cursor:pointer;color:var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:18px;text-align:left;padding:.45em 0;border-bottom:1px solid rgba(90,60,40,.12)}.divider li small{margin-left:0;white-space:nowrap}
+.divider .note{font:500 clamp(12px,1.7vh,14px)/1.4 var(--serif);color:var(--muted);margin-top:2.6vh;max-width:30ch}
+.divider .macro{display:block;position:absolute;left:0;right:0;top:0;height:44%;background:var(--macro) center/cover #e9e0d4}
+.divider .dv{top:44%}
+.divider .foot{font:600 9.5px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-top:auto;padding-top:18px;opacity:.85}
+.divider .script{font:400 clamp(60px,11vh,96px)/1 var(--script);color:var(--blue)}
+.th-sezon{--blue:#5d4533;--blue-text:#5d4533;--blue-action:#5d4533;--flag:#5d4533;--line:rgba(93,69,51,.5)}
+.basket{position:absolute;top:calc(env(safe-area-inset-top) + 16px);right:20px;width:40px;height:40px;color:var(--blue);cursor:pointer}
+.basket svg{width:100%;height:100%;display:block}
+.basket b{position:absolute;top:-2px;right:-8px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--blue);color:#fff;font:600 10px/18px var(--sans);text-align:center;transition:transform .2s}
+.basket b[hidden]{display:none}.basket b.pulse{transform:scale(1.35)}
+
+/* ---------- обложка ---------- */
+.cover{background:#1f3f8f url(assets/v3-leather-blue.jpg) center/cover}
+.cover{background:#141210}
+.pg.cover,.pg.about{inset:0 !important;border-radius:0 !important;box-shadow:none !important}
+#stage.closed .block{display:none}
+.cover .hbg{position:absolute;inset:0;background:url(assets/hero.jpg) 50% 20%/cover no-repeat}
+.cover .hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 28%,rgba(0,0,0,0) 44%,rgba(0,0,0,.55) 72%,rgba(0,0,0,.9) 100%)}
+.cover .hfoot{position:absolute;left:18px;right:18px;bottom:calc(env(safe-area-inset-bottom) + 22px);color:#f1e9d8;z-index:4}
+.cover .slogan{display:block;width:min(100%,340px);height:auto}
+
+.cover .meta{font:500 10px/1.9 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#e6dfd0;margin-top:14px}
+.cover .hlinks{display:flex;gap:26px;margin-top:18px;flex-wrap:wrap}
+.cover .lk{position:relative;display:inline-flex;align-items:center;gap:12px;font:600 12px/1 var(--serif);letter-spacing:.26em;text-transform:uppercase;color:#f1e9d8;cursor:pointer;padding-bottom:10px;-webkit-tap-highlight-color:transparent}
+.cover .lk i{display:block;width:60px;height:1px;position:relative;background:linear-gradient(currentColor,currentColor) left center/44px 1px no-repeat;transition:background-size .3s}
+.cover .lk i::after{content:'';position:absolute;left:37px;top:-3.5px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg);transition:left .3s}
+.cover .lk::before{content:'';position:absolute;left:0;right:56px;bottom:0;height:1px;background:currentColor}
+.cover .lk.main::before{height:5px;background:linear-gradient(currentColor 0 1px,transparent 1px 4px,currentColor 4px 5px)}
+.cover .lk:hover i{background-size:60px 1px}.cover .lk:hover i::after{left:53px}
+/* навигация хиро */
+.topnav{position:fixed;left:0;right:0;top:0;z-index:22;transition:opacity .3s;pointer-events:none}.topnav.off{opacity:0}.topnav .hnav{pointer-events:auto}
+.hnav{position:absolute;top:calc(env(safe-area-inset-top) + 14px);left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;color:#fff;z-index:5;transition:color .3s}
+.topnav.dark .hnav{color:#5d4533}.topnav.dark .nlogo{filter:none;content:url(assets/monogram-dark.svg)}.topnav.dark .hnav .call{color:#5d4533;border-bottom-color:rgba(93,69,51,.5)}
+.hnav .nlogo{height:44px;filter:drop-shadow(0 1px 6px rgba(0,0,0,.4));cursor:pointer}
+.hnav .items{display:none;gap:26px}
+.hnav .ni{position:relative;font:600 10.5px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;cursor:pointer;padding:10px 0}
+.hnav .ni.ext{color:inherit;text-decoration:none}.hnav .ni.ext b{font-weight:400;margin-left:5px;font-size:11px}.sheetnav a.big{display:block;color:inherit;text-decoration:none}
+.hnav .ni.has::after{content:'';display:inline-block;width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px;opacity:.8}
+.hnav .sub{position:absolute;top:100%;left:-18px;min-width:220px;background:#fff;color:var(--ink);border-radius:10px;padding:12px 0;box-shadow:0 18px 40px -16px rgba(0,0,0,.45);list-style:none;display:none;z-index:7}
+.hnav .ni.open .sub,.hnav .ni:hover .sub{display:block}
+.hnav .sub li{font:500 15px/1.2 var(--serif);letter-spacing:.06em;text-transform:none;padding:8px 20px;cursor:pointer;display:flex;justify-content:space-between;gap:16px}
+.hnav .sub li small{font:600 9px/1.6 var(--sans);letter-spacing:.2em;color:var(--blue);text-transform:uppercase}
+.hnav .sub li.season{color:#5d4533}.hnav .sub li.season small{color:#5d4533}
+.hnav .sub li:hover{background:#f4f6fa}
+.hnav .right{display:flex;align-items:center;gap:14px}
+.hnav .call{display:none;align-items:center;gap:10px;color:#f1e9d8;text-decoration:none;font:600 12px/1 var(--serif);letter-spacing:.26em;text-transform:uppercase;border-bottom:1px solid rgba(241,233,216,.7);padding-bottom:4px}
+.hnav .call svg{width:30px;height:30px;margin-bottom:2px}
+.hnav .burger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;margin-right:-8px}
+.hnav .burger i{display:block;height:1px;background:currentColor;margin:0 9px}
+/* мобильное меню и информационные карточки */
+.sheetnav{position:fixed;inset:0;background:#fff;z-index:32;overflow:auto;padding:calc(env(safe-area-inset-top) + 70px) 26px 40px}
+.sheetnav[hidden]{display:none}
+.sheetnav .close,.info .close{position:absolute;top:calc(env(safe-area-inset-top) + 22px);right:22px;font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);cursor:pointer}
+.sheetnav .big{font:500 28px/1.4 var(--serif);letter-spacing:.08em;cursor:pointer;padding:6px 0}
+.sheetnav .grp{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin:22px 0 8px}
+.sheetnav .ch{font:500 19px/1.7 var(--serif);letter-spacing:.06em;cursor:pointer;display:flex;justify-content:space-between}
+.sheetnav .ch small{font:600 9px/1 var(--sans);letter-spacing:.2em;color:var(--blue);align-self:center}
+.sheetnav .ch.season{color:#5d4533}
+.sheetnav .cta{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.sheetnav .btn{display:flex;align-items:center;justify-content:center;height:50px;border-radius:25px;background:var(--blue);color:#fff;font:600 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;text-decoration:none}
+.sheetnav .btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.info{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92vw,520px);max-height:84dvh;overflow:auto;background:#fff;border-radius:16px;padding:40px 34px 32px;z-index:34;box-shadow:0 30px 70px -20px rgba(0,0,0,.5)}
+.info[hidden]{display:none}
+.info h3{font:500 30px/1.1 var(--serif);letter-spacing:.08em;text-align:center}
+.info .sub{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);text-align:center;margin-top:8px}
+.info p{font:400 16px/1.5 var(--serif);color:var(--muted);text-align:center;margin-top:18px}
+.info .row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.info .row a{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:22px;background:var(--blue);color:#fff;font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none}
+.info .row a.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.dim.info-dim{z-index:33}
+
+/* ---------- лист блюда ---------- */
+.sheet .list{position:absolute;inset:0;background:var(--m) 50% var(--py,50%)/auto var(--ps,100%) no-repeat var(--bg,#f6f5f3)}
+.head{position:absolute;left:22px;right:22px;top:max(calc(env(safe-area-inset-top) + 16.6vh),calc(env(safe-area-inset-top) + 142px));text-align:center}
+.head .script{font:400 clamp(40px,7.1vh,60px)/1 var(--script);color:var(--blue);display:inline-block;max-width:100%}
+.head .slash,.bhead .slash,.tocpg .slash,.divider .slash,.toc .slash{display:none}
+.head .caps{font:600 12px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue-text);margin-top:4px}
+.body{position:absolute;left:22px;right:22px;bottom:calc(env(safe-area-inset-bottom) + 3.5vh);text-align:center}
+h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
+.desc{font:400 clamp(13px,1.85vh,16px)/1.3 var(--serif);color:var(--muted);margin:.9vh auto 0;text-align:center;hyphens:auto}
+.more{display:inline-block;margin-top:.8vh;border:0;background:none;font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;padding:6px 0}
+.more::before{content:"+ ";font-weight:500}.x .more::before{content:"− "}
+.desc.one,.extra.one,.card p.one{text-align:center}
+.extra{display:none;font:400 clamp(12px,1.7vh,14px)/1.35 var(--serif);color:var(--muted);margin:.4vh auto 0;text-align:center}.x .extra{display:block}
+.kbju{font:500 clamp(10px,1.4vh,12px)/1.4 var(--sans);letter-spacing:.12em;color:var(--meta);margin-top:1.4vh}
+.row{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:2.1vh}
+.price{font:500 clamp(24px,4vh,34px)/1 var(--serif)}.price small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
+.price.from::before{content:'от ';font:500 16px/1 var(--serif);color:var(--muted);letter-spacing:0}
+.tbd{font:600 10px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#b9b3a8}
+.add{width:clamp(42px,6.6vh,56px);height:clamp(42px,6.6vh,56px);border-radius:50%;background:var(--blue-action);color:#fff;display:inline-grid;place-items:center;font:300 clamp(24px,3.8vh,32px)/1 var(--sans);box-shadow:0 8px 18px -8px rgba(60,90,130,.6);cursor:pointer;user-select:none;transition:transform .15s}
+.add:active{transform:scale(.92)}
+.macro{display:none}
+
+/* ---------- витрина: сетка 3×3 + карточка ---------- */
+.grid-pg .page,.list-pg .page{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;padding:0 22px calc(env(safe-area-inset-bottom) + 18px)}
+.bhead{padding-top:max(calc(env(safe-area-inset-top) + 16.4vh),calc(env(safe-area-inset-top) + 142px));text-align:center;flex-shrink:0}
+.bhead .script{font:400 clamp(40px,6.9vh,58px)/1 var(--script);color:var(--blue);display:inline-block;max-width:100%}
+.bhead .slash{display:none}
+.bhead .caps{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin-top:8px}
+.grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);margin-top:2vh;min-height:0}
+.grid.few{align-content:start}.grid.few .cell{border-bottom:1px solid var(--line)}
+.cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;min-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cell.nr{border-right:0}.cell.nb{border-bottom:0}.cell.center{grid-column:2}.cell.center.nr{border-right:0}
+.cell .ph{width:100%;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px 0}.cell .ph img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply}
+.cell h4{font:500 13px/1.15 var(--serif);letter-spacing:.02em;margin-top:4px;height:2.3em;max-width:100%;padding:0 8px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.cell .buy{display:flex;align-items:center;gap:8px;padding-top:4px;margin-top:auto;flex-shrink:0}
+.cell .price{font:500 15px/1 var(--serif)}.cell .price small{font:600 9px/1 var(--serif);letter-spacing:.16em;color:var(--blue-text);margin-left:3px;vertical-align:middle}
+.cell .price.from::before{font-size:10px}
+.cell .add{width:28px;height:28px;font-size:18px;box-shadow:none}
+.pager{flex-shrink:0;display:flex;justify-content:center;margin-top:12px;font:600 11px/1 var(--sans);letter-spacing:.22em;color:var(--blue-text)}
+/* чайная карта списком */
+.tea{flex:1;min-height:0;margin-top:14px;overflow:hidden}
+.tea .grp{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin:16px 0 6px;text-align:center}
+.tea .trow{display:flex;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid rgba(38,35,31,.12);cursor:pointer}
+.tea .trow .nm{font:500 17px/1.2 var(--serif);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tea.plist{overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}.tea.plist .trow{padding:7px 0;flex:1 1 auto;min-height:0;max-height:62px}.tea.plist .trow .dots{border-bottom:0}.tea.plist .trow .nm{flex:1}.tea.plist .trow .nm{white-space:normal;overflow:visible;text-overflow:clip;font-size:17px;flex:0 1 auto;line-height:1.15}.tea.plist .trow .pr{font-size:18px}.tea.plist .trow .add{width:30px;height:30px;font-size:18px}
+.hint2{flex-shrink:0;text-align:center;font:600 9.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--meta);margin-top:14px}
+.tea .trow .dots{flex:1;border-bottom:1px dotted rgba(38,35,31,.35);transform:translateY(-5px)}
+.tea .trow .pr{font:500 16px/1 var(--serif);white-space:nowrap}.tea .trow .pr small{font:600 8px/1 var(--sans);letter-spacing:.16em;color:var(--blue);margin:0 6px 0 3px}
+.tea .trow .add{width:22px;height:22px;font-size:16px;box-shadow:none;flex-shrink:0;align-self:center}
+/* карточка */
+.card .macro{display:block;aspect-ratio:1/1;overflow:hidden}.card .macro img{width:100%;height:100%;object-fit:contain;display:block}
+.card h2{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:10px}
+.card p{font:400 15px/1.3 var(--serif);color:var(--muted);text-align:center;margin:8px auto 0;hyphens:auto}
+.card .kbju{text-align:center;margin-top:10px}
+.opts{display:flex;justify-content:center;gap:8px;margin-top:1.4vh;flex-wrap:wrap}
+.opts span{padding:0 16px;height:34px;border-radius:17px;border:1px solid var(--blue-text);color:var(--blue-text);font:600 11px/32px var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.opts span.sel{background:var(--blue-action);border-color:var(--blue-action);color:#fff}
+.card .opts{margin-top:14px}
+.card .buy{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:14px}
+.card .price{font:500 32px/1 var(--serif)}.card .price small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
+.back{font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);cursor:pointer;display:none}
+.drawer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:26;max-height:92dvh;overflow:auto}
+.grip{width:36px;height:3px;border-radius:2px;background:#d8d3ca;margin:0 auto 10px}
+.dim{position:fixed;inset:0;background:rgba(40,40,60,.25);z-index:25}
+.dim[hidden],.drawer[hidden]{display:none}
+.live,.lcard{display:none}
+
+/* ---------- оглавление ---------- */
+.toc{position:fixed;inset:0;background:#fff;z-index:30;overflow:auto;padding:calc(env(safe-area-inset-top) + 120px) 22px 40px;text-align:center}
+.toc[hidden]{display:none}
+.toc .script{font:400 58px/1 var(--script);color:var(--blue)}
+
+.toc ul{list-style:none;margin-top:18px}
+.toc li{font:500 26px/1.5 var(--serif);letter-spacing:.1em;cursor:pointer}
+.toc li small{font:600 10px/1 var(--sans);letter-spacing:.24em;color:var(--blue);margin-left:10px;vertical-align:middle}
+.toc .close{position:absolute;top:calc(env(safe-area-inset-top) + 22px);right:22px;font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);cursor:pointer}
+
+/* ---------- заказ ---------- */
+.cart{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:31;max-height:84dvh;overflow:auto}
+.cart[hidden]{display:none}
+.cart h3{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:6px}
+.cart .sub{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);text-align:center;margin-top:8px}
+.cart .empty{font:500 18px/1.3 var(--serif);color:var(--muted);text-align:center;margin:26px 0 10px}
+.cart table{width:100%;border-collapse:collapse;margin-top:16px}
+.cart td{padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 18px/1.2 var(--serif);vertical-align:middle}
+.cart td small{display:block;font:600 9px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9a948a}
+.cart td.q{white-space:nowrap;text-align:center;width:104px}
+.cart td.q button{width:26px;height:26px;border-radius:50%;border:1px solid var(--blue);background:#fff;color:var(--blue);font:300 18px/1 var(--sans);cursor:pointer;vertical-align:middle}
+.cart td.q span{display:inline-block;min-width:26px;text-align:center}
+.cart td.p{text-align:right;white-space:nowrap}
+.cart .total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font:500 20px/1 var(--serif);letter-spacing:.08em}
+.cart .total b{font:500 32px/1 var(--serif)}.cart .total b small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
+.cart .go{display:block;margin:18px auto 0;padding:0 36px;height:54px;border-radius:27px;background:var(--blue);color:#fff;border:0;font:600 12px/54px var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
+.cart .pd{font:400 12px/1.45 var(--serif);color:var(--muted);margin-top:16px}.cart .pd a{color:var(--blue-text)}
+.cart .addr{font:500 10.5px/1.5 var(--sans);letter-spacing:.1em;color:#9a948a;text-align:center;margin-top:12px}
+
+/* ---------- десктоп: развороты ---------- */
+@media (min-width:900px){
+ #stage{perspective:2600px}
+ .pg{transform-origin:50% 50%}
+ .pg{inset:24px 26px 24px 26px;border-radius:10px}
+ .block.r{top:20px;bottom:18px;right:6px;width:22px}.block.b{left:28px;right:6px;bottom:6px;height:12px}
+ .block.c{top:12px;bottom:10px;left:12px;right:12px;border-radius:12px;background:#1f3f8f url(assets/leather-blue-wide.jpg) center/cover}
+ .block.s{display:block;top:12px;bottom:10px;left:50%;width:34px;margin-left:-17px;background:#1f3f8f url(assets/leather-blue-wide.jpg) center/auto 100%;border-radius:0;box-shadow:inset 9px 0 10px -6px rgba(0,0,20,.55),inset -9px 0 10px -6px rgba(0,0,20,.55),0 2px 6px rgba(20,20,40,.35)}
+ .block.s::before{content:'';position:absolute;top:14px;bottom:14px;left:50%;width:1px;margin-left:-0.5px;background:linear-gradient(180deg,rgba(226,201,138,0),rgba(226,201,138,.55) 12%,rgba(226,201,138,.55) 88%,rgba(226,201,138,0))}
+ #stage.closed .block.s,#stage.closed .block.l,#stage.closed .block.c{display:none}
+ .block.l{display:block;top:20px;bottom:18px;left:6px;width:22px;background:repeating-linear-gradient(90deg,#dcd6cb 0 1px,#fbf9f5 1px 2px);border-radius:3px 0 0 3px;box-shadow:inset -6px 0 6px -4px rgba(40,35,30,.35),-2px 2px 4px rgba(40,35,30,.25)}.pg.hl{clip-path:inset(0 calc(50% + 11px) 0 0 round 10px)}.pg.hr{clip-path:inset(0 0 0 calc(50% + 11px) round 10px)}
+ .pg.hl::after{background:linear-gradient(-90deg,rgba(20,20,30,.5),rgba(20,20,30,0) 42%)}
+ .chrome .flag{left:75%;width:132px;height:134px;padding-top:24px}.chrome .home{left:48px;top:34px;font-size:11px;letter-spacing:.26em;max-width:none}.chrome .home .full{display:inline}.chrome .home .short{display:none}.flag .lbl{bottom:32px;font-size:9px}.chrome .basket{right:48px;top:24px;width:44px;height:44px}
+ .sheet,.grid-pg,.list-pg,.tocpg,.divider{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr)}
+ .bookcover{background:#1f3f8f url(assets/leather-blue-wide.jpg) center/cover}
+ .pg.bookcover.hl{opacity:0;pointer-events:none}        /* закрытая книга: слева только стол, справа обложка */
+ .bookcover .bc{left:50%}.bookcover .bc img{width:240px}
+ #stage.onbook .block.l,#stage.onbook .block.s{display:none}
+ .footer .fv{padding:120px 72px 40px;justify-content:center}.footer .fgrid{grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px}
+ .footer .fcol a,.footer .fcol span.l{font-size:16px}.footer .legal{margin-top:40px;padding-top:20px}
+ .cookie{padding:16px 48px;flex-wrap:nowrap;gap:28px}.cookie p{flex:1 1 auto;font-size:15px}.cookie .cbtns{flex:0 0 auto}.cookie .cbtns button{flex:0 0 auto}
+ .about .aimg{right:56%;height:100%;top:0;background-position:center}.about .aimg::after{display:none}
+ .about .atxt{left:46%;right:64px;top:110px;bottom:0;display:flex;flex-direction:column;justify-content:center;overflow:auto;padding-bottom:24px}
+ .about h2{font-size:38px}.about p{font-size:17px;margin-top:18px;max-width:none}.about p:first-of-type{margin-top:26px}.about .facts{font-size:11px;margin-top:26px}
+ .tocpg .left{display:flex;position:relative;background:#1f3f8f url(assets/leather-blue-wide.jpg) center/cover;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#f1e9d8;text-align:center}
+ .tocpg .left img{width:220px}.tocpg .left .addr{font:500 11px/2 var(--sans);letter-spacing:.28em;text-transform:uppercase;margin-top:28px;opacity:.85}
+ .tocpg .tv{position:relative;inset:auto;padding:150px 48px 30px}.tocpg li{line-height:1.55}
+ .divider .macro{position:relative;height:auto;inset:auto}.divider .macro .ov{padding:44px 56px 0}.divider .oscript{font-size:clamp(110px,16vh,150px)}.divider .ocaps{font-size:11px;margin-left:8px} .divider .dv{position:relative;inset:auto;top:auto;padding:150px 48px 40px}.divider .script{font-size:clamp(90px,14vh,128px)}
+ .tabs{right:3px;top:150px;bottom:60px;gap:4px}
+ .tabs{right:4px;gap:3px;top:96px;bottom:22px}.tabs .t{width:26px;font-size:8px;letter-spacing:.03em}.tabs .t.cur{width:31px}
+ .cover .spine{display:block;position:absolute;top:0;bottom:0;left:0;width:50%;background:linear-gradient(90deg,rgba(0,0,0,.16),rgba(0,0,0,.04) 60%,rgba(0,0,0,.28))}
+ .cover .hfoot{left:72px;right:72px;bottom:56px;display:flex;align-items:flex-end;justify-content:space-between}
+ .cover .slogan{width:560px}.cover .meta{font-size:12px;margin-top:22px;line-height:2}
+ .cover .hlinks{margin:0 0 6px;gap:48px}.cover .lk{font-size:14px}
+ .hnav{left:48px;right:48px;top:26px;color:#fff;position:fixed}.hnav .nlogo{display:block;height:64px}.hnav .items{display:flex}.hnav .burger{display:none}
+ .hnav .call{display:inline-flex}
+ .hnav .sub{left:-18px}
+ .sheet .macro{display:block;position:relative;background:var(--macro) center/cover #f6f5f3}
+ .cap{position:absolute;left:48px;bottom:44px;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+ .cap b{display:block;font:500 30px/1.2 var(--serif)}.cap span{display:block;font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;margin-top:12px;opacity:.9}
+ .sheet .list{position:relative;inset:auto;background-image:var(--d)}
+ .head{top:max(16.6vh,152px);left:48px;right:48px}.head .script{font-size:clamp(44px,7.3vh,66px)}
+ .body{left:48px;right:48px;bottom:4.9vh}h1{font-size:40px}.desc{font-size:17px;line-height:1.45;margin-top:12px;max-width:52ch}.extra{font-size:14px;max-width:52ch}.kbju{font-size:12px}
+ .sheet .macro .cap{display:none}
+ .live{display:block;position:relative;background:#fff;overflow:hidden;min-height:0}
+ .kside{display:none;position:absolute;inset:0;background:var(--d) 50% var(--py,50%)/auto var(--ps,100%) no-repeat #f8f8f8}
+ .pg.ksheet .kside{display:block}.pg.ksheet .live .bg,.pg.ksheet .live .cap{display:none}
+ .kside .back{position:absolute;top:32px;left:48px;z-index:2}
+ .live .bg{position:absolute;inset:0;background:var(--hero) center/cover}
+ .live .cap{color:var(--ink);text-shadow:none}.live .cap span{color:var(--blue)}
+ .live .big{position:absolute;left:48px;top:150px;font:400 110px/1 var(--script);color:var(--blue);opacity:.9}
+ .grid-pg .page,.list-pg .page{position:relative;inset:auto;height:100%;min-height:0;padding:0 48px 36px}
+ .bhead{padding-top:max(16.6vh,152px)}.bhead .script{font-size:clamp(44px,7.3vh,66px)}
+ .cell{padding:0 0 12px}.cell h4{font-size:16px;max-width:100%;padding:0 12px;height:2.3em;margin-top:8px}.cell .price{font-size:18px}.cell .add{width:34px;height:34px;font-size:20px}.cell .buy{padding-top:8px;gap:10px}
+ .tea .trow .nm{font-size:20px}.tea .trow .pr{font-size:18px}
+ .tea.plist{max-width:560px;margin:6px auto 0;width:100%}.tea.plist .trow{padding:8px 0;max-height:58px}.tea.plist .trow .nm{font-size:19px}.tea.plist .trow .pr{font-size:18px}.tea.plist .trow .add{width:32px;height:32px}
+ .plist-pg .bhead{padding-top:max(14vh,120px)}.plist-pg .bhead .script{font-size:clamp(40px,6.4vh,58px)}.plist-pg .hint2{margin-top:8px}
+ .back{display:block}
+ .lcard{position:absolute;inset:0;background:#fff;flex-direction:column;align-items:center;justify-content:center;padding:72px 64px 48px;overflow:auto}
+ .pg.open .lcard{display:flex}.pg.open .live .bg,.pg.open .live .cap,.pg.open .live .big{display:none}
+ .lcard .back{position:absolute;top:32px;left:48px}
+ .lcard .macro{width:min(100%,calc(100vh - 470px));flex-shrink:0}
+ .lcard h2{font-size:38px;margin-top:22px}.lcard p{font-size:19px;max-width:34ch}.lcard .buy{margin-top:20px}
+ .drawer,.dim.card-dim{display:none}
+ .toc{padding-top:120px}.toc li{font-size:28px}
+ .cart{left:auto;right:0;top:0;bottom:0;width:460px;border-radius:0;max-height:none;padding:44px 48px;box-shadow:-20px 0 50px -20px rgba(0,0,0,.3)}.cart .grip{display:none}
+}
+@media (min-width:900px) and (max-width:1199px){ .hnav .items{gap:16px}.hnav .ni{font-size:10px;letter-spacing:.18em}.hnav .tel{display:none}}
+</style></head><body>
+
+<div class="chrome off" id="chrome">
+ <span class="home" data-home><b class="full">На главную</b><b class="short">Главная</b></span>
+ <div class="flag" id="flag"><img src="assets/logo-cover.svg" alt="Цветочный бар"><span class="lbl">меню</span></div>
+ <div class="basket" id="basketBtn"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="20" cy="31.5" rx="15" ry="3.2"/><path d="M5 31.5c0 1.2 1 2 2.2 2M35 31.5c0 1.2-1 2-2.2 2" stroke-width="1"/><path d="M9 30.8c2.4-1.2 19.6-1.2 22 0" stroke-width=".7" opacity=".55"/><path d="M8.5 27.5c0-8 5.2-13 11.5-13s11.5 5 11.5 13"/><path d="M6.5 27.5h27"/><circle cx="20" cy="12.2" r="1.5"/><path d="M12 22c.8-3.5 3-6 6-7" stroke-width=".8" opacity=".55"/></svg><b id="badge" hidden>0</b></div>
+</div>
+
+<div class="tabs off" id="tabs"></div>
+<div class="topnav" id="topnav">
+<nav class="hnav">
+   <img class="nlogo" src="assets/monogram-white.svg" alt="Цветочный бар" data-home title="На главную">
+   <div class="items">
+    <span class="ni has" data-sub>Меню<ul class="sub" id="navChapters"></ul></span>
+    <span class="ni" data-info="delivery">Доставка</span>
+    <span class="ni" data-info="about">О нас</span>
+    <span class="ni" data-info="events">Мероприятия</span>
+    <a class="ni ext" href="https://flowerbar.example" target="_blank" rel="noopener">Цветы<b>↗</b></a>
+    <span class="ni" data-info="contacts">Контакты</span>
+   </div>
+   <div class="right">
+    <a class="call" href="tel:+79295888778"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 30c0-6 4-9 11-9s11 3 11 9v2H9z"/><path d="M7 32h26" stroke-width="1.5"/><circle cx="20" cy="27" r="3.2"/><circle cx="20" cy="27" r="1" stroke-width=".9"/><path d="M13 21.5c-1.5-.3-2.5-1.3-2.5-3M27 21.5c1.5-.3 2.5-1.3 2.5-3"/><path d="M8.5 16c0-1.6 1.2-2.5 3-2.5h1.5c1 0 1.5.8 1.5 2v1M31.5 16c0-1.6-1.2-2.5-3-2.5H27c-1 0-1.5.8-1.5 2v1" stroke-width="1.1"/><path d="M14.5 15.5c1.5-3 3.5-4.5 5.5-4.5s4 1.5 5.5 4.5" stroke-width="1.3"/><path d="M11 13.5c-.6-.8-.6-2 0-2.8M29 13.5c.6-.8.6-2 0-2.8" stroke-width=".8" opacity=".6"/></svg><span>Позвонить</span></a>
+    <span class="burger" data-burger><i></i><i></i><i></i></span>
+   </div>
+</nav>
+</div>
+<div id="stage" class="closed">
+ <div class="block c"></div><div class="block l"></div><div class="block r"></div><div class="block b"></div><div class="block s"></div>
+ <section class="pg cover" id="pg-cover"><h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Цветочный бар — чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный, Москва</h1>
+  <div class="hbg"></div>
+  <div class="hfoot">
+   <div class="hleft"><img class="slogan" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить!"><div class="meta">Горячая еда и выпечка по ЖК Level Причальный за 20 минут<br>Печём каждое утро · Ежедневно 8:00–21:00</div></div>
+   <div class="hlinks"><span class="lk main" data-go="toc">Открыть меню<i></i></span><span class="lk" data-info="write">Написать<i></i></span></div>
+  </div>
+ </section>
+</div>
+<div id="slots"></div>
+
+<div class="dim card-dim" id="cardDim" hidden></div>
+<div class="drawer card" id="drawer" hidden><div class="grip"></div><div class="cbody"></div></div>
+
+<div class="sheetnav" id="sheetnav" hidden>
+ <span class="close" data-nav-close>Закрыть ×</span>
+ <div class="big" data-home>Главная</div><div class="big" data-go="toc">Меню</div>
+ <div class="grp">Главы</div><div id="navChaptersM"></div>
+ <div class="grp">Ещё</div>
+ <div class="big" data-info="delivery">Доставка</div><div class="big" data-info="about">О нас</div><div class="big" data-info="events">Мероприятия</div><a class="big ext" href="https://flowerbar.example" target="_blank" rel="noopener">Цветы ↗</a><div class="big" data-info="contacts">Контакты</div>
+ <div class="cta"><a class="btn" href="tel:+79295888778">Позвонить</a><span class="btn ghost" data-info="write">Написать</span></div>
+</div>
+<div class="dim info-dim" id="infoDim" hidden></div>
+<div class="cookie" id="cookie" hidden><p>Мы используем cookies, чтобы сайт работал и помнил ваш заказ. Продолжая, вы соглашаетесь с <a data-legal="cookies">политикой cookies</a> и <a data-legal="privacy">обработкой данных</a>.</p><div class="cbtns"><button data-cookie="ok">Принять</button><button class="ghost" data-cookie="no">Только нужные</button></div></div>
+<div class="info" id="info" hidden><span class="close" data-info-close>Закрыть ×</span><div id="infoBody"></div></div>
+
+<div class="toc" id="toc" hidden>
+ <span class="close" data-toc-close>Закрыть ×</span>
+ <div class="script">Меню</div><div style="font:600 10px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-top:14px;cursor:pointer" data-home>← На главную</div><span class="slash"></span>
+ <ul id="tocReady"></ul>
+</div>
+
+<div class="dim" id="cartDim" hidden></div>
+<div class="cart" id="cart" hidden>
+ <div class="grip"></div>
+ <h3>Ваш поднос</h3><div class="sub">Доставим по ЖК Level Причальный за 20 минут</div>
+ <div id="cartBody"></div>
+</div>
+
+<script src="assets/menu-data.js"></script>
+<script>
+/* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
+const M=window.MENU, ITEMS=M.items, CHAP=Object.fromEntries(M.chapters.map(c=>[c.key,c]));
+const fmt=n=>n==null?'':String(n).replace('.',',');
+const kb=i=>i.kcal?`${fmt(i.kcal)} ККАЛ · Б ${fmt(i.b)} · Ж ${fmt(i.j)} · У ${fmt(i.u)}`:'';
+const extraHTML=i=>{const rows=[];if(i.out)rows.push(`Выход порции: ${esc(i.out)}`);if(i.sostav)rows.push(`Состав: ${esc(i.sostav)}`);return rows.length?`<button class="more" data-more>состав и вес</button><div class="extra">${rows.join('<br>')}</div>`:''};
+const choicesHTML=i=>i.choices?`<div class="opts">${i.choices.map((c,k)=>`<span class="${k?'':'sel'}" data-choice="${k}">${esc(c)}</span>`).join('')}</div>`:'';
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const minPrice=i=>i.variants?Math.min(...i.variants.map(v=>v.price).filter(p=>p!=null)):i.price;
+const priceHTML=i=>{const p=minPrice(i);if(p==null)return `<span class="tbd">цена уточняется</span>`;return `<span class="price ${i.variants?'from':''}">${p}<small>руб.</small></span>`};
+const addHTML=i=>minPrice(i)==null?'':`<span class="add" data-add="${i.id}">+</span>`;
+const isDesk=matchMedia('(min-width:900px)').matches;
+matchMedia('(min-width:900px)').addEventListener('change',()=>location.reload());
+
+/* ---------- страницы ---------- */
+const stage=document.getElementById('stage'); let html=''; const POS={};
+M.pages.forEach(p=>{if(p.kind==='sheet'){POS[p.chapter]=(POS[p.chapter]||0)+1;p.pos=POS[p.chapter]}});
+const plural=n=>n%10===1&&n%100!==11?'позиция':(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?'позиции':'позиций');
+const thm=c=>c&&c.theme?' th-'+c.key:'';
+for(const p of M.pages){const c=CHAP[p.chapter];
+ if(p.kind==='about'){
+  html+=`<section class="pg about" id="${p.id}" aria-label="О нас"><div class="aimg" id="aboutImg" role="img" aria-label="Ромовая баба, макро"></div>
+   <div class="atxt"><div class="caps">О нас · Кафе-пекарня в ЖК Level Причальный</div><h2>Чайная в духе дворянской усадьбы</h2>
+   <p>«Цветочный бар» объединяет чайную, кафе-пекарню и цветочную студию в одном доме на Причальном проезде в Москве. Мы вдохновлялись чаепитиями в дворянских усадьбах начала прошлого века: самовар на столе, фарфор с цветочным кантом, долгий разговор. У нас подают завтраки, каждое утро пекут свежую выпечку, заваривают чай и готовят кофе. В меню домашняя русская кухня по старым рецептам: борщ по рецепту 1779 года, голубцы 1897 года, сырники, пельмени и блины.</p>
+   <p>Нас ведёт образ дома русской интеллигенции: уют, сад, тихая душевность, книга на столе. Отсюда интерьер — библиотечный шкаф, тёмный дуб, латунь и кобальтовые изразцы Императорского фарфорового завода, и отсюда же посуда, в которой мы подаём завтраки и чай.</p>
+   <p>Сюда приходят за настроением: позавтракать, замедлиться, выпить чаю, полистать книгу. Любое блюдо из меню можно попробовать в кафе или заказать домой. Доставка еды по ЖК Level Причальный занимает 20 минут. Здесь же, в цветочной студии, собирают букеты: можно зайти на чай и уйти с цветами.</p>
+   <div class="facts">Причальный проезд, 10к2 · Ежедневно 8:00–21:00 · Доставка по ЖК за 20 минут</div></div></section>`;}
+ else if(p.kind==='footer'){
+  html+=`<section class="pg footer" id="${p.id}" aria-label="Контакты и документы"><div class="fv"><div class="fgrid">
+   <div class="fcol"><img class="flogo" src="assets/monogram-white.svg" alt="Цветочный бар"><div class="addr">Цветочный бар<br>Москва, Причальный проезд, 10к2<br>ЖК Level Причальный</div><img class="slog" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить"></div>
+   <div class="fcol"><h4>Контакты</h4><a href="tel:+79295888778">+7 929 588-87-78</a><span class="l">Почта: на домене, уточняется</span><span class="l" data-info="write">Написать в мессенджер</span><span class="l">Ежедневно 8:00–21:00</span></div>
+   <div class="fcol"><h4>Разделы</h4><span class="l" data-go="toc">Меню</span><span class="l" data-info="delivery">Доставка</span><span class="l" data-info="about">О нас</span><span class="l" data-info="events">Мероприятия</span><a href="https://flowerbar.example" target="_blank" rel="noopener">Цветы · студия</a></div>
+   <div class="fcol"><h4>Документы</h4><a href="privacy.html">Политика обработки персональных данных</a><a href="consent-feedback.html">Согласие для обратной связи</a><span class="l" data-legal="terms">Пользовательское соглашение</span><span class="l" data-legal="offer">Публичная оферта</span></div>
+  </div>
+  <div class="legal"><a href="privacy.html">Персональные данные</a><span data-legal="offer">Оферта</span><span class="copy">© ${new Date().getFullYear()} Цветочный бар</span></div>
+  <div class="req">ИП Мкртычева Тамара Аркадьевна · ИНН 772979873290 · ОГРНИП 318774600132051 · Оператор персональных данных. Почта по вопросам персональных данных и адрес для обращений: уточняются.</div>
+  </div></section>`;}
+ else if(p.kind==='book'){
+  html+=`<section class="pg bookcover" id="${p.id}" aria-label="Меню"><div class="bc"><img src="assets/logo-cover.svg" alt="Цветочный бар"><div class="menu">Меню</div><div class="addr">Москва · Level Причальный<br>Ежедневно 8:00–21:00</div><div class="hint">Открыть<i></i></div></div></section>`;}
+ else if(p.kind==='toc'){
+  html+=`<section class="pg tocpg" id="${p.id}"><div class="left"><img src="assets/logo-cover.svg" alt=""><div class="addr">Москва · Level Причальный<br>Ежедневно 8:00–21:00</div></div>
+   <div class="tv"><div class="script">Меню</div><span class="slash"></span><div class="caps">Оглавление</div>
+   <ul>${M.chapters.map(ch=>`<li class="${ch.theme?'season':''}" data-go="${ch.key}">${ch.title}<small>${ch.theme?ch.theme.name.toLowerCase()+' · ':''}${ch.n} ${plural(ch.n)}</small></li>`).join('')}</ul></div></section>`;}
+ else if(p.kind==='divider'){const t=c.theme; const its=M.pages.filter(x=>x.kind==='sheet'&&x.chapter===c.key).map(x=>ITEMS[x.item]); const hero=its[0];
+  html+=`<section class="pg divider${thm(c)}" id="${p.id}" data-macro="${t.photo||(hero?hero.macro:'')}" style="--paper:${t.paper};--sflag:${t.flag}">
+   <div class="macro"></div>
+   <div class="dv"><div class="script">${esc(t.name)}</div><span class="slash"></span>
+   <ul>${its.map(i=>`<li data-go="${i.id}">${esc(i.name)}<small>${i.price!=null?i.price+' руб.':''}</small></li>`).join('')}</ul>
+   <div class="foot">${esc(t.caps)} · ${esc(t.year)}</div></div></section>`;}
+ else if(p.kind==='sheet'){const i=ITEMS[p.item];
+  html+=`<section class="pg sheet${thm(c)}" id="${p.id}" data-m="${i.m}" data-d="${i.d}" data-macro="${i.macro}" style="--bg:${i.bg||'#f6f5f3'}${c.theme?';--sflag:'+c.theme.flag:''}">
+   <div class="macro"><div class="cap"><b>${esc(i.name)}</b><span>${esc(c.title)} · ${esc(c.caps)}</span></div></div>
+   <div class="list"><div class="head"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps} · ${p.pos} из ${c.n}</div></div>
+    <div class="body"><h1>${esc(i.name)}</h1><p class="desc">${esc(i.desc)}</p><div class="kbju">${kb(i)}</div>${extraHTML(i)}${choicesHTML(i)}
+    <div class="row">${priceHTML(i)}${addHTML(i)}</div></div></div></section>`;}
+ else if(p.kind==='grid'){const its=p.items.map(id=>ITEMS[id]); const hero=its[0];
+  html+=`<section class="pg grid-pg${thm(c)}" id="${p.id}" data-hero="${hero.card}">
+   <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div><div class="lcard card"><span class="back" data-close>← Витрина</span><div class="cbody"></div></div></div>
+   <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div>
+    <div class="grid${its.length<=3?' few':''}" style="grid-template-rows:repeat(${its.length<=3?1:(p.rows||3)},${its.length<=3?'minmax(0,46%)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':''}">${its.map(i=>`<div class="cell" data-id="${i.id}"><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
+    <div class="pager">${p.pager}</div></div></section>`;}
+ else if(p.kind==='plist'){const its=p.items.map(id=>ITEMS[id]); const hero=its[0];
+  const rows=its.map(i=>`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${i.price!=null?i.price+'<small>руб.</small>':''}</span><span class="add" data-open="${i.id}">+</span></div>`).join('');
+  html+=`<section class="pg list-pg plist-pg" id="${p.id}" data-hero="${p.live||hero.card}">
+   <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div>
+    <div class="list kside"><span class="back" data-close>← ${esc(c.title)}</span><div class="head"><div class="script">${c.title}</div><div class="caps">${c.caps}</div></div><div class="body"></div></div>
+    <div class="lcard card"><span class="back" data-close>← ${esc(c.title)}</span><div class="cbody"></div></div></div>
+   <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div><div class="tea plist">${rows}</div><div class="hint2">Нажмите на блюдо, чтобы увидеть фото</div></div></section>`;}
+ else if(p.kind==='list'){const its=p.items.map(id=>ITEMS[id]); let rows='',g='';
+  for(const i of its){if(i.group!==g){g=i.group;rows+=`<div class="grp">${esc(g)}</div>`}
+   const v=i.variants||[{price:i.price}]; rows+=`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${v.map(x=>`${x.price}<small>${esc((x.label||'').replace(' ',''))}</small>`).join('')}</span><span class="add" data-open="${i.id}">+</span></div>`}
+  html+=`<section class="pg list-pg" id="${p.id}">
+   <div class="live"><div class="big">${c.title}</div><div class="cap"><b>Чай в пакетах</b><span>${esc(c.caps)}</span></div><div class="lcard card"><span class="back" data-close>← Чайная карта</span><div class="cbody"></div></div></div>
+   <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div><div class="tea">${rows}</div><div class="pager">${p.pager}</div></div></section>`;}
+}
+stage.insertAdjacentHTML('beforeend',html);
+const chLi=M.chapters.map(ch=>`<li class="${ch.theme?'season':''}" data-go="${ch.key}">${ch.title}<small>${ch.n}</small></li>`).join('');
+document.getElementById('navChapters').innerHTML=chLi;
+
+const ORDER=['cover',...M.pages.map(p=>p.id.replace(/^pg-/,''))];
+const PAGECH={};M.pages.forEach(p=>PAGECH[p.id.replace(/^pg-/,'')]=p.chapter||'');
+const tabs=document.getElementById('tabs');tabs.innerHTML=M.chapters.map((ch,k,arr)=>`<span class="t${ch.theme?' season':''}" data-go="${ch.key}" data-ch="${ch.key}" style="z-index:${arr.length-k}">${ch.title}</span>`).join('');
+let curCh='';function setChapter(id){const ch=PAGECH[id]||'';if(ch===curCh)return;curCh=ch;tabs.querySelectorAll('.t').forEach(t=>t.classList.toggle('cur',t.dataset.ch===ch));const c=CHAP[ch];chrome.classList.toggle('season',!!(c&&c.theme));if(c&&c.theme)chrome.style.setProperty('--sflag',c.theme.flag)}
+
+/* ---------- книга: слои ---------- */
+const L=[],R=[];
+ORDER.forEach(id=>{const el=document.getElementById('pg-'+id);
+ if(isDesk&&id!=='cover'&&id!=='about'&&id!=='footer'){const l=el.cloneNode(true);l.removeAttribute('id');l.classList.add('hl');el.classList.add('hr');el.before(l);L.push(l);R.push(el)}
+ else{L.push(el);R.push(null)}});
+const N=ORDER.length; const slotsEl=document.getElementById('slots'); let bookOpen=false;
+function openBook(){if(bookOpen)return;bookOpen=true;slotsEl.innerHTML='<div class="slot"></div>'.repeat(N)}
+slotsEl.innerHTML='<div class="slot"></div>'.repeat(3);   /* скроллом: хиро → «О нас» → подвал; книга только по кнопке «Меню» */
+const chrome=document.getElementById('chrome'); const rad=d=>d*Math.PI/180;
+function load(el){ if(!el||el.dataset.loaded)return; el.dataset.loaded=1;
+ if(el.dataset.m){el.style.setProperty('--m',`url(${el.dataset.m})`);el.style.setProperty('--d',`url(${el.dataset.d})`)}
+ if(el.dataset.macro)el.style.setProperty('--macro',`url(${el.dataset.macro})`);
+ if(el.dataset.hero)el.style.setProperty('--hero',`url(${el.dataset.hero})`);
+ el.querySelectorAll('img[data-src]').forEach(im=>{im.src=im.dataset.src;im.removeAttribute('data-src')})}
+function set(el,tr,z,sh,dk){if(!el)return;el.style.transform=tr;el.style.zIndex=z;el.style.setProperty('--sh',sh);el.style.setProperty('--dk',dk)}
+function render(p){
+ p=Math.max(0,Math.min(N-1,p));const i=Math.floor(p),t=p-i,th=180*t,s=Math.sin(rad(th));
+ chrome.classList.toggle('off',p<2.5);stage.classList.toggle('closed',p<2.5);const cur=ORDER[Math.round(p)];tabs.classList.toggle('off',p<2.5||cur==='toc'||cur==='book');stage.classList.toggle('onbook',cur==='book'&&p<ORDER.indexOf('book')+0.5);const tn=document.getElementById('topnav');tn.classList.toggle('off',p>=2.5);tn.classList.toggle('dark',p>=0.5&&p<1.5);setChapter(cur);
+ for(let k=Math.max(0,i-1);k<=Math.min(N-1,i+2);k++){load(L[k]);load(R[k])}
+ for(let k=0;k<N;k++){const on=k===i||k===i+1;[L[k],R[k]].forEach(el=>{if(!el)return;el.classList.toggle('on',on);if(!on)set(el,'',0,0,0)})}
+ if(isDesk){
+  if(!R[i]){set(L[i],'none',1,0,0);L[i].style.opacity='';if(i+1<N){const e=1-Math.pow(1-t,2.2),tr=`translateY(${(1-e)*100}%)`;for(const el of [L[i+1],R[i+1]]){el.style.visibility=t>0.001?'':'hidden';set(el,tr,3,0,0);el.style.opacity=''}}}
+  else{for(const k of [1,2,3]){if(L[k])L[k].style.visibility='';if(R[k])R[k].style.visibility=''}set(L[i],'none',1,th>90?s*.7:0,0);
+  if(i+1<N){set(R[i+1],'none',1,th<90?s*.7:0,0);set(R[i],`rotateY(${-th}deg)`,3,0,s*.22);set(L[i+1],`rotateY(${180-th}deg)`,3,0,s*.22)}
+  else set(R[i],'none',1,0,0);}
+ }else if(i<3){set(L[i],'none',1,0,0);if(i+1<N){const e=1-Math.pow(1-t,2.2);L[i+1].style.visibility=t>0.001?'':'hidden';set(L[i+1],`translateY(${(1-e)*100}%)`,3,0,0)}}
+ else{for(const k of [1,2,3])if(L[k])L[k].style.visibility='';set(L[i],`rotateY(${-th}deg)`,3,0,s*.22);if(i+1<N)set(L[i+1],'none',1,s*.8,0)}
+}
+const vh=()=>innerHeight;let frozen=false;
+addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(scrollY/vh()))},{passive:true});
+addEventListener('resize',()=>{if(!frozen)render(scrollY/vh())});
+function openMenu(){go('toc',false)}
+function go(id,smooth=true){openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
+ scrollTo({top:idx*vh(),behavior:smooth?'smooth':'instant'});render(idx)}
+function fitTitles(){
+ document.querySelectorAll('h1').forEach(h=>{h.style.fontSize='';h.style.letterSpacing='';h.style.whiteSpace='normal';const lh=()=>parseFloat(getComputedStyle(h).lineHeight);let fs=parseFloat(getComputedStyle(h).fontSize);
+  while(h.scrollHeight>lh()*2.3&&fs>30){fs-=1;h.style.fontSize=fs+'px'}});   /* до двух строк одним размером и трекингом */
+ document.querySelectorAll('.head .script,.bhead .script').forEach(h=>{const box=h.parentElement.clientWidth;let fs=parseFloat(getComputedStyle(h).fontSize);
+  while(h.scrollWidth>box&&fs>36){fs-=2;h.style.fontSize=fs+'px'}});}
+/* кадр листа: еда лежит в полосе BAND высоты картинки; картинка масштабируется так, чтобы полоса легла между низом шапки и верхом текста */
+const BAND=isDesk?[0.34,0.63]:[0.30,0.66], GAP=isDesk?18:14;
+function fitSheets(){document.querySelectorAll('.sheet .list,.kside').forEach(list=>{const H=list.clientHeight;if(!H)return;const head=list.querySelector('.head'),body=list.querySelector('.body');
+ const hb=head.offsetTop+head.offsetHeight+GAP, bt=body.offsetTop-GAP; const avail=bt-hb; const bandH=(BAND[1]-BAND[0]);
+ let S=Math.min(1,avail/(bandH*H)); S=Math.max(S,.45); const yc=(hb+bt)/2, imgTop=yc-(BAND[0]+BAND[1])/2*S*H;
+ const p=S<1?imgTop/(H*(1-S))*100:50; list.style.setProperty('--ps',(S*100).toFixed(2)+'%'); list.style.setProperty('--py',Math.max(-60,Math.min(160,p)).toFixed(2)+'%')})}
+function fitDesc(){document.querySelectorAll('.desc,.extra,.card p').forEach(el=>{el.classList.remove('one');const lh=parseFloat(getComputedStyle(el).lineHeight)||18;el.classList.toggle('one',el.scrollHeight<lh*1.6)})}
+function fitCellNames(){document.querySelectorAll('.cell h4').forEach(h=>{h.style.fontSize='';let fs=parseFloat(getComputedStyle(h).fontSize);const lim=()=>parseFloat(getComputedStyle(h).lineHeight)*2.3;
+ while(h.scrollHeight>lim()+1&&fs>9){fs-=.5;h.style.fontSize=fs+'px'}})}
+function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:3;const rows=Math.ceil(n/cols);
+ cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
+ if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
+function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids()}
+document.querySelectorAll('[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],.tabs .t,.cell,.trow,.flag,.basket').forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.getAttribute('role')==='button'){e.preventDefault();e.target.click()}});
+document.fonts.ready.then(()=>{fitAll();requestAnimationFrame(fitAll);setTimeout(fitAll,600)});
+let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(fitAll,120)});
+
+/* ---------- карточка (витрина и чай) ---------- */
+const drawer=document.getElementById('drawer'),cardDim=document.getElementById('cardDim'); let curCard=null,curVar=0;
+function cardHTML(i,vi){const v=i.variants?i.variants[vi]:i; const img=i.card?`<div class="macro"><img src="${i.card}" alt=""></div>`:'';
+ const opts=i.variants?`<div class="opts">${i.variants.map((x,k)=>`<span class="${k===vi?'sel':''}" data-var="${k}">${esc(x.label)}</span>`).join('')}</div>`:'';
+ const pr=v.price==null?`<span class="tbd">цена уточняется</span>`:`<span class="price">${v.price}<small>руб.</small></span><span class="add" data-add="${i.id}#${vi}">+</span>`;
+ return `${img}<h2>${esc(i.name)}</h2><p>${esc(i.desc)}</p><div class="kbju">${kb(v)}</div>${extraHTML(v.out!==undefined?{...i,out:v.out}:i)}${opts}${choicesHTML(i)}<div class="buy">${pr}</div>`}
+function paintCard(){document.querySelectorAll('.card .cbody').forEach(b=>b.innerHTML=cardHTML(curCard,curVar));fitDesc()}
+function sheetBodyHTML(i){return `<h1>${esc(i.name)}</h1><p class="desc">${esc(i.desc)}</p><div class="kbju">${kb(i)}</div>${extraHTML(i)}${choicesHTML(i)}<div class="row">${priceHTML(i)}${addHTML(i)}</div>`}
+function openCard(id,vi=0){const i=ITEMS[id];if(!i)return;curCard=i;curVar=vi;
+ const pg=document.querySelector('.pg.on.plist-pg');
+ if(isDesk&&pg&&i.d){document.querySelectorAll('.pg.on.plist-pg').forEach(b=>{const k=b.querySelector('.kside');k.style.setProperty('--d',`url(${i.d})`);k.querySelector('.body').innerHTML=sheetBodyHTML(i);b.classList.add('ksheet')});fitTitles();fitDesc();fitSheets();return}
+ paintCard();
+ document.querySelectorAll('.pg.on').forEach(b=>b.classList.add('open'));drawer.hidden=false;cardDim.hidden=false;drawer.scrollTop=0}
+function closeCard(){document.querySelectorAll('.pg.ksheet').forEach(b=>b.classList.remove('ksheet'));document.querySelectorAll('.pg.open').forEach(b=>b.classList.remove('open'));drawer.hidden=true;cardDim.hidden=true;curCard=null}
+cardDim.addEventListener('click',closeCard);
+
+/* ---------- заказ ---------- */
+const CART=new Map();const badge=document.getElementById('badge'),cart=document.getElementById('cart'),cartDim=document.getElementById('cartDim');
+function lineOf(key){const [id,vi]=key.split('#');const i=ITEMS[id];if(!i)return null;
+ if(i.choices&&/^c\d+$/.test(vi||''))return {name:i.name,label:i.choices[+vi.slice(1)]||'',price:i.price};
+ const v=i.variants?i.variants[+vi||0]:null;return {name:i.name,label:v?v.label:'',price:v?v.price:i.price}}
+function addItem(key,delta=1){if(!key.includes('#'))key+='#0';const c=lineOf(key);if(!c||c.price==null)return;const row=CART.get(key)||{...c,qty:0};row.qty+=delta;if(row.qty<=0)CART.delete(key);else CART.set(key,row);renderBadge();renderCart()}
+function renderBadge(){let n=0;CART.forEach(r=>n+=r.qty);badge.textContent=n;badge.hidden=!n;badge.classList.add('pulse');setTimeout(()=>badge.classList.remove('pulse'),200)}
+function renderCart(){const b=document.getElementById('cartBody');if(!CART.size){b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>';return}
+ let sum=0,rows='';CART.forEach((r,k)=>{sum+=r.price*r.qty;rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}">−</button><span>${r.qty}</span><button data-inc="${k}">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
+ b.innerHTML=`<table>${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><div class="pd">Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</div><button class="go">Оформить заказ</button><div class="addr">Причальный проезд, 10к2 · 8:00–21:00 · доставка по ЖК за 20 минут</div>`}
+function openCart(){renderCart();cart.hidden=false;cartDim.hidden=false}function closeCart(){cart.hidden=true;cartDim.hidden=true}
+document.getElementById('basketBtn').addEventListener('click',openCart);cartDim.addEventListener('click',closeCart);
+
+/* ---------- оглавление ---------- */
+const toc=document.getElementById('toc');
+document.getElementById('tocReady').innerHTML=M.chapters.map(c=>`<li data-go="${c.key}">${c.title}<small>${c.n} ${plural(c.n)}</small></li>`).join('');
+document.getElementById('flag').addEventListener('click',()=>{toc.hidden=false});
+/* хиро: текстура блюда + тарелка, смена каждые 5 с (идея по пину Марии 26.10) */
+const HERO=['zavtraki-09','zavtraki-01','sytnoe-02','sezon-01','sytnoe-06','zavtraki-12'].map(id=>ITEMS[id]).filter(Boolean);
+let hi=0,hmA=true;
+function heroShow(first){const it=HERO[hi];if(!it)return;const c=CHAP[it.chapter];
+ document.querySelectorAll('.cover').forEach(cv=>{const imgs=cv.querySelectorAll('.hm-img');const nxt=imgs[hmA?0:1],prv=imgs[hmA?1:0];
+  nxt.style.backgroundImage=`url(${it.macro})`;nxt.classList.add('on');prv.classList.remove('on');
+  const nm=cv.querySelector('.hm-name');nm.classList.add('fade');setTimeout(()=>{cv.querySelector('#hmName,.hm-name .script').textContent=it.name;cv.querySelector('.hm-name .caps').textContent=`${c.title} · ${it.price!=null?it.price+' руб.':''}`;nm.classList.remove('fade')},first?0:500);
+  const pl=cv.querySelector('.plate');
+  if(first){pl.src=it.hero||it.d;pl.classList.remove('out','in')}
+  else{pl.classList.add('out');setTimeout(()=>{pl.classList.add('in');pl.classList.remove('out');pl.src=it.hero||it.d;requestAnimationFrame(()=>requestAnimationFrame(()=>pl.classList.remove('in')))},720)}});
+ hmA=!hmA}
+/* карусель хиро выключена 27.10: хиро = фото Марии */
+document.getElementById('navChaptersM').innerHTML=M.chapters.map(ch=>`<div class="ch ${ch.theme?'season':''}" data-go="${ch.key}">${ch.title}<small>${ch.n} ${plural(ch.n)}</small></div>`).join('');
+/* тексты карточек: заглушки, уточнить у Марии */
+const INFO={events:{t:'Мероприятия',s:'Гастроужины и встречи',p:'Ужины с историей, мастер-классы и цветочные вечера. Афиша и даты уточняются.',a:[['Написать','#info:write'],['Позвонить','tel:+79295888778']]},
+ write:{t:'Написать',s:'Выберите мессенджер',p:'Отвечаем ежедневно с 8:00 до 21:00. Ссылки на мессенджеры уточняются.',a:[['Telegram','https://t.me/'],['WhatsApp','https://wa.me/'],['Max','https://max.ru/']]},
+ delivery:{t:'Доставка',s:'По ЖК Level Причальный за 20 минут',p:'Привозим горячее, выпечку и кофе по ЖК Level Причальный за 20 минут. Заказ собираем сразу после подтверждения. Условия и минимальная сумма уточняются.',a:[['Позвонить','tel:+79295888778'],['Открыть меню','#toc']]},
+ about:{t:'О нас',s:'Цветочный бар',p:'Кафе-пекарня и цветочная лавка в одном доме: домашняя кухня по старым рецептам, свежая выпечка каждое утро и букеты к чаю. Текст о нас уточняется.',a:[['Открыть меню','#toc']]},
+ contacts:{t:'Контакты',s:'ЖК Level Причальный',p:'Москва, Причальный проезд, 10к2. Ежедневно с 8:00 до 21:00. Телефон +7 929 588-87-78.',a:[['Позвонить','tel:+79295888778'],['Написать','#info:write'],['Меню','#toc'],['Доставка','#info:delivery'],['Букеты','https://flowerbar.example'],['Как добраться','https://yandex.ru/maps']]}};
+const info=document.getElementById('info'),infoDim=document.getElementById('infoDim'),sheetnav=document.getElementById('sheetnav');
+/* юридические тексты (152-ФЗ). ЗАГЛУШКИ: реквизиты владельца подставить перед публикацией */
+const OWNER='ИП Мкртычева Тамара Аркадьевна, ИНН 772979873290, ОГРНИП 318774600132051, адрес: [АДРЕС ОПЕРАТОРА]', SITE='[домен сайта]', MAIL='[EMAIL на домене сайта]';
+const LEGAL={
+ terms:{t:'Пользовательское соглашение',s:'Правила пользования сайтом',d:`<h5>1. Предмет</h5><p>Соглашение регулирует отношения между ${OWNER} и пользователем при использовании Сайта ${SITE}: просмотре меню, оформлении заказов на блюда и напитки, получении информации о доставке и мероприятиях.</p>
+ <h5>2. Заказ и оплата</h5><p>Заказ считается принятым после подтверждения менеджером по телефону или в мессенджере. Цены указаны в рублях и действуют на момент заказа. Оплата — способами, указанными при подтверждении.</p>
+ <h5>3. Доставка</h5><p>Доставка осуществляется по территории ЖК Level Причальный в часы работы. Ориентировочное время — 20 минут с момента подтверждения; при высокой загрузке время может быть увеличено, о чём пользователь уведомляется.</p>
+ <h5>4. Возврат и претензии</h5><p>Претензии по качеству принимаются в день получения заказа по телефону или на ${MAIL}. Возврат денежных средств за продукцию надлежащего качества не производится в соответствии с законодательством о защите прав потребителей.</p>
+ <h5>5. Интеллектуальная собственность</h5><p>Все материалы Сайта — тексты, фотографии, логотип, элементы дизайна — принадлежат правообладателю. Использование без письменного согласия запрещено.</p>
+ <h5>6. Ограничение ответственности</h5><p>Сайт предоставляется «как есть». Оператор не несёт ответственности за перерывы в работе Сайта по независящим причинам и за действия третьих лиц.</p>
+ <h5>7. Прочее</h5><p>Применимое право — право Российской Федерации. Споры решаются переговорами, при недостижении согласия — в суде по месту нахождения Оператора.</p>`},
+ offer:{t:'Публичная оферта',s:'Договор розничной купли-продажи дистанционным способом',d:`<p>${OWNER} (Продавец) предлагает любому дееспособному лицу (Покупатель) заключить договор купли-продажи блюд и напитков из меню Сайта ${SITE} на условиях настоящей оферты (ст. 437 ГК РФ). Акцептом является оформление заказа.</p>
+ <h5>Существенные условия</h5><ul><li>наименование, состав, выход и цена блюда указаны в меню;</li><li>срок исполнения — согласовывается при подтверждении заказа;</li><li>доставка по ЖК Level Причальный; стоимость и минимальная сумма заказа — ${'[заполнить]'};</li><li>оплата — наличными курьеру, картой или онлайн через платёжный сервис.</li></ul>
+ <h5>Качество и сроки годности</h5><p>Продукция изготавливается в день заказа. Условия и сроки хранения указываются на упаковке или сообщаются при передаче.</p>
+ <h5>Реквизиты Продавца</h5><p>${OWNER}. Контакты: ${MAIL}, телефон на Сайте.</p>`}};
+function openLegal(k){const d=LEGAL[k];if(!d)return;document.getElementById('infoBody').innerHTML=`<h3>${d.t}</h3><div class="sub">${d.s} · проект редакции</div><div class="doc">${d.d}</div>`;info.classList.add('legal-doc');info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true}
+const cookieBox=document.getElementById('cookie');
+/* cookie-баннер отключён 27.10: сайт не ставит cookie и не грузит внешние скрипты; вернуть после инвентаризации интеграций */
+function setCookie(v){try{localStorage.setItem('cb-cookie',v)}catch(e){}cookieBox.hidden=true}
+function openInfo(k){const i=INFO[k];if(!i)return;const eq=k==='write';info.classList.remove('legal-doc');document.getElementById('infoBody').innerHTML=`<h3>${i.t}</h3><div class="sub">${i.s}</div><p>${i.p}</p><div class="row">${i.a.map(([l,h],n)=>h==='#toc'?`<a class="${n?'ghost':''}" data-go="toc">${l}</a>`:h.startsWith('#info:')?`<a class="${n?'ghost':''}" data-info="${h.slice(6)}">${l}</a>`:`<a class="${n&&!eq?'ghost':''}" href="${h}" ${h.startsWith('http')?'target="_blank" rel="noopener"':''}>${l}</a>`).join('')}</div>`;info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true}
+function closeInfo(){info.hidden=true;infoDim.hidden=true}
+infoDim.addEventListener('click',closeInfo);
+
+/* ---------- клики одним делегированием ---------- */
+document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
+ if(x=q('[data-var]')){curVar=+x.dataset.var;paintCard();return}
+ if(q('[data-home]')){toc.hidden=true;sheetnav.hidden=true;closeInfo();scrollTo({top:0,behavior:'smooth'});render(0);return}
+ if(x=q('[data-legal]'))return openLegal(x.dataset.legal);
+ if(x=q('[data-cookie]'))return setCookie(x.dataset.cookie);
+ if(q('[data-info-close]'))return closeInfo();
+ if(x=q('[data-info]'))return openInfo(x.dataset.info);
+ if(q('[data-burger]'))return void(sheetnav.hidden=false);
+ if(q('[data-nav-close]'))return void(sheetnav.hidden=true);
+ if(x=q('.hnav .ni.has')&&!q('.sub')){document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));return openMenu()}
+ if(x=q('[data-more]')){x.closest('.body,.cbody').classList.toggle('x');fitSheets();return}
+ if(x=q('[data-choice]')){const box=x.closest('.opts');box.querySelectorAll('span').forEach(s=>s.classList.toggle('sel',s===x));return}
+ if(x=q('[data-add]')){let key=x.dataset.add;const scope=x.closest('.body,.cbody');const sel=scope&&scope.querySelector('.opts [data-choice].sel');if(sel&&!key.includes('#'))key+='#c'+sel.dataset.choice;return addItem(key)}
+ if(x=q('[data-open]'))return openCard(x.dataset.open);
+ if(x=q('[data-inc]'))return addItem(x.dataset.inc,1);
+ if(x=q('[data-dec]'))return addItem(x.dataset.dec,-1);
+ if(q('[data-close]'))return closeCard();
+ if(q('[data-toc-close]'))return void(toc.hidden=true);
+ if(x=q('[data-go]')){toc.hidden=true;sheetnav.hidden=true;closeInfo();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
+ if(x=q('.cell,.trow'))return openCard(x.dataset.id)});
+
+/* ---------- параметры превью: ?page=<id|глава>, ?p=1.35, ?open=<id>, ?toc=1, ?cart=demo ---------- */
+const Q=new URLSearchParams(location.search);
+if(Q.get('p')||Q.get('page'))chrome.style.transition='none';
+if(Q.get('p')){frozen=true;render(parseFloat(Q.get('p')))}
+else if(Q.get('page'))go(Q.get('page'),false);
+else render(0);
+if(Q.get('open'))openCard(Q.get('open'));
+if(Q.get('about'))document.querySelectorAll('.about .aimg').forEach(e=>{e.style.backgroundImage=`url(${Q.get('about')})`});
+if(Q.get('hero'))document.querySelectorAll('.cover .hbg').forEach(e=>e.style.backgroundImage=`url(assets/hero.jpg)`);
+if(Q.get('x'))document.querySelectorAll('.body').forEach(b=>b.classList.add('x'));
+if(Q.get('toc'))toc.hidden=false;
+if(Q.get('legal'))openLegal(Q.get('legal'));
+if(Q.get('sub'))document.querySelectorAll('.hnav .ni.has').forEach(n=>n.classList.add('open'));
+if(Q.get('nav'))sheetnav.hidden=false;
+if(Q.get('info'))openInfo(Q.get('info'));
+if(Q.get('cart')){if(Q.get('cart')==='demo'){addItem('zavtraki-06');addItem('kofe-07#1');addItem('kofe-07#1');addItem('hleb-05#1')}openCart()}
+</script>
+</body></html>
