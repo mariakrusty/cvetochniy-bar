@@ -17,7 +17,8 @@ body{overflow-x:hidden}
 /* ---------- книга: прокрутка крутит страницы ---------- */
 #slots .slot{height:100dvh;scroll-snap-align:start;scroll-snap-stop:always}
 #stage{position:fixed;inset:0;overflow:hidden;background:#e8e4dd;perspective:1500px;perspective-origin:50% 50%;z-index:1}
-.pg{position:absolute;inset:calc(env(safe-area-inset-top) + 14px) 22px calc(env(safe-area-inset-bottom) + 12px) 12px;border-radius:12px;box-shadow:0 12px 34px -14px rgba(30,30,40,.45);overflow:hidden;visibility:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:0 50%;will-change:transform}
+.pg{position:absolute;inset:calc(env(safe-area-inset-top) + 14px) 22px calc(env(safe-area-inset-bottom) + 12px) 12px;border-radius:12px;box-shadow:0 12px 34px -14px rgba(30,30,40,.45);overflow:hidden;visibility:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:0 50%}
+.pg.on{will-change:transform}
 .pg.on{visibility:visible}
 .pg::before{content:'';position:absolute;inset:0;pointer-events:none;background:#141420;opacity:var(--dk,0);z-index:6}
 .pg::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(20,20,30,.5),rgba(20,20,30,0) 42%);opacity:var(--sh,0);z-index:6}
@@ -143,6 +144,7 @@ body{overflow-x:hidden}
 .cover .lk::before{content:'';position:absolute;left:0;right:56px;bottom:0;height:1px;background:currentColor}
 .cover .lk.main::before{height:5px;background:linear-gradient(currentColor 0 1px,transparent 1px 4px,currentColor 4px 5px)}
 .cover .lk:hover i{background-size:60px 1px}.cover .lk:hover i::after{left:53px}
+@media (max-width:899px){.cell .ph img{mix-blend-mode:normal}.cover .plate{mix-blend-mode:normal}.hnav .nlogo{filter:none}.pg::after{display:none}.pg{box-shadow:0 6px 18px -10px rgba(30,30,40,.35)}}
 /* навигация хиро */
 .topnav{position:fixed;left:0;right:0;top:0;z-index:22;transition:opacity .3s;pointer-events:none}.topnav.off{opacity:0}.topnav .hnav{pointer-events:auto}
 .hnav{position:absolute;top:calc(env(safe-area-inset-top) + 14px);left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;color:#fff;z-index:5;transition:color .3s}
@@ -526,7 +528,7 @@ function render(p){
   if(i+1<N){set(R[i+1],'none',1,th<90?s*.7:0,0);set(R[i],`rotateY(${-th}deg)`,3,0,s*.22);set(L[i+1],`rotateY(${180-th}deg)`,3,0,s*.22)}
   else set(R[i],'none',1,0,0);}
  }else if(i<3){set(L[i],'none',1,0,0);if(i+1<N){const e=1-Math.pow(1-t,2.2);L[i+1].style.visibility=t>0.001?'':'hidden';set(L[i+1],`translateY(${(1-e)*100}%)`,3,0,0)}}
- else{for(const k of [1,2,3])if(L[k])L[k].style.visibility='';set(L[i],`rotateY(${-th}deg)`,3,0,s*.22);if(i+1<N)set(L[i+1],'none',1,s*.8,0)}
+ else{for(const k of [1,2,3])if(L[k])L[k].style.visibility='';const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;set(L[i],`translate3d(${(-e*100).toFixed(2)}%,0,0)`,3,0,0);if(i+1<N)set(L[i+1],'none',1,0,0)}
 }
 const vh=()=>innerHeight;let frozen=false;
 addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(scrollY/vh()))},{passive:true});
