@@ -239,7 +239,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .tea .trow .pr{font:500 16px/1 var(--serif);white-space:nowrap}.tea .trow .pr small{font:600 8px/1 var(--sans);letter-spacing:.16em;color:var(--blue);margin:0 6px 0 3px}
 .tea .trow .add{width:22px;height:22px;font-size:16px;box-shadow:none;flex-shrink:0;align-self:center}
 /* карточка */
-.card .macro{display:block;aspect-ratio:1/1;overflow:hidden}.card .macro img{width:100%;height:100%;object-fit:contain;display:block}
+.card .macro{display:block;aspect-ratio:1/1;overflow:hidden}.card .macro img{width:100%;height:100%;object-fit:contain;display:block}.card .macro.full img{object-fit:cover}
 .card h2{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:10px}
 .card p{font:400 15px/1.3 var(--serif);color:var(--muted);text-align:center;margin:8px auto 0;hyphens:auto}
 .card .kbju{text-align:center;margin-top:10px}
@@ -485,7 +485,7 @@ for(const p of M.pages){const c=CHAP[p.chapter];
    <ul>${its.map(i=>`<li data-go="${i.id}">${esc(i.name)}<small>${i.price!=null?i.price+' руб.':''}</small></li>`).join('')}</ul>
    <div class="foot">${esc(t.caps)} · ${esc(t.year)}</div></div></section>`;}
  else if(p.kind==='sheet'){const i=ITEMS[p.item];
-  html+=`<section class="pg sheet${thm(c)}" id="${p.id}" data-m="${i.m}" data-d="${i.d}" data-macro="${i.macro}" style="--bg:${i.bg||'#f6f5f3'}${c.theme?';--sflag:'+c.theme.flag:''}">
+  html+=`<section class="pg sheet${thm(c)}" id="${p.id}" data-item="${i.id}" data-m="${i.m}" data-d="${i.d}" data-macro="${i.macro}" style="--bg:${i.bg||'#f6f5f3'}${c.theme?';--sflag:'+c.theme.flag:''}">
    <div class="macro"><div class="cap"><b>${esc(i.name)}</b><span>${esc(c.title)} · ${esc(c.caps)}</span></div></div>
    <div class="list"><div class="head"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps} · <span class="n">${p.pos} из ${c.n}</span></div></div>
     <div class="body"><h1>${esc(i.name)}</h1><p class="desc">${esc(i.desc)}</p><div class="kbju">${kb(i)}</div>${extraHTML(i)}${choicesHTML(i)}
@@ -580,7 +580,7 @@ let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(fitAll,120)
 
 /* ---------- карточка (витрина и чай) ---------- */
 const drawer=document.getElementById('drawer'),cardDim=document.getElementById('cardDim'); let curCard=null,curVar=0;
-function cardHTML(i,vi){const v=i.variants?i.variants[vi]:i; const img=i.card?`<div class="macro"><img src="${i.card}" alt=""></div>`:'';
+function cardHTML(i,vi){const v=i.variants?i.variants[vi]:i; const csrc=i.card||i.macro; const img=csrc?`<div class="macro${i.card?'':' full'}"><img src="${csrc}" alt=""></div>`:'';
  const opts=i.variants?`<div class="opts">${i.variants.map((x,k)=>`<span class="${k===vi?'sel':''}" data-var="${k}">${esc(x.label)}</span>`).join('')}</div>`:'';
  const pr=v.price==null?`<span class="tbd">цена уточняется</span>`:`<span class="price">${v.price}<small>руб.</small></span><span class="add" data-add="${i.id}#${vi}">+</span>`;
  return `${img}<h2>${esc(i.name)}</h2><p>${esc(i.desc)}</p><div class="kbju">${kb(v)}</div>${extraHTML(v.out!==undefined?{...i,out:v.out}:i)}${opts}${choicesHTML(i)}<div class="buy">${pr}</div>`}
@@ -666,6 +666,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(x=q('.hnav .ni.has')&&!q('.sub')){document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));return openMenu()}
  if(x=q('[data-more]')){x.closest('.body,.cbody').classList.toggle('x');fitSheets();return}
  if(x=q('[data-choice]')){const box=x.closest('.opts');box.querySelectorAll('span').forEach(s=>s.classList.toggle('sel',s===x));return}
+ if(!isDesk&&(x=q('[data-add]'))&&!x.closest('.cbody,.cart'))return openCard(x.dataset.add.split('#')[0]);   /* телефон: «+» на листе и в витрине сначала открывает карточку с макро, добавляет «+» в карточке */
  if(x=q('[data-add]')){let key=x.dataset.add;const scope=x.closest('.body,.cbody');const sel=scope&&scope.querySelector('.opts [data-choice].sel');if(sel&&!key.includes('#'))key+='#c'+sel.dataset.choice;return addItem(key)}
  if(x=q('[data-open]'))return openCard(x.dataset.open);
  if(x=q('[data-inc]'))return addItem(x.dataset.inc,1);
@@ -674,6 +675,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(q('[data-close]'))return closeCard();
  if(q('[data-toc-close]'))return void(toc.hidden=true);
  if(x=q('[data-go]')){toc.hidden=true;sheetnav.hidden=true;closeInfo();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
+ if(!isDesk&&(x=q('.sheet[data-item]'))&&!q('.head,.body'))return openCard(x.dataset.item);   /* телефон: тап по фото на листе = карточка с макро */
  if(x=q('.cell,.trow'))return openCard(x.dataset.id)});
 
 /* ---------- параметры превью: ?page=<id|глава>, ?p=1.35, ?open=<id>, ?toc=1, ?cart=demo ---------- */
