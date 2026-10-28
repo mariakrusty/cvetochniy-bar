@@ -361,13 +361,13 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 @media (min-width:900px){.cover .mtop,.cover .short,.cover .sep,.cover .tel{display:none}.cover .row2{display:contents}}
 @media (max-width:899px){
  /* хиро по макету Марии 28.10: слоган сверху по центру, внизу МЕНЮ → с чертой, под ним НАПИСАТЬ · ПОЗВОНИТЬ */
- .cover .mtop{position:absolute;left:24px;right:24px;top:calc(env(safe-area-inset-top) + 12.5vh);text-align:center;font:600 12.5px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#f1e9d8;z-index:4;text-shadow:0 1px 12px rgba(0,0,0,.45)}
+ .cover .mtop{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 12vh);display:flex;justify-content:center;z-index:4;filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))}.cover .mtop img{width:84%;height:auto}
  .cover .hleft,.cover .full{display:none}
  .cover .hfoot{left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 30px)}
  .cover .hlinks{display:flex;flex-direction:column;align-items:center;gap:28px;margin-top:0}
- .cover .lk.main{font-size:17px;letter-spacing:.36em;gap:16px;padding-bottom:18px;margin-right:-.36em}
- .cover .lk.main::before{height:1px;background:currentColor;left:0;right:76px}
- .cover .row2{display:flex;align-items:center;gap:16px;font:600 12px/1 var(--serif);letter-spacing:.26em;text-transform:uppercase;color:#f1e9d8}
+ .cover .lk.main{font:500 20px/1 var(--serif);letter-spacing:.42em;gap:18px;padding-bottom:16px;margin-right:-.42em}
+ .cover .lk.main::before{left:0;right:78px}
+ .cover .row2{display:flex;align-items:center;gap:18px;font:500 13px/1 var(--serif);letter-spacing:.3em;text-transform:uppercase;color:#f1e9d8}.cover .sep{font-size:10px}
  .cover .row2 .lk{padding-bottom:0;text-decoration:none}.cover .row2 .lk::before,.cover .row2 .lk i{display:none}.cover .sep{opacity:.8}
 }
 @media (max-width:899px){
@@ -410,7 +410,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div class="block c"></div><div class="block l"></div><div class="block r"></div><div class="block b"></div><div class="block s"></div>
  <section class="pg cover" id="pg-cover"><h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Цветочный бар — чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный, Москва</h1>
   <div class="hbg"></div>
-  <div class="mtop">И чай попить, и цветы купить!</div>
+  <div class="mtop"><img src="assets/slogan-script-white.png" alt="И чай попить, и цветы купить!"></div>
   <div class="hfoot">
    <div class="hleft"><img class="slogan" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить!"><div class="meta">Горячая еда и выпечка по ЖК Level Причальный за 20 минут<br>Печём каждое утро · Ежедневно 8:00–21:00</div></div>
    <div class="hlinks"><span class="lk main" data-go="toc"><span class="full">Открыть меню</span><span class="short">Меню</span><i></i></span><div class="row2"><span class="lk" data-info="write">Написать<i></i></span><span class="sep">·</span><a class="lk tel" href="tel:+79295888778">Позвонить</a></div></div>
@@ -679,7 +679,6 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(x=q('.hnav .ni.has')&&!q('.sub')){document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));return openMenu()}
  if(x=q('[data-more]')){x.closest('.body,.cbody').classList.toggle('x');fitSheets();return}
  if(x=q('[data-choice]')){const box=x.closest('.opts');box.querySelectorAll('span').forEach(s=>s.classList.toggle('sel',s===x));return}
- if(!isDesk&&(x=q('[data-add]'))&&!x.closest('.cbody,.cart'))return openCard(x.dataset.add.split('#')[0]);   /* телефон: «+» на листе и в витрине сначала открывает карточку с макро, добавляет «+» в карточке */
  if(x=q('[data-add]')){let key=x.dataset.add;const scope=x.closest('.body,.cbody');const sel=scope&&scope.querySelector('.opts [data-choice].sel');if(sel&&!key.includes('#'))key+='#c'+sel.dataset.choice;return addItem(key)}
  if(x=q('[data-open]'))return openCard(x.dataset.open);
  if(x=q('[data-inc]'))return addItem(x.dataset.inc,1);
