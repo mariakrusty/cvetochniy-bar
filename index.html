@@ -250,9 +250,9 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .card .buy{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:14px}
 .card .price{font:500 32px/1 var(--serif)}.card .price small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
 .back{font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);cursor:pointer;display:none}
-.drawer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:26;max-height:92dvh;overflow:auto}
+.drawer{position:fixed;left:0;right:0;bottom:0;background:#f8f8f8;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:26;max-height:92dvh;overflow:auto}
 .grip{width:36px;height:3px;border-radius:2px;background:#d8d3ca;margin:0 auto 10px}
-.xclose{float:right;font:600 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;padding:4px 0 10px 14px;position:relative;z-index:2}
+.xclose{position:absolute;right:22px;top:16px;font:600 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;padding:6px 0 6px 14px;z-index:2}
 @media (min-width:900px){.xclose{display:none}}
 .dim{position:fixed;inset:0;background:rgba(40,40,60,.25);z-index:25}
 .dim[hidden],.drawer[hidden]{display:none}
@@ -269,7 +269,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .toc .close{position:absolute;top:calc(env(safe-area-inset-top) + 22px);right:22px;font:600 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--blue);cursor:pointer}
 
 /* ---------- заказ ---------- */
-.cart{position:fixed;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:31;max-height:84dvh;overflow:auto}
+.cart{position:fixed;left:0;right:0;bottom:0;background:#f8f8f8;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:31;max-height:84dvh;overflow:auto}
 .cart[hidden]{display:none}
 .cart h3{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:6px}
 .cart .sub{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);text-align:center;margin-top:8px}
@@ -361,8 +361,10 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 @media (max-width:899px){
  .grid-pg .page,.list-pg .page,.cell{background:#f8f8f8}.cell .ph{background:#f8f8f8}
  .body,.head{left:28px;right:42px}.grid-pg .page,.list-pg .page,.plist-pg .page{padding-left:24px;padding-right:38px}
- #stage{position:static;inset:auto;overflow:visible;perspective:none;background:#fff}#stage .block{display:none}#slots{display:none}
- .pg{position:relative;inset:auto !important;height:100vh;height:100dvh;border-radius:0 !important;box-shadow:none !important;visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;z-index:auto !important;backface-visibility:visible}
+ #stage{position:static;inset:auto;overflow:visible;perspective:none;background:#e8e4dd}#stage .block{display:none}#slots{display:none}
+ .pg{position:relative;inset:auto !important;height:calc(100vh - 22px);height:calc(100dvh - 22px);margin:0 16px 22px 12px;border-radius:12px;box-shadow:0 10px 26px -14px rgba(30,30,40,.45);visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:calc(env(safe-area-inset-top) + 12px);overflow:hidden;z-index:auto !important;backface-visibility:visible}
+ .pg.cover,.pg.about,.pg.footer{height:100vh;height:100dvh;margin:0;border-radius:0;box-shadow:none;scroll-margin-top:0}
+ .pg.toc{margin-top:calc(env(safe-area-inset-top) + 12px)}
  .pg::before,.pg::after{display:none}
  #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
 }
@@ -544,12 +546,15 @@ function render(p){
   else set(R[i],'none',1,0,0);}
  }
 }
-const vh=()=>isDesk?innerHeight:(L[0].offsetHeight||innerHeight);let frozen=false;
-addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(scrollY/vh()))},{passive:true});
-addEventListener('resize',()=>{if(!frozen)render(scrollY/vh())});
+const vh=()=>innerHeight;let frozen=false;
+const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>L[k].offsetTop-smt(L[k]);
+function posP(){const y=scrollY;let k=0;while(k+1<N&&ptop(k+1)<=y+1)k++;const a=ptop(k),b=k+1<N?ptop(k+1):a+innerHeight;return k+Math.max(0,Math.min(1,(y-a)/Math.max(1,b-a)))}
+const curP=()=>isDesk?scrollY/vh():posP();
+addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(curP()))},{passive:true});
+addEventListener('resize',()=>{if(!frozen)render(curP())});
 function openMenu(){go('toc',false)}
 function go(id,smooth=true){openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
- scrollTo({top:idx*vh(),behavior:smooth?'smooth':'instant'});render(idx)}
+ scrollTo({top:isDesk?idx*vh():ptop(idx),behavior:smooth?'smooth':'instant'});render(idx)}
 function fitTitles(){
  document.querySelectorAll('h1').forEach(h=>{h.style.fontSize='';h.style.letterSpacing='';h.style.whiteSpace='normal';const lh=()=>parseFloat(getComputedStyle(h).lineHeight);let fs=parseFloat(getComputedStyle(h).fontSize);
   while(h.scrollHeight>lh()*2.3&&fs>30){fs-=1;h.style.fontSize=fs+'px'}});   /* до двух строк одним размером и трекингом */
@@ -674,7 +679,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
 /* ---------- параметры превью: ?page=<id|глава>, ?p=1.35, ?open=<id>, ?toc=1, ?cart=demo ---------- */
 const Q=new URLSearchParams(location.search);
 if(Q.get('p')||Q.get('page'))chrome.style.transition='none';
-if(Q.get('p')){const pp=parseFloat(Q.get('p'));frozen=true;if(!isDesk){if(pp>=3)openBook();scrollTo({top:Math.round(pp)*vh(),behavior:'instant'})}render(pp)}
+if(Q.get('p')){const pp=parseFloat(Q.get('p'));frozen=true;if(!isDesk){if(pp>=3)openBook();scrollTo({top:ptop(Math.round(pp)),behavior:'instant'})}render(pp)}
 else if(Q.get('page'))go(Q.get('page'),false);
 else render(0);
 if(Q.get('open'))openCard(Q.get('open'));
