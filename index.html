@@ -415,6 +415,18 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .plist-pg .page{min-height:0}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important;animation:none !important}html{scroll-behavior:auto}}
+/* телефон (29.10): оглавление и разделители ужимаются под высоту экрана через --fit (JS fitPages), чтобы список не вылезал за лист */
+@media (max-width:899px){
+ .tocpg .tv{padding-top:calc(env(safe-area-inset-top) + 112px + 38px*var(--fit,1))}
+ .tocpg .script{font-size:calc(clamp(56px,11vh,88px)*var(--fit,1))}
+ .tocpg ul{margin-top:calc(2.4vh*var(--fit,1))}
+ .tocpg li{font-size:calc(clamp(19px,3vh,26px)*var(--fit,1));line-height:calc(1.65 - (1 - var(--fit,1))*1.1)}
+ .divider .macro{height:calc(44%*var(--fit,1))}.divider .dv{top:calc(44%*var(--fit,1))}
+ .divider .script{font-size:calc(clamp(60px,11vh,96px)*var(--fit,1))}
+ .divider ul{margin-top:calc(2.4vh*var(--fit,1))}
+ .divider li{font-size:calc(clamp(18px,2.9vh,24px)*var(--fit,1));padding:calc(.45em*var(--fit,1)) 0;line-height:calc(1.5 - (1 - var(--fit,1))*.8)}
+ .divider .note{margin-top:calc(2.6vh*var(--fit,1))}.divider .foot{padding-top:calc(18px*var(--fit,1))}
+}
 </style></head><body>
 
 <div class="chrome off" id="chrome">
@@ -630,7 +642,8 @@ function fitCellNames(){document.querySelectorAll('.cell h4').forEach(h=>{h.styl
 function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:3;const rows=Math.ceil(n/cols);
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
-function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids()}
+function fitPages(){if(isDesk)return;document.querySelectorAll('.pg.tocpg,.pg.divider').forEach(pg=>{const box=pg.querySelector('.tv,.dv');if(!box)return;let f=1;pg.style.setProperty('--fit','1');while(f>0.66&&box.scrollHeight>box.clientHeight+1){f-=0.03;pg.style.setProperty('--fit',f.toFixed(2))}})}
+function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids();fitPages()}
 const A11Y='[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-about-close],[data-toc-close],[data-burger],.tabs .t,.cell,.trow,.flag,.basket';
 function a11y(root=document){root.querySelectorAll(A11Y).forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}})}
 a11y();
