@@ -582,7 +582,7 @@ document.getElementById('navChapters').innerHTML=chLi;
 
 const ORDER=['cover',...M.pages.map(p=>p.id.replace(/^pg-/,''))];
 const PAGECH={};M.pages.forEach(p=>PAGECH[p.id.replace(/^pg-/,'')]=p.chapter||'');
-const tabs=document.getElementById('tabs');tabs.innerHTML=M.chapters.map((ch,k,arr)=>`<span class="t${ch.theme?' season':''}" data-go="${ch.key}" data-ch="${ch.key}" style="z-index:${arr.length-k}">${ch.title}</span>`).join('');
+const tabs=document.getElementById('tabs');tabs.innerHTML=M.chapters.map((ch,k,arr)=>`<span class="t${ch.theme?' season':''}" data-go="${ch.key}" data-ch="${ch.key}" style="z-index:${arr.length-k}">${ch.tab||ch.title}</span>`).join('');
 let curCh='';function setChapter(id){const ch=PAGECH[id]||'';if(ch===curCh)return;curCh=ch;tabs.querySelectorAll('.t').forEach(t=>t.classList.toggle('cur',t.dataset.ch===ch));const c=CHAP[ch];chrome.classList.toggle('season',!!(c&&c.theme));if(c&&c.theme)chrome.style.setProperty('--sflag',c.theme.flag)}
 
 /* ---------- книга: слои ---------- */
