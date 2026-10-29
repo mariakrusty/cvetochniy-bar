@@ -5,9 +5,9 @@
 <meta property="og:title" content="Цветочный бар | Чайная и кафе-пекарня на Причальном проезде"><meta property="og:description" content="Завтраки, свежая выпечка, чай и домашняя русская кухня в Москве. Доставка еды по ЖК Level Причальный за 20 минут."><meta property="og:type" content="website"><meta property="og:image" content="assets/hero.jpg"><meta property="og:locale" content="ru_RU">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Цветочный бар","alternateName":"The Flower Bar","telephone":"+7 929 588-87-78","description":"Чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный: завтраки, домашняя кухня по старым русским рецептам, свежая выпечка, кофе, доставка по ЖК за 20 минут.","servesCuisine":["Русская","Домашняя","Чайная","Пекарня","Завтраки"],"address":{"@type":"PostalAddress","streetAddress":"Причальный проезд, 10к2","addressLocality":"Москва","addressRegion":"Москва","addressCountry":"RU"},"openingHours":"Mo-Su 08:00-21:00","slogan":"И чай попить, и цветы купить","hasMenu":"#pg-toc","priceRange":"₽₽"}</script>
 <style>
-@font-face{font-family:'Miama';src:url(assets/fonts/miamanueva.otf) format('opentype')}
-@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/CormorantGaramond.ttf) format('truetype');font-weight:300 700}
-@font-face{font-family:'Montserrat';src:url(assets/fonts/Montserrat.ttf) format('truetype');font-weight:100 900}
+@font-face{font-family:'Miama';src:url(assets/fonts/miamanueva.woff2) format('woff2'),url(assets/fonts/miamanueva.otf) format('opentype');font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/CormorantGaramond.woff2) format('woff2'),url(assets/fonts/CormorantGaramond.ttf) format('truetype');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Montserrat';src:url(assets/fonts/Montserrat.woff2) format('woff2'),url(assets/fonts/Montserrat.ttf) format('truetype');font-weight:100 900;font-display:swap}
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#26231f;--muted:#5b564e;--blue:#7ea3c9;--blue-text:#4a6a92;--blue-action:#4f739b;--meta:#6b665e;--flag:#a0b4d6;--line:rgba(38,35,31,.55);--script:'Miama',cursive;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif}
 html{scroll-snap-type:y mandatory}
@@ -73,6 +73,7 @@ body{overflow-x:hidden}
 .footer .fgrid{display:grid;grid-template-columns:1fr;gap:26px}
 .footer .fcol h4{font:600 9.5px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#c9a98a;margin-bottom:12px}
 .footer .fcol a,.footer .fcol span.l{display:block;font:500 15px/1.9 var(--serif);letter-spacing:.04em;color:#ede9e1;text-decoration:none;cursor:pointer}
+.footer .draft{display:inline-block;font:600 8.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#a0866d;margin-left:6px;vertical-align:middle}
 .footer .fcol .addr{font:500 15px/1.6 var(--serif);color:#ede9e1}
 .footer .flogo{height:56px;margin-bottom:10px}
 .footer .slog{display:block;width:min(100%,260px);opacity:.9;margin-top:6px}
@@ -88,6 +89,9 @@ body{overflow-x:hidden}
 .cookie button{height:40px;padding:0 18px;border-radius:20px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:600 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer}
 .cookie button.ghost{background:#fff;color:var(--blue)}
 /* юридические тексты в карточке */
+.info .soon{font:400 12.5px/1.45 var(--serif);color:var(--muted);margin-top:12px;min-height:1em}
+.info .draftnote{font:400 12.5px/1.45 var(--serif);color:#8a5a2b;background:#fbf3e8;border-radius:10px;padding:10px 14px;margin:12px 0 4px}
+.fail{position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom) + 16px);z-index:60;background:#fff;color:var(--ink);border-radius:14px;padding:16px 18px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5);font:400 14px/1.4 var(--serif)}.fail b{display:block;font:500 18px/1.2 var(--serif);margin-bottom:4px}.fail div{display:flex;gap:10px;margin-top:12px}.fail a,.fail button{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:20px;background:var(--blue-action);color:#fff;border:0;font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;cursor:pointer}.fail button{background:#fff;color:var(--blue-text);border:1px solid var(--blue-text)}
 .info.legal-doc{width:min(94vw,760px);max-height:86dvh;text-align:left}
 .info.legal-doc h3{text-align:left;font-size:26px}.info.legal-doc .sub{text-align:left}
 .info.legal-doc .doc{margin-top:18px;font:400 15px/1.55 var(--serif);color:var(--ink)}
@@ -284,6 +288,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font:500 20px/1 var(--serif);letter-spacing:.08em}
 .cart .total b{font:500 32px/1 var(--serif)}.cart .total b small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
 .cart .go{display:block;margin:18px auto 0;padding:0 36px;height:54px;border-radius:27px;background:var(--blue);color:#fff;border:0;font:600 12px/54px var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
+.cart .go{text-decoration:none;text-align:center;width:max-content}.cart .hint{font:400 12.5px/1.45 var(--serif);color:var(--muted);text-align:center;margin-top:12px}
 .cart .pd{font:400 12px/1.45 var(--serif);color:var(--muted);margin-top:16px}.cart .pd a{color:var(--blue-text)}
 .cart .addr{font:500 10.5px/1.5 var(--sans);letter-spacing:.1em;color:#9a948a;text-align:center;margin-top:12px}
 
@@ -380,6 +385,17 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .pg::before,.pg::after{display:none}
  #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
 }
+@media (max-width:899px) and (max-height:600px){
+ /* низкий или альбомный экран: оглавление, витрины, списки и вкладыш растут по содержимому, лист снапится по верху */
+ .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100dvh - 22px)}
+ .tocpg .tv{position:relative;inset:auto;padding:calc(env(safe-area-inset-top) + 118px) 22px 36px}
+ .divider .macro{position:relative;height:38vh;min-height:170px}.divider .dv{position:relative;inset:auto;top:auto;padding:22px 26px 32px}
+ .grid-pg .page,.list-pg .page{position:relative;inset:auto;min-height:0}
+ .grid{grid-template-rows:none;grid-auto-rows:minmax(168px,auto);margin-top:12px}.cell .ph{flex:0 0 92px;height:92px}
+ .tea.plist{overflow:visible}.tea.plist .trow{flex:0 0 auto;max-height:none}.tea{overflow:visible}
+ .plist-pg .page{min-height:0}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important;animation:none !important}html{scroll-behavior:auto}}
 </style></head><body>
 
 <div class="chrome off" id="chrome">
@@ -397,7 +413,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
     <span class="ni" data-info="delivery">Доставка</span>
     <span class="ni" data-go="about">О нас</span>
     <span class="ni" data-info="events">Мероприятия</span>
-    <a class="ni ext" href="https://flowerbar.example" target="_blank" rel="noopener">Цветы<b>↗</b></a>
+    <span class="ni" data-info="flowers">Цветы</span>
     <span class="ni" data-info="contacts">Контакты</span>
    </div>
    <div class="right">
@@ -427,7 +443,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div class="big" data-home>Главная</div><div class="big" data-go="toc">Меню</div>
  <div class="grp">Главы</div><div id="navChaptersM"></div>
  <div class="grp">Ещё</div>
- <div class="big" data-info="delivery">Доставка</div><div class="big" data-go="about">О нас</div><div class="big" data-info="events">Мероприятия</div><a class="big ext" href="https://flowerbar.example" target="_blank" rel="noopener">Цветы ↗</a><div class="big" data-info="contacts">Контакты</div>
+ <div class="big" data-info="delivery">Доставка</div><div class="big" data-go="about">О нас</div><div class="big" data-info="events">Мероприятия</div><div class="big" data-info="flowers">Цветы</div><div class="big" data-info="contacts">Контакты</div>
  <div class="cta"><a class="btn" href="tel:+79295888778">Позвонить</a><span class="btn ghost" data-info="write">Написать</span></div>
 </div>
 <div class="dim info-dim" id="infoDim" hidden></div>
@@ -450,15 +466,17 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 <script src="assets/menu-data.js"></script>
 <script>
 /* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
-const M=window.MENU, ITEMS=M.items, CHAP=Object.fromEntries(M.chapters.map(c=>[c.key,c]));
+const MENU_OK=!!(window.MENU&&window.MENU.items&&window.MENU.chapters&&window.MENU.pages);
+if(!MENU_OK){document.body.insertAdjacentHTML('beforeend','<div class="fail" role="alert"><b>Меню не загрузилось</b><span>Проверьте связь и попробуйте ещё раз. Заказ и вопросы принимаем по телефону.</span><div><a href="tel:+79295888778">Позвонить</a><button onclick="location.reload()">Обновить</button></div></div>')}
+const M=MENU_OK?window.MENU:{items:{},chapters:[],pages:[]}, ITEMS=M.items, CHAP=Object.fromEntries(M.chapters.map(c=>[c.key,c]));
 const fmt=n=>n==null?'':String(n).replace('.',',');
 const kb=i=>i.kcal?`${fmt(i.kcal)} ККАЛ · Б ${fmt(i.b)} · Ж ${fmt(i.j)} · У ${fmt(i.u)}`:'';
-const extraHTML=i=>{const rows=[];if(i.out)rows.push(`Выход порции: ${esc(i.out)}`);if(i.sostav)rows.push(`Состав: ${esc(i.sostav)}`);return rows.length?`<button class="more" data-more>состав и вес</button><div class="extra">${rows.join('<br>')}</div>`:''};
+const extraHTML=i=>{const rows=[];if(i.out)rows.push(`Выход порции: ${esc(i.out)}`);if(i.sostav)rows.push(`Состав: ${esc(i.sostav)}`);return rows.length?`<button class="more" data-more>${i.sostav?'состав и вес':'вес порции'}</button><div class="extra">${rows.join('<br>')}</div>`:''};
 const choicesHTML=i=>i.choices?`<div class="opts">${i.choices.map((c,k)=>`<span class="${k?'':'sel'}" data-choice="${k}">${esc(c)}</span>`).join('')}</div>`:'';
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const minPrice=i=>i.variants?Math.min(...i.variants.map(v=>v.price).filter(p=>p!=null)):i.price;
 const priceHTML=i=>{const p=minPrice(i);if(p==null)return `<span class="tbd">цена уточняется</span>`;return `<span class="price ${i.variants?'from':''}">${p}<small>руб.</small></span>`};
-const addHTML=i=>minPrice(i)==null?'':`<span class="add" data-add="${i.id}">+</span>`;
+const addHTML=i=>minPrice(i)==null?'':`<span class="add" data-add="${i.id}" aria-label="Добавить в поднос: ${esc(i.name)}">+</span>`;
 const isDesk=matchMedia('(min-width:900px)').matches;
 matchMedia('(min-width:900px)').addEventListener('change',()=>location.reload());
 
@@ -479,8 +497,8 @@ for(const p of M.pages){const c=CHAP[p.chapter];
   html+=`<section class="pg footer" id="${p.id}" aria-label="Контакты и документы"><div class="fv"><div class="fgrid">
    <div class="fcol"><img class="flogo" src="assets/monogram-white.svg" alt="Цветочный бар"><div class="addr">Цветочный бар<br>Москва, Причальный проезд, 10к2<br>ЖК Level Причальный</div><img class="slog" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить"></div>
    <div class="fcol"><h4>Контакты</h4><a href="tel:+79295888778">+7 929 588-87-78</a><span class="l">Почта: на домене, уточняется</span><span class="l" data-info="write">Написать в мессенджер</span><span class="l">Ежедневно 8:00–21:00</span></div>
-   <div class="fcol"><h4>Разделы</h4><span class="l" data-go="toc">Меню</span><span class="l" data-info="delivery">Доставка</span><span class="l" data-go="about">О нас</span><span class="l" data-info="events">Мероприятия</span><a href="https://flowerbar.example" target="_blank" rel="noopener">Цветы · студия</a></div>
-   <div class="fcol"><h4>Документы</h4><a href="privacy.html">Политика обработки персональных данных</a><a href="consent-feedback.html">Согласие для обратной связи</a><span class="l" data-legal="terms">Пользовательское соглашение</span><span class="l" data-legal="offer">Публичная оферта</span></div>
+   <div class="fcol"><h4>Разделы</h4><span class="l" data-go="toc">Меню</span><span class="l" data-info="delivery">Доставка</span><span class="l" data-go="about">О нас</span><span class="l" data-info="events">Мероприятия</span><span class="l" data-info="flowers">Цветы · студия</span></div>
+   <div class="fcol"><h4>Документы</h4><a href="privacy.html">Политика обработки персональных данных <small class="draft">проект редакции</small></a><a href="consent-feedback.html">Согласие для обратной связи <small class="draft">проект редакции</small></a><span class="l" data-legal="terms">Пользовательское соглашение</span><span class="l" data-legal="offer">Публичная оферта</span></div>
   </div>
   <div class="legal"><a href="privacy.html">Персональные данные</a><span data-legal="offer">Оферта</span><span class="copy">© ${new Date().getFullYear()} Цветочный бар</span></div>
   <div class="req">ИП Мкртычева Тамара Аркадьевна · ИНН 772979873290 · ОГРНИП 318774600132051 · Оператор персональных данных. Почта по вопросам персональных данных и адрес для обращений: уточняются.</div>
@@ -510,7 +528,7 @@ for(const p of M.pages){const c=CHAP[p.chapter];
     <div class="grid${its.length<=3?' few':''}" style="grid-template-rows:repeat(${its.length<=3?1:(p.rows||3)},${its.length<=3?'minmax(0,46%)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':''}">${its.map(i=>`<div class="cell" data-id="${i.id}"><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
     <div class="pager">${p.pager}</div></div></section>`;}
  else if(p.kind==='plist'){const its=p.items.map(id=>ITEMS[id]); const hero=its[0];
-  const rows=its.map(i=>`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${i.price!=null?i.price+'<small>руб.</small>':''}</span><span class="add" data-open="${i.id}">+</span></div>`).join('');
+  const rows=its.map(i=>`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${i.price!=null?i.price+'<small>руб.</small>':''}</span><span class="add" data-open="${i.id}" aria-label="Выбрать: ${esc(i.name)}">+</span></div>`).join('');
   html+=`<section class="pg list-pg plist-pg" id="${p.id}" data-hero="${p.live||hero.card}">
    <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div>
     <div class="list kside"><span class="back" data-close>← ${esc(c.title)}</span><div class="head"><div class="script">${c.title}</div><div class="caps">${c.caps}</div></div><div class="body"></div></div>
@@ -553,7 +571,7 @@ function render(p){
  for(let k=Math.max(0,i-1);k<=Math.min(N-1,i+2);k++){load(L[k]);load(R[k])}
  if(isDesk)for(let k=0;k<N;k++){const on=k===i||k===i+1;[L[k],R[k]].forEach(el=>{if(!el)return;el.classList.toggle('on',on);if(!on)set(el,'',0,0,0)})}
  if(isDesk){
-  if(!R[i]){set(L[i],'none',1,0,0);L[i].style.opacity='';if(i+1<N){const e=1-Math.pow(1-t,2.2),tr=`translateY(${(1-e)*100}%)`;for(const el of [L[i+1],R[i+1]]){el.style.visibility=t>0.001?'':'hidden';set(el,tr,3,0,0);el.style.opacity=''}}}
+  if(!R[i]){set(L[i],'none',1,0,0);L[i].style.opacity='';if(i+1<N){const e=1-Math.pow(1-t,2.2),tr=`translateY(${(1-e)*100}%)`;for(const el of [L[i+1],R[i+1]]){if(!el)continue;el.style.visibility=t>0.001?'':'hidden';set(el,tr,3,0,0);el.style.opacity=''}}}
   else{for(const k of [1,2,3]){if(L[k])L[k].style.visibility='';if(R[k])R[k].style.visibility=''}set(L[i],'none',1,th>90?s*.7:0,0);
   if(i+1<N){set(R[i+1],'none',1,th<90?s*.7:0,0);set(R[i],`rotateY(${-th}deg)`,3,0,s*.22);set(L[i+1],`rotateY(${180-th}deg)`,3,0,s*.22)}
   else set(R[i],'none',1,0,0);}
@@ -566,7 +584,8 @@ const curP=()=>isDesk?scrollY/vh():posP();
 addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(curP()))},{passive:true});
 addEventListener('resize',()=>{if(!frozen)render(curP())});
 function openMenu(){go('toc',false)}
-function go(id,smooth=true){openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function go(id,smooth=true){if(RM)smooth=false;openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
  scrollTo({top:isDesk?idx*vh():ptop(idx),behavior:smooth?'smooth':'instant'});render(idx)}
 function fitTitles(){
  document.querySelectorAll('h1').forEach(h=>{h.style.fontSize='';h.style.letterSpacing='';h.style.whiteSpace='normal';const lh=()=>parseFloat(getComputedStyle(h).lineHeight);let fs=parseFloat(getComputedStyle(h).fontSize);
@@ -586,8 +605,18 @@ function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
 function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids()}
-document.querySelectorAll('[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],.tabs .t,.cell,.trow,.flag,.basket').forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}});
-document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.getAttribute('role')==='button'){e.preventDefault();e.target.click()}});
+const A11Y='[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-toc-close],[data-burger],.tabs .t,.cell,.trow,.flag,.basket';
+function a11y(root=document){root.querySelectorAll(A11Y).forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}})}
+a11y();
+/* диалоги: фокус внутрь, Escape закрывает верхний, Tab не уходит в фон, фокус возвращается */
+const DLG=[];let lastFocus=null;
+function dlgOpen(el){if(!el||DLG.includes(el))return;if(!DLG.length)lastFocus=document.activeElement;DLG.push(el);el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('tabindex','-1');a11y(el);setTimeout(()=>{if(!DLG.includes(el))return;const f=el.querySelector('[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-toc-close]');(f||el).focus({preventScroll:true})},30)}
+function dlgClose(el){const k=DLG.indexOf(el);if(k>=0)DLG.splice(k,1);if(!DLG.length){if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});lastFocus=null}else DLG[DLG.length-1].focus({preventScroll:true})}
+function closeTop(){const el=DLG[DLG.length-1];if(!el)return false;if(el===info)closeInfo();else if(el===cart)closeCart();else if(el===drawer)closeCard();else if(el===toc){toc.hidden=true;dlgClose(toc)}else if(el===sheetnav){sheetnav.hidden=true;dlgClose(sheetnav)}return true}
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&closeTop()){e.preventDefault();return}
+ if(e.key==='Tab'&&DLG.length){const el=DLG[DLG.length-1];const f=[...el.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.hidden&&x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===el)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}return}
+ if((e.key==='Enter'||e.key===' ')&&e.target.getAttribute('role')==='button'){e.preventDefault();e.target.click()}});
 document.fonts.ready.then(()=>{fitAll();requestAnimationFrame(fitAll);setTimeout(fitAll,600)});
 let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(fitAll,120)});
 
@@ -595,16 +624,16 @@ let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(fitAll,120)
 const drawer=document.getElementById('drawer'),cardDim=document.getElementById('cardDim'); let curCard=null,curVar=0;
 function cardHTML(i,vi){const v=i.variants?i.variants[vi]:i; const csrc=i.card||i.macro; const img=csrc?`<div class="macro${i.card?'':' full'}"><img src="${csrc}" alt=""></div>`:'';
  const opts=i.variants?`<div class="opts">${i.variants.map((x,k)=>`<span class="${k===vi?'sel':''}" data-var="${k}">${esc(x.label)}</span>`).join('')}</div>`:'';
- const pr=v.price==null?`<span class="tbd">цена уточняется</span>`:`<span class="price">${v.price}<small>руб.</small></span><span class="add" data-add="${i.id}#${vi}">+</span>`;
+ const pr=v.price==null?`<span class="tbd">цена уточняется</span>`:`<span class="price">${v.price}<small>руб.</small></span><span class="add" data-add="${i.variants?i.id+'#'+vi:i.id}" aria-label="Добавить в поднос: ${esc(i.name)}">+</span>`;
  return `${img}<h2>${esc(i.name)}</h2><p>${esc(i.desc)}</p><div class="kbju">${kb(v)}</div>${extraHTML(v.out!==undefined?{...i,out:v.out}:i)}${opts}${choicesHTML(i)}<div class="buy">${pr}</div>`}
-function paintCard(){document.querySelectorAll('.card .cbody').forEach(b=>b.innerHTML=cardHTML(curCard,curVar));fitDesc()}
+function paintCard(){document.querySelectorAll('.card .cbody').forEach(b=>{b.innerHTML=cardHTML(curCard,curVar);a11y(b)});fitDesc()}
 function sheetBodyHTML(i){return `<h1>${esc(i.name)}</h1><p class="desc">${esc(i.desc)}</p><div class="kbju">${kb(i)}</div>${extraHTML(i)}${choicesHTML(i)}<div class="row">${priceHTML(i)}${addHTML(i)}</div>`}
 function openCard(id,vi=0){const i=ITEMS[id];if(!i)return;curCard=i;curVar=vi;document.querySelectorAll('.cbody.x').forEach(b=>b.classList.remove('x'));
  const pg=document.querySelector('.pg.on.plist-pg');
  if(isDesk&&pg&&i.d){document.querySelectorAll('.pg.on.plist-pg').forEach(b=>{const k=b.querySelector('.kside');k.style.setProperty('--d',`url(${i.d})`);k.querySelector('.body').innerHTML=sheetBodyHTML(i);b.classList.add('ksheet')});fitTitles();fitDesc();fitSheets();return}
  paintCard();
- document.querySelectorAll('.pg.on').forEach(b=>b.classList.add('open'));drawer.hidden=false;cardDim.hidden=false;drawer.scrollTop=0}
-function closeCard(){document.querySelectorAll('.pg.ksheet').forEach(b=>b.classList.remove('ksheet'));document.querySelectorAll('.pg.open').forEach(b=>b.classList.remove('open'));drawer.hidden=true;cardDim.hidden=true;curCard=null}
+ document.querySelectorAll('.pg.on').forEach(b=>b.classList.add('open'));drawer.hidden=false;cardDim.hidden=false;drawer.scrollTop=0;dlgOpen(drawer)}
+function closeCard(){document.querySelectorAll('.pg.ksheet').forEach(b=>b.classList.remove('ksheet'));document.querySelectorAll('.pg.open').forEach(b=>b.classList.remove('open'));drawer.hidden=true;cardDim.hidden=true;curCard=null;dlgClose(drawer)}
 cardDim.addEventListener('click',closeCard);
 
 /* ---------- заказ ---------- */
@@ -612,18 +641,20 @@ const CART=new Map();const badge=document.getElementById('badge'),cart=document.
 function lineOf(key){const [id,vi]=key.split('#');const i=ITEMS[id];if(!i)return null;
  if(i.choices&&/^c\d+$/.test(vi||''))return {name:i.name,label:i.choices[+vi.slice(1)]||'',price:i.price};
  const v=i.variants?i.variants[+vi||0]:null;return {name:i.name,label:v?v.label:'',price:v?v.price:i.price}}
-function addItem(key,delta=1){if(!key.includes('#'))key+='#0';const c=lineOf(key);if(!c||c.price==null)return;const row=CART.get(key)||{...c,qty:0};row.qty+=delta;if(row.qty<=0)CART.delete(key);else CART.set(key,row);renderBadge();renderCart()}
+function addItem(key,delta=1){if(!key.includes('#'))key+='#0';const c=lineOf(key);if(!c||c.price==null)return;const row=CART.get(key)||{...c,qty:0};row.qty+=delta;if(row.qty<=0)CART.delete(key);else CART.set(key,row);renderBadge();renderCart();saveCart()}
+function saveCart(){try{sessionStorage.setItem('cb-cart',JSON.stringify([...CART].map(([k,r])=>[k,r.qty])))}catch(e){}}
+function restoreCart(){try{const raw=sessionStorage.getItem('cb-cart');if(!raw)return;for(const [k,q] of JSON.parse(raw)){const c=lineOf(k);if(c&&c.price!=null&&q>0)CART.set(k,{...c,qty:q})}}catch(e){}if(CART.size){renderBadge();renderCart()}}
 function renderBadge(){let n=0;CART.forEach(r=>n+=r.qty);badge.textContent=n;badge.hidden=!n;badge.classList.add('pulse');setTimeout(()=>badge.classList.remove('pulse'),200)}
 function renderCart(){const b=document.getElementById('cartBody');if(!CART.size){b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>';return}
  let sum=0,rows='';CART.forEach((r,k)=>{sum+=r.price*r.qty;rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}">−</button><span>${r.qty}</span><button data-inc="${k}">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
- b.innerHTML=`<table>${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><div class="pd">Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</div><button class="go">Оформить заказ</button><div class="addr">Причальный проезд, 10к2 · 8:00–21:00 · доставка по ЖК за 20 минут</div>`}
-function openCart(){renderCart();cart.hidden=false;cartDim.hidden=false}function closeCart(){cart.hidden=true;cartDim.hidden=true}
+ b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><div class="pd">Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</div><a class="go" href="tel:+79295888778">Позвонить и заказать</a><div class="hint">Онлайн-оформление ещё не подключено. Назовите блюда из подноса по телефону, заказ примем сразу.</div><div class="addr">Причальный проезд, 10к2 · 8:00–21:00 · доставка по ЖК за 20 минут</div>`}
+function openCart(){renderCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){cart.hidden=true;cartDim.hidden=true;dlgClose(cart)}
 document.getElementById('basketBtn').addEventListener('click',openCart);cartDim.addEventListener('click',closeCart);
 
 /* ---------- оглавление ---------- */
 const toc=document.getElementById('toc');
-document.getElementById('tocReady').innerHTML=M.chapters.map(c=>`<li data-go="${c.key}">${c.title}<small>${c.n} ${plural(c.n)}</small></li>`).join('');
-document.getElementById('flag').addEventListener('click',()=>{toc.hidden=false});
+document.getElementById('tocReady').innerHTML=M.chapters.map(c=>`<li data-go="${c.key}">${c.title}<small>${c.n} ${plural(c.n)}</small></li>`).join('');a11y(document.getElementById('tocReady'));
+document.getElementById('flag').addEventListener('click',()=>{toc.hidden=false;dlgOpen(toc)});
 /* хиро: текстура блюда + тарелка, смена каждые 5 с (идея по пину Марии 26.10) */
 const HERO=['zavtraki-09','zavtraki-01','sytnoe-02','sezon-01','sytnoe-06','zavtraki-12'].map(id=>ITEMS[id]).filter(Boolean);
 let hi=0,hmA=true;
@@ -638,11 +669,14 @@ function heroShow(first){const it=HERO[hi];if(!it)return;const c=CHAP[it.chapter
 /* карусель хиро выключена 27.10: хиро = фото Марии */
 document.getElementById('navChaptersM').innerHTML=M.chapters.map(ch=>`<div class="ch ${ch.theme?'season':''}" data-go="${ch.key}">${ch.title}<small>${ch.n} ${plural(ch.n)}</small></div>`).join('');
 /* тексты карточек: заглушки, уточнить у Марии */
+/* ссылки мессенджеров: заполнить, когда кафе передаст адреса (пустая строка = кнопка показывает подсказку) */
+const MSG={tg:'',max:'',wa:''};
 const INFO={events:{t:'Мероприятия',s:'Гастроужины и встречи',p:'Ужины с историей, мастер-классы и цветочные вечера. Афиша и даты уточняются.',a:[['Написать','#info:write'],['Позвонить','tel:+79295888778']]},
- write:{t:'Написать',s:'Выберите мессенджер',p:'Отвечаем ежедневно с 8:00 до 21:00. Ссылки на мессенджеры уточняются.',a:[['Telegram','https://t.me/'],['WhatsApp','https://wa.me/'],['Max','https://max.ru/']]},
+ write:{t:'Написать',s:'Выберите мессенджер',p:'Отвечаем ежедневно с 8:00 до 21:00.',a:[['Telegram',MSG.tg||'#soon'],['Max',MSG.max||'#soon'],['WhatsApp',MSG.wa||'#soon']]},
+ flowers:{t:'Цветы',s:'Цветочная студия',p:'Сайт студии появится, как только получим его адрес. Букет к чаю можно заказать по телефону.',a:[['Позвонить','tel:+79295888778'],['Открыть меню','#toc']]},
  delivery:{t:'Доставка',s:'По ЖК Level Причальный за 20 минут',p:'Привозим горячее, выпечку и кофе по ЖК Level Причальный за 20 минут. Заказ собираем сразу после подтверждения. Условия и минимальная сумма уточняются.',a:[['Позвонить','tel:+79295888778'],['Открыть меню','#toc']]},
  about:{t:'О нас',s:'Цветочный бар',p:'Кафе-пекарня и цветочная лавка в одном доме: домашняя кухня по старым рецептам, свежая выпечка каждое утро и букеты к чаю. Текст о нас уточняется.',a:[['Открыть меню','#toc']]},
- contacts:{t:'Контакты',s:'ЖК Level Причальный',p:'Москва, Причальный проезд, 10к2. Ежедневно с 8:00 до 21:00. Телефон +7 929 588-87-78.',a:[['Позвонить','tel:+79295888778'],['Написать','#info:write'],['Меню','#toc'],['Доставка','#info:delivery'],['Букеты','https://flowerbar.example'],['Как добраться','https://yandex.ru/maps']]}};
+ contacts:{t:'Контакты',s:'ЖК Level Причальный',p:'Москва, Причальный проезд, 10к2. Ежедневно с 8:00 до 21:00. Телефон +7 929 588-87-78.',a:[['Позвонить','tel:+79295888778'],['Написать','#info:write'],['Меню','#toc'],['Доставка','#info:delivery'],['Букеты','#info:flowers'],['Как добраться','https://yandex.ru/maps/?text='+encodeURIComponent('Москва, Причальный проезд, 10к2')]]}};
 const info=document.getElementById('info'),infoDim=document.getElementById('infoDim'),sheetnav=document.getElementById('sheetnav');
 /* юридические тексты (152-ФЗ). ЗАГЛУШКИ: реквизиты владельца подставить перед публикацией */
 const OWNER='ИП Мкртычева Тамара Аркадьевна, ИНН 772979873290, ОГРНИП 318774600132051, адрес: [АДРЕС ОПЕРАТОРА]', SITE='[домен сайта]', MAIL='[EMAIL на домене сайта]';
@@ -658,12 +692,12 @@ const LEGAL={
  <h5>Существенные условия</h5><ul><li>наименование, состав, выход и цена блюда указаны в меню;</li><li>срок исполнения — согласовывается при подтверждении заказа;</li><li>доставка по ЖК Level Причальный; стоимость и минимальная сумма заказа — ${'[заполнить]'};</li><li>оплата — наличными курьеру, картой или онлайн через платёжный сервис.</li></ul>
  <h5>Качество и сроки годности</h5><p>Продукция изготавливается в день заказа. Условия и сроки хранения указываются на упаковке или сообщаются при передаче.</p>
  <h5>Реквизиты Продавца</h5><p>${OWNER}. Контакты: ${MAIL}, телефон на Сайте.</p>`}};
-function openLegal(k){const d=LEGAL[k];if(!d)return;document.getElementById('infoBody').innerHTML=`<h3>${d.t}</h3><div class="sub">${d.s} · проект редакции</div><div class="doc">${d.d}</div>`;info.classList.add('legal-doc');info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true}
+function openLegal(k){const d=LEGAL[k];if(!d)return;document.getElementById('infoBody').innerHTML=`<h3>${d.t}</h3><div class="sub">${d.s} · проект редакции</div><p class="draftnote">Текст в проектной редакции: реквизиты в квадратных скобках будут заполнены перед публикацией. До этого документ не является окончательным.</p><div class="doc">${d.d}</div>`;info.classList.add('legal-doc');info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true;dlgOpen(info)}
 const cookieBox=document.getElementById('cookie');
 /* cookie-баннер отключён 27.10: сайт не ставит cookie и не грузит внешние скрипты; вернуть после инвентаризации интеграций */
 function setCookie(v){try{localStorage.setItem('cb-cookie',v)}catch(e){}cookieBox.hidden=true}
-function openInfo(k){const i=INFO[k];if(!i)return;const eq=k==='write';info.classList.remove('legal-doc');document.getElementById('infoBody').innerHTML=`<h3>${i.t}</h3><div class="sub">${i.s}</div><p>${i.p}</p><div class="row">${i.a.map(([l,h],n)=>h==='#toc'?`<a class="${n?'ghost':''}" data-go="toc">${l}</a>`:h.startsWith('#info:')?`<a class="${n?'ghost':''}" data-info="${h.slice(6)}">${l}</a>`:`<a class="${n&&!eq?'ghost':''}" href="${h}" ${h.startsWith('http')?'target="_blank" rel="noopener"':''}>${l}</a>`).join('')}</div>`;info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true}
-function closeInfo(){info.hidden=true;infoDim.hidden=true}
+function openInfo(k){const i=INFO[k];if(!i)return;const eq=k==='write';info.classList.remove('legal-doc');document.getElementById('infoBody').innerHTML=`<h3>${i.t}</h3><div class="sub">${i.s}</div><p>${i.p}</p><div class="row">${i.a.map(([l,h],n)=>h==='#toc'?`<a class="${n?'ghost':''}" data-go="toc">${l}</a>`:h.startsWith('#info:')?`<a class="${n?'ghost':''}" data-info="${h.slice(6)}">${l}</a>`:`<a class="${n&&!eq?'ghost':''}" href="${h}" ${h.startsWith('http')?'target="_blank" rel="noopener"':''}>${l}</a>`).join('')}</div>${k==='write'?'<p class="soon"></p>':''}`;info.hidden=false;infoDim.hidden=false;sheetnav.hidden=true;dlgOpen(info)}
+function closeInfo(){info.hidden=true;infoDim.hidden=true;dlgClose(info)}
 infoDim.addEventListener('click',closeInfo);
 
 /* ---------- клики одним делегированием ---------- */
@@ -673,9 +707,10 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(x=q('[data-legal]'))return openLegal(x.dataset.legal);
  if(x=q('[data-cookie]'))return setCookie(x.dataset.cookie);
  if(q('[data-info-close]'))return closeInfo();
+ if(x=q('a[href="#soon"]')){e.preventDefault();const n=x.closest('.info').querySelector('.soon');if(n)n.textContent=`${x.textContent}: ссылку подключим в ближайшие дни, пока звоните +7 929 588-87-78`;return}
  if(x=q('[data-info]'))return openInfo(x.dataset.info);
- if(q('[data-burger]'))return void(sheetnav.hidden=false);
- if(q('[data-nav-close]'))return void(sheetnav.hidden=true);
+ if(q('[data-burger]')){sheetnav.hidden=false;dlgOpen(sheetnav);return}
+ if(q('[data-nav-close]')){sheetnav.hidden=true;dlgClose(sheetnav);return}
  if(x=q('.hnav .ni.has')&&!q('.sub')){document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));return openMenu()}
  if(x=q('[data-more]')){x.closest('.body,.cbody').classList.toggle('x');fitSheets();return}
  if(x=q('[data-choice]')){const box=x.closest('.opts');box.querySelectorAll('span').forEach(s=>s.classList.toggle('sel',s===x));return}
@@ -685,11 +720,12 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(x=q('[data-dec]'))return addItem(x.dataset.dec,-1);
  if(q('[data-cartclose]'))return closeCart();
  if(q('[data-close]'))return closeCard();
- if(q('[data-toc-close]'))return void(toc.hidden=true);
- if(x=q('[data-go]')){toc.hidden=true;sheetnav.hidden=true;closeInfo();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
+ if(q('[data-toc-close]')){toc.hidden=true;dlgClose(toc);return}
+ if(x=q('[data-go]')){toc.hidden=true;dlgClose(toc);sheetnav.hidden=true;dlgClose(sheetnav);closeInfo();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
  if(!isDesk&&(x=q('.sheet[data-item]'))&&!q('.head,.body'))return openCard(x.dataset.item);   /* телефон: тап по фото на листе = карточка с макро */
  if(x=q('.cell,.trow'))return openCard(x.dataset.id)});
 
+restoreCart();
 /* ---------- параметры превью: ?page=<id|глава>, ?p=1.35, ?open=<id>, ?toc=1, ?cart=demo ---------- */
 const Q=new URLSearchParams(location.search);
 if(Q.get('p')||Q.get('page'))chrome.style.transition='none';
