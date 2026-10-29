@@ -371,7 +371,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .cover .hlinks .lk.main{display:none}
  .topnav.oncover .nlogo{opacity:0;pointer-events:none}
  .cover .hleft,.cover .full{display:none}
- .cover .hbg{background-size:auto 112%;background-position:50% 100%}  /* фото нарощено тёмным верхом (29.10); кадр крупнее и прижат к низу, чтобы выпечка была выше (правка Марии) */
+ .cover .hbg{background-size:cover;background-position:50% 50%}  /* фото Марии 29.10 (9:16, 1080×1940), композиция по зонам: тёмный верх, поднос в середине, цветы внизу; без кадрирования по высоте */
  .cover .hbg::after{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 26%,rgba(0,0,0,0) 64%,rgba(0,0,0,.45) 82%,rgba(0,0,0,.88) 100%)}
  .cover .hfoot{left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 30px)}
  .cover .hlinks{display:flex;flex-direction:column;align-items:center;gap:28px;margin-top:0}
@@ -404,7 +404,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
 }
 @media (max-width:899px) and (max-height:600px){
- .cover .hbg{background-position:50% 44%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}.cover .mtop .menu{margin-top:14px;font-size:16px}
+ .cover .hbg{background-position:50% 26%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}.cover .mtop .menu{margin-top:14px;font-size:16px}
  /* низкий или альбомный экран: оглавление, витрины, списки и вкладыш растут по содержимому, лист снапится по верху */
  .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100dvh - 22px)}
  .tocpg .tv{position:relative;inset:auto;padding:calc(env(safe-area-inset-top) + 118px) 22px 36px}
