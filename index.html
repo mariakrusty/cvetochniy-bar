@@ -384,8 +384,8 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .grid-pg .page,.list-pg .page,.cell{background:#f8f8f8}.cell .ph{background:#f8f8f8}
  .body,.head{left:28px;right:42px}.grid-pg .page,.list-pg .page,.plist-pg .page{padding-left:24px;padding-right:38px}
  #stage{position:static;inset:auto;overflow:visible;perspective:none;background:#e8e4dd}#stage .block{display:none}#slots{display:none}
- .pg{position:relative;inset:auto !important;height:calc(100vh - 22px);height:calc(100dvh - 22px);margin:0 16px 22px 12px;border-radius:12px;box-shadow:0 10px 26px -14px rgba(30,30,40,.45);visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:calc(env(safe-area-inset-top) + 12px);overflow:hidden;z-index:auto !important;backface-visibility:visible}
- .pg.cover,.pg.about,.pg.footer{height:100vh;height:100dvh;margin:0;border-radius:0;box-shadow:none;scroll-margin-top:0}
+ .pg{position:relative;inset:auto !important;height:calc(100vh - 22px);height:calc(100svh - 22px);margin:0 16px 22px 12px;border-radius:12px;box-shadow:0 10px 26px -14px rgba(30,30,40,.45);visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:calc(env(safe-area-inset-top) + 12px);overflow:hidden;z-index:auto !important;backface-visibility:visible}
+ .pg.cover,.pg.about,.pg.footer{height:100vh;height:100svh;margin:0;border-radius:0;box-shadow:none;scroll-margin-top:0}
  .pg.toc{margin-top:calc(env(safe-area-inset-top) + 12px)}
  .pg.divider{display:none}  /* 29.10, Мария: на телефоне без разделителя «Осень», сразу блюда */
  .head .caps,.bhead .caps{font-size:10px;letter-spacing:.2em;white-space:nowrap}
@@ -408,7 +408,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 @media (max-width:899px) and (max-height:600px){
  .cover .hbg{background-position:50% 26%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}.cover .mtop .menu{margin-top:14px;font-size:16px}
  /* низкий или альбомный экран: оглавление, витрины, списки и вкладыш растут по содержимому, лист снапится по верху */
- .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100dvh - 22px)}
+ .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100svh - 22px)}
  .tocpg .tv{position:relative;inset:auto;padding:calc(env(safe-area-inset-top) + 118px) 22px 36px}
  .divider .macro{position:relative;height:38vh;min-height:170px}.divider .dv{position:relative;inset:auto;top:auto;padding:22px 26px 32px}
  .grid-pg .page,.list-pg .page{position:relative;inset:auto;min-height:0}
@@ -591,7 +591,7 @@ ORDER.forEach(id=>{const el=document.getElementById('pg-'+id);
  if(isDesk&&id!=='cover'&&id!=='about'&&id!=='footer'){const l=el.cloneNode(true);l.removeAttribute('id');l.classList.add('hl');el.classList.add('hr');el.before(l);L.push(l);R.push(el)}
  else{L.push(el);R.push(null)}});
 const N=ORDER.length; const slotsEl=document.getElementById('slots'); let bookOpen=false;
-function openBook(){if(bookOpen)return;bookOpen=true;if(isDesk)slotsEl.innerHTML='<div class="slot"></div>'.repeat(N);else stage.classList.add('bookopen')}
+function openBook(){if(bookOpen)return;bookOpen=true;if(isDesk)slotsEl.innerHTML='<div class="slot"></div>'.repeat(N);else{stage.classList.add('bookopen');if(typeof fitAll==='function')fitAll()}}
 if(isDesk)slotsEl.innerHTML='<div class="slot"></div>'.repeat(3);   /* телефон: страницы в потоке, листает сам браузер; скроллом: хиро → «О нас» → подвал; книга только по кнопке «Меню» */
 const chrome=document.getElementById('chrome'); const rad=d=>d*Math.PI/180;
 function load(el){ if(!el||el.dataset.loaded)return; el.dataset.loaded=1;
