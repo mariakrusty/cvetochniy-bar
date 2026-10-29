@@ -361,7 +361,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 }
 @media (min-width:900px) and (max-width:1199px){ .hnav .items{gap:16px}.hnav .ni{font-size:10px;letter-spacing:.18em}.hnav .tel{display:none}}
 @media (max-width:899px) and (max-height:740px){.flag{width:96px;height:96px}.flag img{width:72%}.flag .lbl{bottom:20px;font-size:7.5px}.head{top:calc(env(safe-area-inset-top) + 108px)}.head .script{font-size:clamp(36px,6vh,46px)}.bhead{padding-top:calc(env(safe-area-inset-top) + 108px)}.bhead .script{font-size:clamp(36px,6vh,46px)}.desc{font-size:13px}.kbju{font-size:10px}}
-@media (max-width:899px){.tabs{right:2px;gap:3px}.tabs .t{width:28px;font-size:7.5px;letter-spacing:.04em;border-radius:5px}.tabs .t.cur{width:33px;margin-right:-5px}}
+@media (max-width:899px){.tabs{right:2px;gap:3px}.tabs .t{width:28px;font-size:7px;letter-spacing:.02em;border-radius:5px}.tabs .t.cur{width:33px;margin-right:-5px}}
 @media (max-width:899px) and (max-height:740px){.tabs .t{font-size:6.5px;letter-spacing:.02em}}
 @media (min-width:900px){.cover .mtop,.cover .short,.cover .sep,.cover .tel{display:none}.cover .row2{display:contents}}
 @media (max-width:899px){
@@ -645,7 +645,9 @@ function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
 function fitPages(){if(isDesk)return;document.querySelectorAll('.pg.tocpg,.pg.divider').forEach(pg=>{const box=pg.querySelector('.tv,.dv');if(!box)return;let f=1;pg.style.setProperty('--fit','1');while(f>0.66&&box.scrollHeight>box.clientHeight+1){f-=0.03;pg.style.setProperty('--fit',f.toFixed(2))}})}
-function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids();fitPages()}
+/* ярлыки: если самое длинное слово («Бутерброды») не помещается по высоте ярлыка, кегль всех ярлыков уменьшается одинаково (минимум 5px) */
+function fitTabs(){const ts=[...document.querySelectorAll('.tabs .t')];if(!ts.length)return;ts.forEach(t=>t.style.fontSize='');let r=1;ts.forEach(t=>{const need=t.scrollHeight,have=t.clientHeight;if(need>have&&need)r=Math.min(r,(have-4)/need)});if(r<1){const base=parseFloat(getComputedStyle(ts[0]).fontSize);const fs=Math.max(5,base*r);ts.forEach(t=>t.style.fontSize=fs.toFixed(2)+'px')}}
+function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids();fitPages();fitTabs()}
 const A11Y='[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-about-close],[data-toc-close],[data-burger],.tabs .t,.cell,.trow,.flag,.basket';
 function a11y(root=document){root.querySelectorAll(A11Y).forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}})}
 a11y();
