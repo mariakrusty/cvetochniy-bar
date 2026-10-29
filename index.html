@@ -366,7 +366,9 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 @media (min-width:900px){.cover .mtop,.cover .short,.cover .sep,.cover .tel{display:none}.cover .row2{display:contents}}
 @media (max-width:899px){
  /* хиро по макету Марии 28.10: слоган сверху по центру, внизу МЕНЮ → с чертой, под ним НАПИСАТЬ · ПОЗВОНИТЬ */
- .cover .mtop{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 9vh);display:flex;justify-content:center;z-index:4;filter:drop-shadow(0 2px 14px rgba(0,0,0,.5))}.cover .mtop img{width:min(64%,300px);height:auto}
+ .cover .mtop{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 9vh);display:flex;flex-direction:column;align-items:center;z-index:4;filter:drop-shadow(0 2px 14px rgba(0,0,0,.5))}.cover .mtop img{width:min(64%,300px);height:auto}
+ .cover .mtop .menu{margin-top:30px;font:500 22px/1 var(--serif);letter-spacing:.42em;margin-right:-.42em;text-transform:uppercase;color:#f1e9d8;cursor:pointer;padding:8px 14px;-webkit-tap-highlight-color:transparent}
+ .cover .hlinks .lk.main{display:none}
  .topnav.oncover .nlogo{opacity:0;pointer-events:none}
  .cover .hleft,.cover .full{display:none}
  .cover .hbg{background-position:50% 0}  /* фото нарощено тёмным верхом на 480px (29.10): поднос ниже логотипа */
@@ -401,7 +403,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
 }
 @media (max-width:899px) and (max-height:600px){
- .cover .hbg{background-position:50% 44%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}
+ .cover .hbg{background-position:50% 44%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}.cover .mtop .menu{margin-top:14px;font-size:16px}
  /* низкий или альбомный экран: оглавление, витрины, списки и вкладыш растут по содержимому, лист снапится по верху */
  .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100dvh - 22px)}
  .tocpg .tv{position:relative;inset:auto;padding:calc(env(safe-area-inset-top) + 118px) 22px 36px}
@@ -442,7 +444,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div class="block c"></div><div class="block l"></div><div class="block r"></div><div class="block b"></div><div class="block s"></div>
  <section class="pg cover" id="pg-cover"><h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Цветочный бар — чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный, Москва</h1>
   <div class="hbg"></div>
-  <div class="mtop"><img src="assets/logo-cover-900.png" alt="Цветочный бар. И чай попить, и цветы купить!"></div>
+  <div class="mtop"><img src="assets/logo-cover-900.png" alt="Цветочный бар. И чай попить, и цветы купить!"><span class="menu" data-go="toc" aria-label="Открыть меню">Меню</span></div>
   <div class="hfoot">
    <div class="hleft"><img class="slogan" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить!"><div class="meta">Горячая еда и выпечка по ЖК Level Причальный за 20 минут<br>Печём каждое утро · Ежедневно 8:00–21:00</div></div>
    <div class="hlinks"><span class="lk main" data-go="toc"><span class="full">Открыть меню</span><span class="short">Меню</span><i></i></span><div class="row2"><span class="lk" data-info="write">Написать<i></i></span><span class="sep">·</span><a class="lk tel" href="tel:+79295888778">Позвонить</a></div></div>
