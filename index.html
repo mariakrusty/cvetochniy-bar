@@ -387,6 +387,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .pg{position:relative;inset:auto !important;height:calc(100vh - 22px);height:calc(100dvh - 22px);margin:0 16px 22px 12px;border-radius:12px;box-shadow:0 10px 26px -14px rgba(30,30,40,.45);visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:calc(env(safe-area-inset-top) + 12px);overflow:hidden;z-index:auto !important;backface-visibility:visible}
  .pg.cover,.pg.about,.pg.footer{height:100vh;height:100dvh;margin:0;border-radius:0;box-shadow:none;scroll-margin-top:0}
  .pg.toc{margin-top:calc(env(safe-area-inset-top) + 12px)}
+ .pg.divider{display:none}  /* 29.10, Мария: на телефоне без разделителя «Осень», сразу блюда */
  /* «О нас» на телефоне (29.10): скрыт из потока, открывается по кнопке «О нас» как отдельный экран */
  .pg.about{position:fixed !important;inset:0 !important;height:100dvh !important;margin:0 !important;z-index:40 !important;display:none;overflow:auto !important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:0;box-shadow:none}
  .pg.about.show{display:block}
@@ -611,7 +612,7 @@ function render(p){
  }
 }
 const vh=()=>innerHeight;let frozen=false;
-const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>{let el=L[k];if(!isDesk&&el.classList.contains('about')&&L[k+1])el=L[k+1];return el.offsetTop-smt(el)};
+const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>{if(!isDesk){while(k+1<N&&(L[k].classList.contains('about')||L[k].offsetParent===null))k++}const el=L[k];return el.offsetTop-smt(el)};
 /* телефон: скрытые страницы (книга закрыта, «О нас» вне потока) в расчёт не входят, иначе их нулевой offsetTop «уводит» позицию в конец книги */
 const pvis=k=>L[k].offsetParent!==null;
 function posP(){const y=scrollY;let k=0;for(let j=1;j<N;j++){if(!pvis(j))continue;if(ptop(j)<=y+1)k=j;else break}let nb=k+1;while(nb<N&&!pvis(nb))nb++;const a=ptop(k),b=nb<N?ptop(nb):a+innerHeight;return k+Math.max(0,Math.min(1,(y-a)/Math.max(1,b-a)))}
