@@ -599,7 +599,9 @@ function render(p){
 }
 const vh=()=>innerHeight;let frozen=false;
 const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>{let el=L[k];if(!isDesk&&el.classList.contains('about')&&L[k+1])el=L[k+1];return el.offsetTop-smt(el)};
-function posP(){const y=scrollY;let k=0;while(k+1<N&&ptop(k+1)<=y+1)k++;const a=ptop(k),b=k+1<N?ptop(k+1):a+innerHeight;return k+Math.max(0,Math.min(1,(y-a)/Math.max(1,b-a)))}
+/* телефон: скрытые страницы (книга закрыта, «О нас» вне потока) в расчёт не входят, иначе их нулевой offsetTop «уводит» позицию в конец книги */
+const pvis=k=>L[k].offsetParent!==null;
+function posP(){const y=scrollY;let k=0;for(let j=1;j<N;j++){if(!pvis(j))continue;if(ptop(j)<=y+1)k=j;else break}let nb=k+1;while(nb<N&&!pvis(nb))nb++;const a=ptop(k),b=nb<N?ptop(nb):a+innerHeight;return k+Math.max(0,Math.min(1,(y-a)/Math.max(1,b-a)))}
 const curP=()=>isDesk?scrollY/vh():posP();
 addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(curP()))},{passive:true});
 addEventListener('resize',()=>{if(!frozen)render(curP())});
