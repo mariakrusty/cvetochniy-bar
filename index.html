@@ -135,7 +135,7 @@ body{overflow-x:hidden}
 .cover{background:#141210}
 .pg.cover,.pg.about{inset:0 !important;border-radius:0 !important;box-shadow:none !important}
 #stage.closed .block{display:none}
-.cover .hbg{position:absolute;inset:0;background:url(assets/hero-mobile.jpg) 50% 40%/cover no-repeat}
+.cover .hbg{position:absolute;inset:0;background:url(assets/hero-mobile.jpg?v=4f251aaa) 50% 40%/cover no-repeat}
 @media (min-width:900px){.cover .hbg{background-image:url(assets/hero.jpg);background-position:50% 20%}}
 .cover .hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 28%,rgba(0,0,0,0) 44%,rgba(0,0,0,.55) 72%,rgba(0,0,0,.9) 100%)}
 .cover .hfoot{position:absolute;left:18px;right:18px;bottom:calc(env(safe-area-inset-bottom) + 22px);color:#f1e9d8;z-index:4}
@@ -496,7 +496,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div id="cartBody"></div>
 </div>
 
-<script src="assets/menu-data.js"></script>
+<script src="assets/menu-data.js?v=0255976d"></script>
 <script>
 /* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
 const MENU_OK=!!(window.MENU&&window.MENU.items&&window.MENU.chapters&&window.MENU.pages);
