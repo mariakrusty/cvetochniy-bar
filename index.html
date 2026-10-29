@@ -246,7 +246,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .card .macro{display:block;aspect-ratio:1/1;overflow:hidden}.card .macro img{width:100%;height:100%;object-fit:contain;display:block}.card .macro.full img{object-fit:cover}
 .card h2{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:10px}
 .card p{font:400 15px/1.3 var(--serif);color:var(--muted);text-align:center;margin:8px auto 0;hyphens:auto}
-.card .kbju{text-align:center;margin-top:10px}
+.card .kbju{text-align:center;margin-top:10px}.card .cbody{text-align:center}.card .more{display:block;margin:10px auto 0}
 .opts{display:flex;justify-content:center;gap:8px;margin-top:1.4vh;flex-wrap:wrap}
 .opts span{padding:0 16px;height:34px;border-radius:17px;border:1px solid var(--blue-text);color:var(--blue-text);font:600 11px/32px var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .opts span.sel{background:var(--blue-action);border-color:var(--blue-action);color:#fff}
@@ -257,7 +257,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .drawer{position:fixed;left:0;right:0;bottom:0;background:#f8f8f8;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:26;max-height:92dvh;overflow:auto}
 .grip{width:36px;height:3px;border-radius:2px;background:#d8d3ca;margin:0 auto 10px}
 .xclose{position:absolute;right:22px;top:16px;font:600 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;padding:6px 0 6px 14px;z-index:2}
-@media (min-width:900px){.xclose{display:none}}
+@media (min-width:900px){.xclose{display:none}.about .alinks{display:none}}
 .dim{position:fixed;inset:0;background:rgba(40,40,60,.25);z-index:25}
 .dim[hidden],.drawer[hidden]{display:none}
 .live,.lcard{display:none}
@@ -366,8 +366,10 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 @media (min-width:900px){.cover .mtop,.cover .short,.cover .sep,.cover .tel{display:none}.cover .row2{display:contents}}
 @media (max-width:899px){
  /* хиро по макету Марии 28.10: слоган сверху по центру, внизу МЕНЮ → с чертой, под ним НАПИСАТЬ · ПОЗВОНИТЬ */
- .cover .mtop{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 12vh);display:flex;justify-content:center;z-index:4;filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))}.cover .mtop img{width:84%;height:auto}
+ .cover .mtop{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 9vh);display:flex;justify-content:center;z-index:4;filter:drop-shadow(0 2px 14px rgba(0,0,0,.5))}.cover .mtop img{width:min(64%,300px);height:auto}
+ .topnav.oncover .nlogo{opacity:0;pointer-events:none}
  .cover .hleft,.cover .full{display:none}
+ .cover .hbg{background-position:50% 0}  /* фото нарощено тёмным верхом на 480px (29.10): поднос ниже логотипа */
  .cover .hfoot{left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 30px)}
  .cover .hlinks{display:flex;flex-direction:column;align-items:center;gap:28px;margin-top:0}
  .cover .lk.main{font:500 20px/1 var(--serif);letter-spacing:.42em;gap:18px;padding-bottom:16px;margin-right:-.42em}
@@ -382,10 +384,24 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .pg{position:relative;inset:auto !important;height:calc(100vh - 22px);height:calc(100dvh - 22px);margin:0 16px 22px 12px;border-radius:12px;box-shadow:0 10px 26px -14px rgba(30,30,40,.45);visibility:visible !important;transform:none !important;opacity:1 !important;will-change:auto;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:calc(env(safe-area-inset-top) + 12px);overflow:hidden;z-index:auto !important;backface-visibility:visible}
  .pg.cover,.pg.about,.pg.footer{height:100vh;height:100dvh;margin:0;border-radius:0;box-shadow:none;scroll-margin-top:0}
  .pg.toc{margin-top:calc(env(safe-area-inset-top) + 12px)}
+ /* «О нас» на телефоне (29.10): скрыт из потока, открывается по кнопке «О нас» как отдельный экран */
+ .pg.about{position:fixed !important;inset:0 !important;height:100dvh !important;margin:0 !important;z-index:40 !important;display:none;overflow:auto !important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:0;box-shadow:none}
+ .pg.about.show{display:block}
+ .about .aimg{position:relative;height:46vh;height:46dvh;background-position:center 42%}
+ .about .aimg::after{background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,0) 36%,rgba(248,248,248,0) 70%,#f8f8f8 100%)}
+ .about .atxt{position:static;padding:6px 26px calc(env(safe-area-inset-bottom) + 40px);overflow:visible}
+ .about .caps{font-size:9.5px;letter-spacing:.3em;line-height:1.7}
+ .about h2{font-size:31px;line-height:1.12;margin-top:12px;letter-spacing:.06em}
+ .about p{font-size:15.5px;line-height:1.55;margin-top:14px;max-width:none}
+ .about .facts{margin-top:22px;line-height:1.9;font-size:9.5px}
+ .about .alinks{margin-top:28px;gap:22px 30px}.about .lk{font-size:12px;letter-spacing:.28em}
+ .about .xclose{position:fixed;right:16px;top:calc(env(safe-area-inset-top) + 14px);padding:9px 13px 9px 15px;border-radius:20px;background:rgba(248,248,248,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--blue-text);z-index:3}
+ .topnav.aboutopen{opacity:0;visibility:hidden}
  .pg::before,.pg::after{display:none}
  #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
 }
 @media (max-width:899px) and (max-height:600px){
+ .cover .hbg{background-position:50% 44%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}
  /* низкий или альбомный экран: оглавление, витрины, списки и вкладыш растут по содержимому, лист снапится по верху */
  .pg.tocpg,.pg.divider,.pg.grid-pg,.pg.list-pg,.pg.plist-pg{height:auto;min-height:calc(100dvh - 22px)}
  .tocpg .tv{position:relative;inset:auto;padding:calc(env(safe-area-inset-top) + 118px) 22px 36px}
@@ -426,7 +442,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div class="block c"></div><div class="block l"></div><div class="block r"></div><div class="block b"></div><div class="block s"></div>
  <section class="pg cover" id="pg-cover"><h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Цветочный бар — чайная, кафе-пекарня и цветочная студия в ЖК Level Причальный, Москва</h1>
   <div class="hbg"></div>
-  <div class="mtop"><img src="assets/slogan-script-white.png" alt="И чай попить, и цветы купить!"></div>
+  <div class="mtop"><img src="assets/logo-cover-900.png" alt="Цветочный бар. И чай попить, и цветы купить!"></div>
   <div class="hfoot">
    <div class="hleft"><img class="slogan" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить!"><div class="meta">Горячая еда и выпечка по ЖК Level Причальный за 20 минут<br>Печём каждое утро · Ежедневно 8:00–21:00</div></div>
    <div class="hlinks"><span class="lk main" data-go="toc"><span class="full">Открыть меню</span><span class="short">Меню</span><i></i></span><div class="row2"><span class="lk" data-info="write">Написать<i></i></span><span class="sep">·</span><a class="lk tel" href="tel:+79295888778">Позвонить</a></div></div>
@@ -488,11 +504,13 @@ const thm=c=>c&&c.theme?' th-'+c.key:'';
 for(const p of M.pages){const c=CHAP[p.chapter];
  if(p.kind==='about'){
   html+=`<section class="pg about" id="${p.id}" aria-label="О нас"><div class="aimg" id="aboutImg" role="img" aria-label="Ромовая баба, макро"></div>
-   <div class="atxt"><div class="caps">О нас · Кафе-пекарня в ЖК Level Причальный</div><h2>Чайная в духе дворянской усадьбы</h2>
+   <div class="atxt"><div class="caps">О нас · ЖК Level Причальный</div><h2>Чайная в духе дворянской усадьбы</h2>
    <p>«Цветочный бар» объединяет чайную, кафе-пекарню и цветочную студию в одном доме на Причальном проезде в Москве. Мы вдохновлялись чаепитиями в дворянских усадьбах начала прошлого века: самовар на столе, фарфор с цветочным кантом, долгий разговор. У нас подают завтраки, каждое утро пекут свежую выпечку, заваривают чай и готовят кофе. В меню домашняя русская кухня по старым рецептам: борщ по рецепту 1779 года, голубцы 1897 года, сырники, пельмени и блины.</p>
    <p>Нас ведёт образ дома русской интеллигенции: уют, сад, тихая душевность, книга на столе. Отсюда интерьер — библиотечный шкаф, тёмный дуб, латунь и кобальтовые изразцы Императорского фарфорового завода, и отсюда же посуда, в которой мы подаём завтраки и чай.</p>
    <p>Сюда приходят за настроением: позавтракать, замедлиться, выпить чаю, полистать книгу. Любое блюдо из меню можно попробовать в кафе или заказать домой. Доставка еды по ЖК Level Причальный занимает 20 минут. Здесь же, в цветочной студии, собирают букеты: можно зайти на чай и уйти с цветами.</p>
-   <div class="facts">Причальный проезд, 10к2 · Ежедневно 8:00–21:00 · Доставка по ЖК за 20 минут</div></div></section>`;}
+   <div class="facts">Причальный проезд, 10к2 · Ежедневно 8:00–21:00 · Доставка по ЖК за 20 минут</div>
+   <div class="alinks"><span class="lk main" data-go="toc">Меню<i></i></span><a class="lk" href="tel:+79295888778">Позвонить<i></i></a></div></div>
+   <span class="xclose" data-about-close>Закрыть ×</span></section>`;}
  else if(p.kind==='footer'){
   html+=`<section class="pg footer" id="${p.id}" aria-label="Контакты и документы"><div class="fv"><div class="fgrid">
    <div class="fcol"><img class="flogo" src="assets/monogram-white.svg" alt="Цветочный бар"><div class="addr">Цветочный бар<br>Москва, Причальный проезд, 10к2<br>ЖК Level Причальный</div><img class="slog" src="assets/slogan-caps-cream.png" alt="И чай попить, и цветы купить"></div>
@@ -567,7 +585,7 @@ function load(el){ if(!el||el.dataset.loaded)return; el.dataset.loaded=1;
 function set(el,tr,z,sh,dk){if(!el)return;el.style.transform=tr;el.style.zIndex=z;el.style.setProperty('--sh',sh);el.style.setProperty('--dk',dk)}
 function render(p){
  p=Math.max(0,Math.min(N-1,p));const i=Math.floor(p),t=p-i,th=180*t,s=Math.sin(rad(th));
- chrome.classList.toggle('off',p<2.5);stage.classList.toggle('closed',p<2.5);const cur=ORDER[Math.round(p)];tabs.classList.toggle('off',p<2.5||cur==='toc'||cur==='book');stage.classList.toggle('onbook',cur==='book'&&p<ORDER.indexOf('book')+0.5);const tn=document.getElementById('topnav');tn.classList.toggle('off',p>=2.5);tn.classList.toggle('dark',p>=0.5&&p<1.5);setChapter(cur);
+ chrome.classList.toggle('off',p<2.5);stage.classList.toggle('closed',p<2.5);const cur=ORDER[Math.round(p)];tabs.classList.toggle('off',p<2.5||cur==='toc'||cur==='book');stage.classList.toggle('onbook',cur==='book'&&p<ORDER.indexOf('book')+0.5);const tn=document.getElementById('topnav');tn.classList.toggle('off',p>=2.5);tn.classList.toggle('dark',p>=0.5&&p<1.5);tn.classList.toggle('oncover',p<0.5);setChapter(cur);
  for(let k=Math.max(0,i-1);k<=Math.min(N-1,i+2);k++){load(L[k]);load(R[k])}
  if(isDesk)for(let k=0;k<N;k++){const on=k===i||k===i+1;[L[k],R[k]].forEach(el=>{if(!el)return;el.classList.toggle('on',on);if(!on)set(el,'',0,0,0)})}
  if(isDesk){
@@ -578,14 +596,17 @@ function render(p){
  }
 }
 const vh=()=>innerHeight;let frozen=false;
-const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>L[k].offsetTop-smt(L[k]);
+const smt=el=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;const ptop=k=>{let el=L[k];if(!isDesk&&el.classList.contains('about')&&L[k+1])el=L[k+1];return el.offsetTop-smt(el)};
 function posP(){const y=scrollY;let k=0;while(k+1<N&&ptop(k+1)<=y+1)k++;const a=ptop(k),b=k+1<N?ptop(k+1):a+innerHeight;return k+Math.max(0,Math.min(1,(y-a)/Math.max(1,b-a)))}
 const curP=()=>isDesk?scrollY/vh():posP();
 addEventListener('scroll',()=>{if(!frozen)requestAnimationFrame(()=>render(curP()))},{passive:true});
 addEventListener('resize',()=>{if(!frozen)render(curP())});
 function openMenu(){go('toc',false)}
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function go(id,smooth=true){if(RM)smooth=false;openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
+const aboutEl=document.getElementById('pg-about');
+function openAbout(){if(!aboutEl)return;aboutEl.classList.add('show');aboutEl.scrollTop=0;document.getElementById('topnav').classList.add('aboutopen');dlgOpen(aboutEl)}
+function closeAbout(){if(!aboutEl||!aboutEl.classList.contains('show'))return;aboutEl.classList.remove('show');document.getElementById('topnav').classList.remove('aboutopen');dlgClose(aboutEl)}
+function go(id,smooth=true){if(RM)smooth=false;if(!isDesk&&id==='about')return openAbout();openBook();let idx=ORDER.indexOf(id);if(idx<0){const c=CHAP[id];if(c)idx=ORDER.indexOf(c.first.replace(/^pg-/,''))}if(idx<0)idx=0;
  scrollTo({top:isDesk?idx*vh():ptop(idx),behavior:smooth?'smooth':'instant'});render(idx)}
 function fitTitles(){
  document.querySelectorAll('h1').forEach(h=>{h.style.fontSize='';h.style.letterSpacing='';h.style.whiteSpace='normal';const lh=()=>parseFloat(getComputedStyle(h).lineHeight);let fs=parseFloat(getComputedStyle(h).fontSize);
@@ -605,14 +626,14 @@ function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
 function fitAll(){fitTitles();fitDesc();fitSheets();fixGrids()}
-const A11Y='[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-toc-close],[data-burger],.tabs .t,.cell,.trow,.flag,.basket';
+const A11Y='[data-go],[data-add],[data-open],[data-info],[data-legal],[data-home],[data-more],[data-choice],[data-var],[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-about-close],[data-toc-close],[data-burger],.tabs .t,.cell,.trow,.flag,.basket';
 function a11y(root=document){root.querySelectorAll(A11Y).forEach(el=>{if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&!el.hasAttribute('tabindex')){el.setAttribute('tabindex','0');el.setAttribute('role','button')}})}
 a11y();
 /* диалоги: фокус внутрь, Escape закрывает верхний, Tab не уходит в фон, фокус возвращается */
 const DLG=[];let lastFocus=null;
-function dlgOpen(el){if(!el||DLG.includes(el))return;if(!DLG.length)lastFocus=document.activeElement;DLG.push(el);el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('tabindex','-1');a11y(el);setTimeout(()=>{if(!DLG.includes(el))return;const f=el.querySelector('[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-toc-close]');(f||el).focus({preventScroll:true})},30)}
+function dlgOpen(el){if(!el||DLG.includes(el))return;if(!DLG.length)lastFocus=document.activeElement;DLG.push(el);el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('tabindex','-1');a11y(el);setTimeout(()=>{if(!DLG.includes(el))return;const f=el.querySelector('[data-close],[data-cartclose],[data-info-close],[data-nav-close],[data-about-close],[data-toc-close]');(f||el).focus({preventScroll:true})},30)}
 function dlgClose(el){const k=DLG.indexOf(el);if(k>=0)DLG.splice(k,1);if(!DLG.length){if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});lastFocus=null}else DLG[DLG.length-1].focus({preventScroll:true})}
-function closeTop(){const el=DLG[DLG.length-1];if(!el)return false;if(el===info)closeInfo();else if(el===cart)closeCart();else if(el===drawer)closeCard();else if(el===toc){toc.hidden=true;dlgClose(toc)}else if(el===sheetnav){sheetnav.hidden=true;dlgClose(sheetnav)}return true}
+function closeTop(){const el=DLG[DLG.length-1];if(!el)return false;if(el===info)closeInfo();else if(el===cart)closeCart();else if(el===drawer)closeCard();else if(el===toc){toc.hidden=true;dlgClose(toc)}else if(el===sheetnav){sheetnav.hidden=true;dlgClose(sheetnav)}else if(el===aboutEl)closeAbout();return true}
 document.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&closeTop()){e.preventDefault();return}
  if(e.key==='Tab'&&DLG.length){const el=DLG[DLG.length-1];const f=[...el.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.hidden&&x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===el)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}return}
@@ -711,6 +732,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(x=q('[data-info]'))return openInfo(x.dataset.info);
  if(q('[data-burger]')){sheetnav.hidden=false;dlgOpen(sheetnav);return}
  if(q('[data-nav-close]')){sheetnav.hidden=true;dlgClose(sheetnav);return}
+ if(q('[data-about-close]')){closeAbout();return}
  if(x=q('.hnav .ni.has')&&!q('.sub')){document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));return openMenu()}
  if(x=q('[data-more]')){x.closest('.body,.cbody').classList.toggle('x');fitSheets();return}
  if(x=q('[data-choice]')){const box=x.closest('.opts');box.querySelectorAll('span').forEach(s=>s.classList.toggle('sel',s===x));return}
@@ -721,7 +743,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let x;
  if(q('[data-cartclose]'))return closeCart();
  if(q('[data-close]'))return closeCard();
  if(q('[data-toc-close]')){toc.hidden=true;dlgClose(toc);return}
- if(x=q('[data-go]')){toc.hidden=true;dlgClose(toc);sheetnav.hidden=true;dlgClose(sheetnav);closeInfo();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
+ if(x=q('[data-go]')){toc.hidden=true;dlgClose(toc);sheetnav.hidden=true;dlgClose(sheetnav);closeInfo();if(x.dataset.go!=='about')closeAbout();document.querySelectorAll('.hnav .ni.open').forEach(n=>n.classList.remove('open'));if(x.dataset.go==='toc'&&!bookOpen)return openMenu();return go(x.dataset.go)}
  if(!isDesk&&(x=q('.sheet[data-item]'))&&!q('.head,.body'))return openCard(x.dataset.item);   /* телефон: тап по фото на листе = карточка с макро */
  if(x=q('.cell,.trow'))return openCard(x.dataset.id)});
 
@@ -729,7 +751,7 @@ restoreCart();
 /* ---------- параметры превью: ?page=<id|глава>, ?p=1.35, ?open=<id>, ?toc=1, ?cart=demo ---------- */
 const Q=new URLSearchParams(location.search);
 if(Q.get('p')||Q.get('page'))chrome.style.transition='none';
-if(Q.get('p')){const pp=parseFloat(Q.get('p'));frozen=true;if(!isDesk){if(pp>=3)openBook();scrollTo({top:ptop(Math.round(pp)),behavior:'instant'})}render(pp)}
+if(Q.get('p')){const pp=parseFloat(Q.get('p'));frozen=true;if(!isDesk){if(pp>=3)openBook();scrollTo({top:ptop(Math.round(pp)),behavior:'instant'});if(Math.round(pp)===1)openAbout()}render(pp)}
 else if(Q.get('page'))go(Q.get('page'),false);
 else render(0);
 if(Q.get('open'))openCard(Q.get('open'));
