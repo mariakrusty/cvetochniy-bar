@@ -222,8 +222,9 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .bhead .slash{display:none}
 .bhead .caps{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin-top:8px}
 .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);margin-top:2vh;min-height:0}
-.grid.few{align-content:start}.grid.few .cell{border-bottom:1px solid var(--line)}
-.cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;min-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.grid.few{align-content:start}
+/* 30.10, Мария: без линий-разделителей в сетке витрин («делают грязь») */
+.cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 6px;border:0;text-align:center;min-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cell.nr{border-right:0}.cell.nb{border-bottom:0}.cell.center{grid-column:2}.cell.center.nr{border-right:0}
 .cell .ph{width:100%;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px 0}.cell .ph img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;transition:opacity .35s}.cell .ph img[data-src]{opacity:0}
 .cell h4{font:500 13px/1.15 var(--serif);letter-spacing:.02em;margin-top:4px;height:3.45em;max-width:100%;padding:0 8px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
