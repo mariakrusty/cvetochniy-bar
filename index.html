@@ -348,6 +348,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .cell{padding:0 0 12px}.cell h4{font-size:16px;max-width:100%;padding:0 12px;height:2.3em;margin-top:8px}.cell .price{font-size:18px}.cell .add{width:34px;height:34px;font-size:20px}.cell .buy{padding-top:8px;gap:10px}
  .tea .trow .nm{font-size:20px}.tea .trow .pr{font-size:18px}
  .tea.plist{max-width:560px;margin:6px auto 0;width:100%}.tea.plist .trow{padding:8px 0;max-height:58px}.tea.plist .trow .nm{font-size:19px}.tea.plist .trow .pr{font-size:18px}.tea.plist .trow .add{width:32px;height:32px}
+ .tea.plist.few{justify-content:center;padding-bottom:6vh}.tea.plist.few .trow{flex:0 0 auto;padding:16px 0;max-height:none}.tea.plist.few .trow .nm{font-size:22px}.tea.plist.few .trow .pr{font-size:20px}
  .plist-pg .bhead{padding-top:max(14vh,120px)}.plist-pg .bhead .script{font-size:clamp(40px,6.4vh,58px)}.plist-pg .hint2{margin-top:8px}
  .back{display:block}
  .lcard{position:absolute;inset:0;background:#fff;flex-direction:column;align-items:center;justify-content:center;padding:72px 64px 48px;overflow:auto}
@@ -381,6 +382,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .cover .row2 .lk{padding-bottom:0;text-decoration:none}.cover .row2 .lk::before,.cover .row2 .lk i{display:none}.cover .sep{opacity:.8}
 }
 @media (max-width:899px){
+ .tea.plist.few{justify-content:center;padding-bottom:8vh}.tea.plist.few .trow{flex:0 0 auto;padding:14px 0;max-height:none}.tea.plist.few .trow .nm{font-size:19px}.tea.plist.few .trow .pr{font-size:19px}
  .grid-pg .page,.list-pg .page,.cell{background:#f8f8f8}.cell .ph{background:#f8f8f8}
  .body,.head{left:28px;right:42px}.grid-pg .page,.list-pg .page,.plist-pg .page{padding-left:24px;padding-right:38px}
  #stage{position:static;inset:auto;overflow:visible;perspective:none;background:#e8e4dd}#stage .block{display:none}#slots{display:none}
@@ -568,7 +570,7 @@ for(const p of M.pages){const c=CHAP[p.chapter];
    <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div>
     <div class="list kside"><span class="back" data-close>← ${esc(c.title)}</span><div class="head"><div class="script">${c.title}</div><div class="caps">${c.caps}</div></div><div class="body"></div></div>
     <div class="lcard card"><span class="back" data-close>← ${esc(c.title)}</span><div class="cbody"></div></div></div>
-   <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div><div class="tea plist">${rows}</div><div class="hint2">Нажмите на блюдо, чтобы увидеть фото</div></div></section>`;}
+   <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div><div class="tea plist${its.length<=4?' few':''}">${rows}</div><div class="hint2">Нажмите на блюдо, чтобы увидеть фото</div></div></section>`;}
  else if(p.kind==='list'){const its=p.items.map(id=>ITEMS[id]); let rows='',g='';
   for(const i of its){if(i.group!==g){g=i.group;rows+=`<div class="grp">${esc(g)}</div>`}
    const v=i.variants||[{price:i.price}]; rows+=`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${v.map(x=>`${x.price}<small>${esc((x.label||'').replace(' ',''))}</small>`).join('')}</span><span class="add" data-open="${i.id}">+</span></div>`}
