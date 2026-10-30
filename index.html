@@ -222,7 +222,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .bhead .slash{display:none}
 .bhead .caps{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin-top:8px}
 .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);margin-top:2vh;min-height:0}
-.grid.few{align-content:start}
+.grid.few{align-content:stretch}.grid.few .cell{justify-content:center}.grid.few .cell .ph{flex:0 0 auto;height:min(42vh,300px);width:min(100%,300px)}.grid.few .cell .buy{margin-top:8px}.grid.few .cell h4{height:auto;margin-top:10px}
 /* 30.10, Мария: без линий-разделителей в сетке витрин («делают грязь») */
 .cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 6px;border:0;text-align:center;min-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cell.nr{border-right:0}.cell.nb{border-bottom:0}.cell.center{grid-column:2}.cell.center.nr{border-right:0}
@@ -499,7 +499,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div id="cartBody"></div>
 </div>
 
-<script src="assets/menu-data.js?v=a595bb33"></script>
+<script src="assets/menu-data.js?v=445c9f76"></script>
 <script>
 /* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
 const MENU_OK=!!(window.MENU&&window.MENU.items&&window.MENU.chapters&&window.MENU.pages);
@@ -563,7 +563,7 @@ for(const p of M.pages){const c=CHAP[p.chapter];
   html+=`<section class="pg grid-pg${thm(c)}" id="${p.id}" data-hero="${hero.card}">
    <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div><div class="lcard card"><span class="back" data-close>← Витрина</span><div class="cbody"></div></div></div>
    <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div>
-    <div class="grid${its.length<=3?' few':''}" style="grid-template-rows:repeat(${its.length<=3?1:(p.rows||3)},${its.length<=3?'minmax(0,46%)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':''}">${its.map(i=>`<div class="cell" data-id="${i.id}"><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
+    <div class="grid${its.length<=3?' few':''}" style="grid-template-rows:repeat(${its.length<=3?1:(p.rows||3)},${its.length<=3?'minmax(0,1fr)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':''}">${its.map(i=>`<div class="cell" data-id="${i.id}"><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
     <div class="pager">${p.pager}</div></div></section>`;}
  else if(p.kind==='plist'){const its=p.items.map(id=>ITEMS[id]); const hero=its[0];
   const rows=its.map(i=>`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${i.price!=null?i.price+'<small>руб.</small>':''}</span><span class="add" data-open="${i.id}" aria-label="Выбрать: ${esc(i.name)}">+</span></div>`).join('');
