@@ -324,6 +324,15 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .sug ul[hidden]{display:none}.cart .sug li{padding:9px 14px;font:500 15px/1.3 var(--serif);cursor:pointer}.cart .sug li:hover,.cart .sug li.on{background:#eef3f8}
 .cart .sug li small{display:block;font:400 11.5px/1.3 var(--serif);color:var(--muted)}
 .cart .note{font:400 12px/1.4 var(--serif);color:#9a948a;margin-top:6px}
+.cart .who{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;padding:10px 14px;border:1px solid rgba(38,35,31,.15);border-radius:12px;font:500 14px/1.3 var(--serif)}
+.cart .who small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
+.cart .who button,.cart .lnk{background:none;border:0;padding:0;font:600 9.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;white-space:nowrap}
+.cart .login{text-align:center;margin-top:18px}
+.cart .login p{font:400 15px/1.5 var(--serif);color:var(--muted);max-width:34ch;margin:0 auto}
+.cart .mbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;margin-top:12px;border-radius:26px;border:1px solid var(--blue);background:#fff;color:var(--blue-text);font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.cart .mbtn svg{width:20px;height:20px;flex:0 0 20px}
+.cart .mbtn.tg{background:#2AABEE;border-color:#2AABEE;color:#fff}.cart .mbtn.mx{background:#3C3DFF;border-color:#3C3DFF;color:#fff}
+.cart .login .fine{font:400 12px/1.45 var(--serif);color:#9a948a;margin-top:14px}
 .cart .past{margin-top:22px}.cart .past h4{font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a;text-align:center}
 .cart .past .po{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 15px/1.3 var(--serif)}
 .cart .past .po small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
@@ -755,8 +764,11 @@ function saveGuest(g){try{localStorage.setItem('cb-guest',JSON.stringify(g))}cat
 function pastOrders(){try{return JSON.parse(localStorage.getItem('cb-orders')||'[]')}catch(e){return []}}
 function cartSum(){let s=0;CART.forEach(r=>s+=r.price*r.qty);return s}
 function setStep(s){CSTEP=s;const st=document.getElementById('cartSteps');st.hidden=(s==='tray'&&!CART.size);[...st.children].forEach((x,i)=>x.classList.toggle('on',i===['tray','form','done'].indexOf(s)));
- document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':'Заказ принят';
- document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':doneSub();renderCart()}
+ document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':s==='login'?'Вход':'Заказ принят';
+ document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':s==='login'?'Адрес и заказы подтянутся сами':doneSub();if(s==='login')document.getElementById('cartSteps').hidden=true;renderCart()}
+const BOT={tg:'',max:''};   /* ссылки на бота кафе: t.me/… и max.ru/… — впишем, когда бот будет */
+function whoHTML(){const g=GUEST;if(g.name&&g.phone)return `<div class="who"><div>${esc(g.name)}, ${esc(g.phone)}${g.address?`<small>${esc(g.address.replace(/^г\.?\s*Москва,\s*/i,''))}</small>`:''}</div><button type="button" data-logout>Это не я</button></div>`;
+ return `<div class="who"><div>Уже заказывали?<small>Войдите, адрес подставим сами</small></div><button type="button" data-login-open>Войти</button></div>`}
 function doneSub(){const o=ORD.last;if(!o)return 'Спасибо, что выбрали нас';const when=o.asap?(o.mode==='delivery'?' за 20 минут':' как можно скорее'):' '+o.whenLabel.replace(/^сегодня /,'к ').replace(/^завтра /,'завтра к ');return o.mode==='delivery'?`Доставим до ${o.address.replace(/^г\.?\s*Москва,\s*/i,'')}${when}`:`Ждём вас: ${SHOP.addr}${when}`}
 function fmtPhone(v){const d=v.replace(/\D/g,'').replace(/^8/,'7').replace(/^(?!7)/,'7').slice(0,11);let o='+7';if(d.length>1)o+=' ('+d.slice(1,4);if(d.length>=4)o+=') '+d.slice(4,7);if(d.length>=7)o+='-'+d.slice(7,9);if(d.length>=9)o+='-'+d.slice(9,11);return o}
 function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSeconds(0,0);d.setMinutes(d.getMinutes()<30?30:60,0);d.setMinutes(Math.ceil((d.getMinutes()+30)/30)*30%60||0);
@@ -767,10 +779,16 @@ function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSe
  return out}
 function renderCart(){const b=document.getElementById('cartBody');
  if(CSTEP==='done'){const o=ORD.last;b.innerHTML=`<div class="done"><div class="num">№ ${o.n}</div><p>${o.items.map(x=>esc(x.name)+(x.qty>1?' × '+x.qty:'')).join(', ')}<br>${o.sum} руб., оплачено</p><p>Оплата прошла. Готовим и ${o.mode==='delivery'?'привезём':'ждём вас'}.</p></div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
+ if(CSTEP==='login'){const tg='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 15.3 9.4 19c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7l2.7-12.7c.3-1.1-.4-1.6-1.1-1.3L3.6 11.2c-1.1.4-1.1 1-.2 1.3l4 1.3 9.4-5.9c.4-.3.8-.1.5.2l-7.7 7.2Z"/></svg>';const mx='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 4.6 18.9l3.1.9-.9-3A10 10 0 0 0 12 2Zm-4 7h2l2 4 2-4h2v6h-1.6v-3.4L12.8 15h-1.6l-1.6-3.4V15H8V9Z"/></svg>';
+  b.innerHTML=`<div class="login"><p>Нажмите кнопку, в мессенджере откроется бот кафе. Поделитесь номером одной кнопкой, и мы вас узнаем.</p>
+   <a class="mbtn tg" href="${BOT.tg||'#'}" target="_blank" rel="noopener" data-login="telegram">${tg}Войти через Telegram</a>
+   <a class="mbtn mx" href="${BOT.max||'#'}" target="_blank" rel="noopener" data-login="max">${mx}Войти через MAX</a>
+   <div class="fine">Без паролей и SMS. Первый заказ можно сделать и без входа: просто укажите телефон и адрес в форме.</div></div>
+   <button class="back" type="button" data-backtray>← Вернуться к подносу</button>`;return}
  if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${o.sum} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');document.getElementById('cartSteps').hidden=true;return}
  let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${k}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
  const sum=cartSum();
- if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><button class="go" data-checkout>Оформить заказ</button><div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
+ if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div>${whoHTML()}<button class="go" data-checkout>Оформить заказ</button><div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
  /* форма */
  const g=GUEST;const d=ORD.mode==='delivery';const sl=slots();
  b.innerHTML=`<form id="orderForm" novalidate>
@@ -801,6 +819,7 @@ function bindSuggest(input,list){let timer=null,items=[],cur=-1;
  input.addEventListener('keydown',e=>{if(list.hidden)return;if(e.key==='ArrowDown'){e.preventDefault();cur=Math.min(cur+1,items.length-1);show()}else if(e.key==='ArrowUp'){e.preventDefault();cur=Math.max(cur-1,0);show()}else if(e.key==='Enter'&&cur>=0){e.preventDefault();pick(cur)}else if(e.key==='Escape'){hide()}});
  list.addEventListener('mousedown',e=>{const li=e.target.closest('li');if(li){e.preventDefault();pick(+li.dataset.i)}});
  input.addEventListener('blur',()=>setTimeout(hide,150))}
+cart.addEventListener('click',e=>{const a=e.target.closest('[data-login]');if(a&&a.getAttribute('href')==='#'){e.preventDefault();a.textContent='';a.insertAdjacentHTML('beforeend','Бот подключим вместе с оплатой');a.style.pointerEvents='none'}});
 function orderPayload(f){const v=n=>(f.elements[n]?f.elements[n].value.trim():'');const d=ORD.mode==='delivery';
  const when=v('when');const asap=when==='asap';const whenLabel=asap?'':f.elements.when.selectedOptions[0].textContent;
  const items=[];CART.forEach((r,k)=>items.push({key:k,name:r.name,label:r.label||'',price:r.price,qty:r.qty,amount:r.price*r.qty}));
@@ -829,8 +848,8 @@ function paidReturn(){const q=new URLSearchParams(location.search);if(q.get('pai
  const past=pastOrders();if(!past.some(x=>x.n===rec.n)){past.unshift(rec);try{localStorage.setItem('cb-orders',JSON.stringify(past.slice(0,10)))}catch(e){}}
  try{localStorage.removeItem('cb-pending')}catch(e){}ORD.last=rec;CART.clear();renderBadge();saveCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done');history.replaceState(null,'',location.pathname)}
 setTimeout(paidReturn,300);
-cart.addEventListener('click',e=>{const t=e.target.closest('[data-checkout],[data-backtray],[data-repeat]');if(!t)return;
- if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');
+cart.addEventListener('click',e=>{const t=e.target.closest('[data-checkout],[data-backtray],[data-repeat],[data-login-open],[data-logout]');if(!t)return;
+ if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');else if(t.hasAttribute('data-login-open'))setStep('login');else if(t.hasAttribute('data-logout')){for(const k of Object.keys(GUEST))delete GUEST[k];saveGuest(GUEST);try{localStorage.removeItem('cb-orders')}catch(e){}renderCart()}
  else if(t.hasAttribute('data-repeat')){const o=pastOrders()[+t.dataset.repeat];if(!o)return;o.items.forEach(x=>{const c=lineOf(x.key);if(c&&c.price!=null)addItem(x.key,x.qty)});setStep('tray')}});
 function openCart(){if(CSTEP==='done')CSTEP='tray';setStep(CSTEP);cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){cart.hidden=true;cartDim.hidden=true;dlgClose(cart);if(CSTEP==='done')CSTEP='tray'}
 document.getElementById('basketBtn').addEventListener('click',openCart);cartDim.addEventListener('click',closeCart);
