@@ -288,7 +288,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart{position:fixed;left:0;right:0;bottom:0;background:#f8f8f8;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:31;max-height:84dvh;overflow:auto}
 .cart[hidden]{display:none}
 .cart h3{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:6px}
-.cart .sub{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);text-align:center;margin-top:8px}
+.cart .sub{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue-text);text-align:center;margin-top:8px}
 .cart .empty{font:500 18px/1.3 var(--serif);color:var(--muted);text-align:center;margin:26px 0 10px}
 .cart table{width:100%;border-collapse:collapse;margin-top:16px}
 .cart td{padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 18px/1.2 var(--serif);vertical-align:middle}
@@ -299,20 +299,20 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart td.p{text-align:right;white-space:nowrap}
 .cart .total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;font:500 20px/1 var(--serif);letter-spacing:.08em}
 .cart .total b{font:500 32px/1 var(--serif)}.cart .total b small{font:600 13px/1 var(--serif);letter-spacing:.3em;color:var(--blue);margin-left:8px;vertical-align:middle}
-.cart .go{display:block;margin:18px auto 0;padding:0 36px;height:54px;border-radius:27px;background:var(--blue);color:#fff;border:0;font:600 12px/54px var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
+.cart .go{display:block;margin:18px auto 0;padding:0 36px;height:54px;border-radius:27px;background:var(--blue-action);color:#fff;border:0;font:600 12px/54px var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
 .cart .go{text-decoration:none;text-align:center;width:max-content}.cart .hint{font:400 12.5px/1.45 var(--serif);color:var(--muted);text-align:center;margin-top:12px}
 .cart .pd{font:400 12px/1.45 var(--serif);color:var(--muted);margin-top:16px}.cart .pd a{color:var(--blue-text)}
 .cart .addr{font:500 10.5px/1.5 var(--sans);letter-spacing:.1em;color:#9a948a;text-align:center;margin-top:12px}
 /* оформление заказа (в подносе) */
-.cart .steps{display:flex;justify-content:center;gap:18px;margin-top:14px;font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a}
+.cart .steps{display:flex;justify-content:center;gap:18px;margin-top:14px;font:600 9.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--meta)}
 .cart .steps span.on{color:var(--blue-text)}.cart .steps span.on::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:8px;vertical-align:middle}
 .cart .seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--blue);border-radius:27px;overflow:hidden;margin-top:18px}
 .cart .seg button{height:44px;border:0;background:#fff;color:var(--blue-text);font:600 10px/44px var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
-.cart .seg button.on{background:var(--blue);color:#fff}
+.cart .seg button.on{background:var(--blue-action);color:#fff}
 .cart .f{display:grid;gap:12px;margin-top:16px}
 .cart .f2{grid-template-columns:1fr 1fr}.cart .f3{grid-template-columns:1fr 1fr 1fr}
 .cart label.fl{display:block}
-.cart label.fl span{display:block;font:600 9px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9a948a;margin-bottom:4px}
+.cart label.fl span{display:block;font:600 10px/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--meta);margin-bottom:4px}
 .cart input,.cart select,.cart textarea{width:100%;background:#fff;border:0;border-bottom:1px solid rgba(38,35,31,.25);border-radius:0;padding:9px 0 8px;font:500 17px/1.25 var(--serif);color:var(--ink);outline:0;-webkit-appearance:none;appearance:none}
 .cart select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234a6a92' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 4px center;padding-right:22px}
 .cart textarea{min-height:52px;resize:vertical}
@@ -333,7 +333,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .sug{position:relative}.cart .sug ul{position:absolute;left:0;right:0;top:100%;z-index:3;margin:0;padding:6px 0;list-style:none;background:#fff;border:1px solid rgba(38,35,31,.15);border-radius:10px;box-shadow:0 14px 30px -14px rgba(0,0,0,.35);max-height:220px;overflow:auto}
 .cart .sug ul[hidden]{display:none}.cart .sug li{padding:9px 14px;font:500 15px/1.3 var(--serif);cursor:pointer}.cart .sug li:hover,.cart .sug li.on{background:#eef3f8}
 .cart .sug li small{display:block;font:400 11.5px/1.3 var(--serif);color:var(--muted)}
-.cart .note{font:400 12px/1.4 var(--serif);color:#9a948a;margin-top:6px}
+.cart .note{font:400 12.5px/1.4 var(--serif);color:var(--meta);margin-top:6px}
 .cart .who{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;padding:10px 14px;border:1px solid rgba(38,35,31,.15);border-radius:12px;font:500 14px/1.3 var(--serif)}
 .cart .who small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
 .cart .who button,.cart .lnk{background:none;border:0;padding:0;font:600 9.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--blue-text);cursor:pointer;white-space:nowrap}
@@ -342,7 +342,15 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .mbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;margin-top:12px;border-radius:26px;border:1px solid var(--blue);background:#fff;color:var(--blue-text);font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;text-decoration:none}
 .cart .mbtn svg{width:20px;height:20px;flex:0 0 20px}
 .cart .mbtn:hover{background:#eef3f8}.cart .mbtn svg{color:var(--blue-text)}
-.cart .login .fine{font:400 12px/1.45 var(--serif);color:#9a948a;margin-top:14px}
+.cart .login .fine{font:400 12.5px/1.45 var(--serif);color:var(--meta);margin-top:14px}
+.cart .steps[hidden]{display:none}
+.cart .fl .fe{display:none;font:500 12px/1.3 var(--serif);color:#b4463c;margin-top:5px}.cart .fl.bad .fe,.cart .fl .fe.on{display:block}.cart .chk .fe{display:none;font:500 12px/1.3 var(--serif);color:#b4463c;margin-top:4px}.cart .chk.bad .fe{display:block}
+.cart .f .bad input,.cart .f .bad select{border-bottom:2px solid #b4463c}.cart .chk.bad>span{color:#8a2f27}
+.cart td.q button{position:relative}.cart td.q button::before{content:'';position:absolute;inset:-9px}
+.cart .mbtn.soon{opacity:.55;cursor:default}
+.cart .err a,.cart .note a{color:var(--blue-text)}
+@media (max-width:899px){.cart h3{margin-top:32px;padding:0 6px}.cell .add{position:relative}.cell .add::before{content:'';position:absolute;inset:-8px;border-radius:50%}}
+@media (min-width:900px) and (max-width:1199px){.grid.c4{grid-template-columns:repeat(3,1fr)!important;grid-template-rows:repeat(3,minmax(0,1fr))!important}.grid.c4 .cell{grid-column:auto!important}.grid.c4 .cell:nth-child(7){grid-column:2!important}}
 .cart .past{margin-top:22px}.cart .past h4{font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a;text-align:center}
 .cart .past .po{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 15px/1.3 var(--serif)}
 .cart .past .po small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
@@ -474,6 +482,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .grid{grid-template-rows:none;grid-auto-rows:minmax(168px,auto);margin-top:12px}.cell .ph{flex:0 0 92px;height:92px}
  .tea.plist{overflow:visible}.tea.plist .trow{flex:0 0 auto;max-height:none}.tea{overflow:visible}
  .plist-pg .page{min-height:0}
+ .pg.sheet{display:grid;grid-template-columns:1fr 1fr;height:auto;min-height:calc(100svh - 22px)}.sheet .macro{display:block;position:relative;min-height:calc(100svh - 22px);background:var(--macro) center/cover #f6f5f3}.sheet .macro .cap{display:none}.sheet .list{position:relative;inset:auto;background:var(--bg,#f6f5f3);display:flex;flex-direction:column;justify-content:center}.head{position:relative;top:auto;left:0;right:0;padding:calc(env(safe-area-inset-top) + 78px) 14px 0}.head .script{font-size:clamp(30px,9vh,40px)}.body{position:relative;bottom:auto;left:0;right:0;padding:8px 14px 22px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important;animation:none !important}html{scroll-behavior:auto}}
 /* телефон (29.10): оглавление и разделители ужимаются под высоту экрана через --fit (JS fitPages), чтобы список не вылезал за лист */
@@ -566,7 +575,7 @@ const fmt=n=>n==null?'':String(n).replace('.',',');
 const kb=i=>i.kcal?`${fmt(i.kcal)} ККАЛ · Б ${fmt(i.b)} · Ж ${fmt(i.j)} · У ${fmt(i.u)}`:'';
 const extraHTML=i=>{const rows=[];if(i.out)rows.push(`Выход порции: ${esc(i.out)}`);if(i.sostav)rows.push(`Состав: ${esc(i.sostav)}`);return rows.length?`<button class="more" data-more>${i.sostav?'состав и вес':'вес порции'}</button><div class="extra">${rows.join('<br>')}</div>`:''};
 const choicesHTML=i=>i.choices?`<div class="opts">${i.choices.map((c,k)=>`<span class="${k?'':'sel'}" data-choice="${k}" aria-pressed="${!k}">${esc(c)}</span>`).join('')}</div>`:'';
-const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const minPrice=i=>i.variants?Math.min(...i.variants.map(v=>v.price).filter(p=>p!=null)):i.price;
 const priceHTML=i=>{const p=minPrice(i);if(p==null)return `<span class="tbd">цена уточняется</span>`;return `<span class="price ${i.variants?'from':''}">${p}<small>руб.</small></span>`};
 const addHTML=i=>minPrice(i)==null?'':`<span class="add" data-add="${i.id}" aria-label="Добавить в поднос: ${esc(i.name)}">+</span>`;
@@ -716,7 +725,7 @@ function fitSheets(){document.querySelectorAll('.sheet .list,.kside').forEach(li
 function fitDesc(){document.querySelectorAll('.desc,.extra,.card p').forEach(el=>{el.classList.remove('one');const lh=parseFloat(getComputedStyle(el).lineHeight)||18;el.classList.toggle('one',el.scrollHeight<lh*1.6)})}
 function fitCellNames(){document.querySelectorAll('.cell h4').forEach(h=>{h.style.fontSize='';let fs=parseFloat(getComputedStyle(h).fontSize);const lim=()=>parseFloat(getComputedStyle(h).lineHeight)*(isDesk?2.3:3.45);
  while(h.scrollHeight>lim()+1&&fs>(isDesk?9:11.5)){fs-=.5;h.style.fontSize=fs+'px'}})}
-function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:g.classList.contains('c4')?4:3;const rows=Math.ceil(n/cols);
+function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:g.classList.contains('c4')?(innerWidth<1200?3:4):3;const rows=Math.ceil(n/cols);
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
 function fitPages(){if(isDesk)return;document.querySelectorAll('.pg.tocpg,.pg.divider').forEach(pg=>{const box=pg.querySelector('.tv,.dv');if(!box)return;let f=1;pg.style.setProperty('--fit','1');while(f>0.66&&box.scrollHeight>box.clientHeight+1){f-=0.03;pg.style.setProperty('--fit',f.toFixed(2))}})}
@@ -774,99 +783,144 @@ const PD_TXT='Для оформления и выполнения заказа �
 const SHOP={addr:'Причальный проезд, 10к2',hours:[8,21],phone:'+7 929 588-87-78',zone:'ЖК Level Причальный'};
 let CSTEP='tray';   /* tray | form | done */
 const ORD={mode:'delivery',asap:true};
-const GUEST=(()=>{try{return JSON.parse(localStorage.getItem('cb-guest')||'{}')}catch(e){return {}}})();
-function saveGuest(g){try{localStorage.setItem('cb-guest',JSON.stringify(g))}catch(e){}}
-function pastOrders(){try{return JSON.parse(localStorage.getItem('cb-orders')||'[]')}catch(e){return []}}
+/* ---------- данные гостя, черновик, история (A3-09: всё из storage нормализуется) ---------- */
+const isObj=x=>x&&typeof x==='object'&&!Array.isArray(x);
+function readJSON(k,fallback){try{const v=JSON.parse(localStorage.getItem(k)||'null');return v==null?fallback:v}catch(e){return fallback}}
+function writeJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function dropKey(k){try{localStorage.removeItem(k)}catch(e){}}
+const GUEST=(()=>{const g=readJSON('cb-guest',{});return isObj(g)?g:{}})();
+function saveGuest(g){writeJSON('cb-guest',g)}
+const validRec=o=>isObj(o)&&typeof o.uid==='string'&&Array.isArray(o.items)&&typeof o.sum==='number';
+function pastOrders(){const a=readJSON('cb-orders',[]);return Array.isArray(a)?a.filter(validRec):[]}
+function pendingRec(){const p=readJSON('cb-pending',null);return validRec(p)?p:null}
 function cartSum(){let s=0;CART.forEach(r=>s+=r.price*r.qty);return s}
-function setStep(s){CSTEP=s;const st=document.getElementById('cartSteps');st.hidden=(s==='tray'&&!CART.size);[...st.children].forEach((x,i)=>x.classList.toggle('on',i===['tray','form','done'].indexOf(s)));
- document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':s==='login'?'Вход':'Заказ принят';
- document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':s==='login'?'Адрес и заказы подтянутся сами':doneSub();if(s==='login')document.getElementById('cartSteps').hidden=true;renderCart()}
-const BOT={tg:'',max:''};   /* ссылки на бота кафе: t.me/… и max.ru/… — впишем, когда бот будет */
-function whoHTML(){const g=GUEST;if(g.name&&g.phone)return `<div class="who"><div>${esc(g.name)}, ${esc(g.phone)}${g.address?`<small>${esc(g.address.replace(/^г\.?\s*Москва,\s*/i,''))}</small>`:''}</div><button type="button" data-logout>Это не я</button></div>`;
+const uid=()=>(crypto.randomUUID?crypto.randomUUID():'o-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10));
+/* черновик формы (A3-02): живёт, пока открыт сайт; восстанавливается при смене способа, шага и переоткрытии */
+ORD.draft=(()=>{try{const d=JSON.parse(sessionStorage.getItem('cb-draft')||'null');return isObj(d)?d:{}}catch(e){return {}}})();
+function saveDraft(f){if(!f)return;const d=ORD.draft;for(const el of f.elements){if(!el.name)continue;d[el.name]=el.type==='checkbox'?el.checked:el.value}d.mode=ORD.mode;try{sessionStorage.setItem('cb-draft',JSON.stringify(d))}catch(e){}}
+function clearDraft(){ORD.draft={};ORD.sugData=null;try{sessionStorage.removeItem('cb-draft')}catch(e){}}
+const dv=(k,fb='')=>{const d=ORD.draft;if(k in d&&d[k]!=null)return d[k];return fb};
+function setStep(s){CSTEP=s;const st=document.getElementById('cartSteps');st.hidden=!(s==='form'||s==='done'||(s==='tray'&&CART.size>0));[...st.children].forEach((x,i)=>x.classList.toggle('on',i===['tray','form','done'].indexOf(s)));
+ document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':s==='login'?'Вход':s==='wait'?'Проверяем оплату':'Заказ принят';
+ document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':s==='login'?'Адрес и заказы подтянутся сами':s==='wait'?'Это займёт несколько секунд':doneSub();renderCart()}
+const BOT={tg:'',max:''};   /* ссылки на бота кафе: t.me/… и max.ru/… — впишем, когда бот будет; пустая ссылка = кнопка показана как «скоро» (D3-07) */
+const noCity=s=>String(s||'').replace(/^г\.?\s*Москва,\s*/i,'');
+function whoHTML(){const g=GUEST;if(g.name&&g.phone)return `<div class="who"><div>${esc(g.name)}, ${esc(g.phone)}${g.address?`<small>${esc(noCity(g.address))}</small>`:''}</div><button type="button" data-logout>Это не я</button></div>`;
  return `<div class="who"><div>Уже заказывали?<small>Войдите, адрес подставим сами</small></div><button type="button" data-login-open>Войти</button></div>`}
-function doneSub(){const o=ORD.last;if(!o)return 'Спасибо, что выбрали нас';const when=o.asap?(o.mode==='delivery'?' за 20 минут':' как можно скорее'):' '+o.whenLabel.replace(/^сегодня /,'к ').replace(/^завтра /,'завтра к ');return o.mode==='delivery'?`Доставим до ${o.address.replace(/^г\.?\s*Москва,\s*/i,'')}${when}`:`Ждём вас: ${SHOP.addr}${when}`}
+function doneSub(){const o=ORD.last;if(!o)return 'Спасибо, что выбрали нас';const when=o.asap?(o.mode==='delivery'?' за 20 минут':' как можно скорее'):' '+String(o.whenLabel||'').replace(/^сегодня /,'к ').replace(/^завтра /,'завтра к ');return o.mode==='delivery'?`Доставим до ${noCity(o.address)}${when}`:`Ждём вас: ${SHOP.addr}${when}`}
 function fmtPhone(v){const d=v.replace(/\D/g,'').replace(/^8/,'7').replace(/^(?!7)/,'7').slice(0,11);let o='+7';if(d.length>1)o+=' ('+d.slice(1,4);if(d.length>=4)o+=') '+d.slice(4,7);if(d.length>=7)o+='-'+d.slice(7,9);if(d.length>=9)o+='-'+d.slice(9,11);return o}
-function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSeconds(0,0);d.setMinutes(d.getMinutes()<30?30:60,0);d.setMinutes(Math.ceil((d.getMinutes()+30)/30)*30%60||0);
- /* ближайший слот не раньше чем через 40 минут, шаг 30, до закрытия */
- const t0=new Date(now.getTime()+40*60000);t0.setSeconds(0,0);t0.setMinutes(Math.ceil(t0.getMinutes()/30)*30);
- for(let day=0;day<2&&out.length<30;day++){const base=new Date(now);base.setDate(base.getDate()+day);
-  for(let h=SHOP.hours[0];h<SHOP.hours[1];h++)for(const m of [0,30]){const x=new Date(base);x.setHours(h,m,0,0);if(x<t0)continue;const lbl=(day?'завтра ':'сегодня ')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');out.push([x.toISOString(),lbl])}}
+/* время кафе считается по Москве (A3-04/05/16): wall = «московские стенные часы» как Date в локальных полях, off = разница с реальным моментом */
+const TZ='Europe/Moscow';
+function mskWall(d){return new Date(d.toLocaleString('en-US',{timeZone:TZ}))}
+function mskOffset(d){return mskWall(d).getTime()-d.getTime()}
+function isOpenNow(now=new Date()){const w=mskWall(now);const h=w.getHours()+w.getMinutes()/60;return h>=SHOP.hours[0]&&h<SHOP.hours[1]}
+function slots(now=new Date()){const out=[];const off=mskOffset(now);const w=mskWall(now);
+ const STEP=30*60000;const t0=Math.ceil((w.getTime()+40*60000)/STEP)*STEP;   /* не раньше +40 минут, вверх к границе 30 минут */
+ for(let day=0;day<2&&out.length<30;day++){const base=new Date(w);base.setDate(base.getDate()+day);
+  for(let h=SHOP.hours[0];h<SHOP.hours[1];h++)for(const m of [0,30]){const x=new Date(base);x.setHours(h,m,0,0);if(x.getTime()<t0)continue;
+   const lbl=(day?'завтра ':'сегодня ')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');out.push([new Date(x.getTime()-off).toISOString(),lbl])}}
  return out}
+const fieldErr=(k,msg)=>`<em class="fe" id="fe-${k}">${msg}</em>`;
 function renderCart(){const b=document.getElementById('cartBody');
- if(CSTEP==='done'){const o=ORD.last;b.innerHTML=`<div class="done"><div class="num">№ ${o.n}</div><p>${o.items.map(x=>esc(x.name)+(x.qty>1?' × '+x.qty:'')).join(', ')}<br>${o.sum} руб., оплачено</p><p>Оплата прошла. Готовим и ${o.mode==='delivery'?'привезём':'ждём вас'}.</p></div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
+ if(CSTEP==='wait'){b.innerHTML=`<div class="done"><p>Ждём подтверждение оплаты от банка. Не закрывайте страницу.</p></div>`;return}
+ if(CSTEP==='done'){const o=ORD.last;if(!o){setStep('tray');return}b.innerHTML=`<div class="done"><div class="num">№ ${esc(o.n)}</div><p>${o.items.map(x=>esc(x.name)+(x.qty>1?' × '+x.qty:'')).join(', ')}<br>${esc(o.sum)} руб., оплачено</p><p>Оплата прошла. Готовим и ${o.mode==='delivery'?'привезём':'ждём вас'}.</p>${o.demo?'<div class="stub">Демонстрация экрана: оплата не подключена, деньги не списывались.</div>':''}</div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
  if(CSTEP==='login'){const tg='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 15.3 9.4 19c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7l2.7-12.7c.3-1.1-.4-1.6-1.1-1.3L3.6 11.2c-1.1.4-1.1 1-.2 1.3l4 1.3 9.4-5.9c.4-.3.8-.1.5.2l-7.7 7.2Z"/></svg>';const mx='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 4.6 18.9l3.1.9-.9-3A10 10 0 0 0 12 2Zm-4 7h2l2 4 2-4h2v6h-1.6v-3.4L12.8 15h-1.6l-1.6-3.4V15H8V9Z"/></svg>';
-  b.innerHTML=`<div class="login"><p>Нажмите кнопку, в мессенджере откроется бот кафе. Поделитесь номером одной кнопкой, и мы вас узнаем.</p>
-   <a class="mbtn tg" href="${BOT.tg||'#'}" target="_blank" rel="noopener" data-login="telegram">${tg}Войти через Telegram</a>
-   <a class="mbtn mx" href="${BOT.max||'#'}" target="_blank" rel="noopener" data-login="max">${mx}Войти через MAX</a>
-   <div class="fine">Без паролей и SMS. Первый заказ можно сделать и без входа: просто укажите телефон и адрес в форме.</div></div>
+  const btn=(href,ico,name)=>href?`<a class="mbtn" href="${esc(href)}" target="_blank" rel="noopener">${ico}Войти через ${name}</a>`:`<span class="mbtn soon" aria-disabled="true">${ico}${name}: скоро</span>`;
+  const ready=!!(BOT.tg||BOT.max);
+  b.innerHTML=`<div class="login"><p>${ready?'Нажмите кнопку, в мессенджере откроется бот кафе. Поделитесь номером одной кнопкой, и мы вас узнаем.':'Вход через бота кафе подключаем вместе с онлайн-оплатой. Пока заказ оформляется без входа: телефон и адрес в форме.'}</p>
+   ${btn(BOT.tg,tg,'Telegram')}${btn(BOT.max,mx,'MAX')}
+   <div class="fine">Без паролей и SMS. Первый заказ можно сделать и без входа.</div></div>
    <button class="back" type="button" data-backtray>← Вернуться к подносу</button>`;return}
- if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${o.sum} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');document.getElementById('cartSteps').hidden=true;return}
- let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${k}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
+ if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${esc(o.sum)} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');return}
+ let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${esc(k)}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${esc(k)}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
  const sum=cartSum();
  if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div>${whoHTML()}<button class="go" data-checkout>Оформить заказ</button><div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
  /* форма */
- const g=GUEST;const d=ORD.mode==='delivery';const sl=slots();
+ const g=GUEST;if(ORD.draft.mode)ORD.mode=ORD.draft.mode;const d=ORD.mode==='delivery';const sl=slots();const open=isOpenNow();const sugOn=!!window.CB_DADATA_KEY;const payOn=!!window.CB_ORDER_URL;
+ const whenSel=dv('when',ORD.asap?'asap':'');
  b.innerHTML=`<form id="orderForm" novalidate>
-  <div class="seg" role="group" aria-label="Способ получения"><button type="button" data-mode="delivery" class="${d?'on':''}">Доставка</button><button type="button" data-mode="pickup" class="${d?'':'on'}">Самовывоз</button></div>
-  <div class="f f2"><label class="fl" data-k="name"><span>Имя</span><input name="name" autocomplete="name" value="${esc(g.name||'')}"></label><label class="fl" data-k="phone"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (" value="${esc(g.phone||'')}"></label></div>
-  ${d?`<div class="f"><label class="fl sug" data-k="address"><span>Адрес доставки</span><input name="address" autocomplete="off" placeholder="Улица, дом, квартира" value="${esc(g.address||'')}"><ul id="sugList" hidden></ul></label><div class="note">Начните печатать, подскажем адрес. Квартиру и подъезд допишите в строке</div></div>
-  <div class="f"><label class="fl"><span>Комментарий курьеру</span><input name="courier" placeholder="Код домофона, не звонить в дверь, оставить у двери…"></label></div>`
+  <div class="seg" role="group" aria-label="Способ получения"><button type="button" data-mode="delivery" class="${d?'on':''}" aria-pressed="${d}">Доставка</button><button type="button" data-mode="pickup" class="${d?'':'on'}" aria-pressed="${!d}">Самовывоз</button></div>
+  <div class="f f2"><label class="fl" data-k="name"><span>Имя</span><input name="name" autocomplete="name" value="${esc(dv('name',g.name||''))}" aria-describedby="fe-name">${fieldErr('name','Напишите имя')}</label><label class="fl" data-k="phone"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (" value="${esc(dv('phone',g.phone||''))}" aria-describedby="fe-phone">${fieldErr('phone','Нужен номер из 11 цифр')}</label></div>
+  ${d?`<div class="f"><label class="fl sug" data-k="address"><span>Адрес доставки</span><input name="address" autocomplete="off" placeholder="Улица, дом, квартира" value="${esc(dv('address',g.address||''))}" aria-describedby="fe-address"><ul id="sugList" hidden role="listbox"></ul>${fieldErr('address','Укажите улицу, дом и квартиру')}</label><div class="note">${sugOn?'Начните печатать, подскажем адрес. Квартиру и подъезд допишите в строке':'Улица, дом, квартира, подъезд одной строкой'}</div></div>
+  <div class="f"><label class="fl"><span>Комментарий курьеру</span><input name="courier" placeholder="Код домофона, не звонить в дверь, оставить у двери…" value="${esc(dv('courier'))}"></label></div>`
   :`<div class="f"><label class="fl"><span>Забрать по адресу</span><input value="${esc(SHOP.addr)}" readonly></label></div>`}
-  <div class="f f2"><label class="fl"><span>Когда</span><select name="when"><option value="asap"${ORD.asap?' selected':''}>Как можно скорее</option>${sl.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></label><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>
-  <div class="f f2"><label class="fl"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(g.email||'')}"></label><label class="fl"><span>Пожелания кухне</span><input name="comment" placeholder="Аллергии, без лука…"></label></div>
-  <label class="chk"><input type="checkbox" name="pd" ${g.pd?'checked':''}><span>Даю согласие ИП Мкртычева Тамара Аркадьевна на обработку персональных данных для оформления и выполнения заказа. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</span></label>
+  <div class="f f2"><label class="fl" data-k="when"><span>Когда</span><select name="when" aria-describedby="fe-when">${open?`<option value="asap"${whenSel==='asap'?' selected':''}>Как можно скорее</option>`:''}${sl.map(([v,l])=>`<option value="${v}"${whenSel===v?' selected':''}>${l}</option>`).join('')}</select>${fieldErr('when','Сейчас закрыто, выберите время')}${open?'':'<em class="fe on">Сейчас закрыто, время московское '+SHOP.hours[0]+':00–'+SHOP.hours[1]+':00. Ближайшее: '+(sl[0]?sl[0][1]:'завтра')+'</em>'}</label><label class="fl" data-k="cutlery"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" step="1" inputmode="numeric" value="${esc(dv('cutlery',g.cutlery!=null?g.cutlery:1))}" aria-describedby="fe-cutlery">${fieldErr('cutlery','Целое число от 0 до 20')}</label></div>
+  <div class="f f2"><label class="fl" data-k="email"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(dv('email',g.email||''))}" aria-describedby="fe-email">${fieldErr('email','Проверьте адрес почты')}</label><label class="fl"><span>Пожелания кухне</span><input name="comment" placeholder="Аллергии, без лука…" value="${esc(dv('comment'))}"></label></div>
+  <label class="chk" data-k="pd"><input type="checkbox" name="pd" ${dv('pd',!!g.pd)?'checked':''} aria-describedby="fe-pd"><span>Даю согласие ИП Мкртычева Тамара Аркадьевна на обработку персональных данных для оформления и выполнения заказа. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.${fieldErr('pd','Без согласия заказ оформить нельзя')}</span></label>
   <div class="sumline"><span>${CART.size} ${plural(CART.size)} · ${d?'доставка по '+esc(SHOP.zone)+' бесплатно':'самовывоз'}</span><b>${sum} руб.</b></div>
-  <div class="err" id="orderErr" hidden></div>
+  <div class="err" id="orderErr" hidden role="alert"></div>
   <button class="go" type="submit">Оплатить ${sum} руб.</button>
+  ${payOn?'':`<div class="note" style="text-align:center">Онлайн-оплата подключается. Пока заказ принимаем по телефону <a href="tel:${SHOP.phone.replace(/[^\\d+]/g,'')}">${esc(SHOP.phone)}</a></div>`}
   <button class="back" type="button" data-backtray>← Вернуться к подносу</button>
  </form>`;
- const ph=b.querySelector('[name=phone]');if(ph)ph.addEventListener('input',e=>{const el=e.target;el.value=el.value.replace(/\D/g,'')?fmtPhone(el.value):''});
- b.querySelectorAll('[data-mode]').forEach(x=>x.addEventListener('click',()=>{ORD.mode=x.dataset.mode;renderCart()}));
- const ai=b.querySelector('[name=address]');if(ai)bindSuggest(ai,b.querySelector('#sugList'));
- b.querySelector('#orderForm').addEventListener('submit',submitOrder)}
-/* подсказки адреса: DaData «Подсказки» (ключ в window.CB_DADATA_KEY); без ключа поле обычное */
-function bindSuggest(input,list){let timer=null,items=[],cur=-1;
- const hide=()=>{list.hidden=true;list.innerHTML='';items=[];cur=-1};
- const pick=i=>{const s=items[i];if(!s)return;input.value=s.value;ORD.sugData=s;hide();input.dispatchEvent(new Event('change'))};
- const show=()=>{if(!items.length)return hide();list.innerHTML=items.map((s,i)=>`<li data-i="${i}"${i===cur?' class="on"':''}>${esc(s.value)}${s.data&&s.data.postal_code?`<small>${esc(s.data.city_with_type||'')}${s.data.postal_code?', '+s.data.postal_code:''}</small>`:''}</li>`).join('');list.hidden=false};
- input.addEventListener('input',()=>{ORD.sugData=null;const q=input.value.trim();clearTimeout(timer);if(!window.CB_DADATA_KEY||q.length<3)return hide();
-  timer=setTimeout(()=>fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','Authorization':'Token '+window.CB_DADATA_KEY},body:JSON.stringify({query:q,count:6,locations:[{city:'Москва'}],from_bound:{value:'street'},to_bound:{value:'flat'}})}).then(r=>r.json()).then(j=>{items=(j.suggestions||[]);cur=-1;show()}).catch(hide),250)});
- input.addEventListener('keydown',e=>{if(list.hidden)return;if(e.key==='ArrowDown'){e.preventDefault();cur=Math.min(cur+1,items.length-1);show()}else if(e.key==='ArrowUp'){e.preventDefault();cur=Math.max(cur-1,0);show()}else if(e.key==='Enter'&&cur>=0){e.preventDefault();pick(cur)}else if(e.key==='Escape'){hide()}});
+ const f=b.querySelector('#orderForm');
+ const ph=f.querySelector('[name=phone]');if(ph)ph.addEventListener('input',e=>{const el=e.target;el.value=el.value.replace(/\D/g,'')?fmtPhone(el.value):''});
+ f.addEventListener('input',()=>saveDraft(f));f.addEventListener('change',()=>saveDraft(f));
+ f.querySelectorAll('[data-mode]').forEach(x=>x.addEventListener('click',()=>{if(ORD.submitting)return;saveDraft(f);ORD.mode=x.dataset.mode;ORD.draft.mode=ORD.mode;renderCart()}));
+ const ai=f.querySelector('[name=address]');if(ai)bindSuggest(ai,f.querySelector('#sugList'));
+ f.addEventListener('submit',submitOrder)}
+/* подсказки адреса: DaData «Подсказки» (ключ в window.CB_DADATA_KEY); без ключа поле обычное. A3-12: ответы сверяются с поколением запроса, старый fetch отменяется; A3-18: Escape сначала закрывает список */
+function bindSuggest(input,list){let timer=null,items=[],cur=-1,gen=0,ctrl=null;
+ const hide=()=>{list.hidden=true;list.innerHTML='';items=[];cur=-1;if(ctrl){ctrl.abort();ctrl=null}};
+ const pick=i=>{const s=items[i];if(!s)return;input.value=s.value;ORD.sugData=s;hide();input.dispatchEvent(new Event('change',{bubbles:true}))};
+ const show=()=>{if(!items.length||document.activeElement!==input)return hide();list.innerHTML=items.map((s,i)=>`<li role="option" data-i="${i}"${i===cur?' class="on" aria-selected="true"':''}>${esc(s.value)}${s.data&&s.data.postal_code?`<small>${esc(s.data.city_with_type||'')}, ${esc(s.data.postal_code)}</small>`:''}</li>`).join('');list.hidden=false};
+ input.addEventListener('input',()=>{ORD.sugData=null;const q=input.value.trim();clearTimeout(timer);const my=++gen;if(!window.CB_DADATA_KEY||q.length<3)return hide();
+  timer=setTimeout(()=>{if(ctrl)ctrl.abort();ctrl=new AbortController();const c=ctrl;
+   fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json','Accept':'application/json','Authorization':'Token '+window.CB_DADATA_KEY},body:JSON.stringify({query:q,count:6,locations:[{city:'Москва'}],from_bound:{value:'street'},to_bound:{value:'flat'}})})
+   .then(r=>r.ok?r.json():Promise.reject(r.status)).then(j=>{if(my!==gen||input.value.trim()!==q)return;items=Array.isArray(j.suggestions)?j.suggestions:[];cur=-1;show()}).catch(()=>{if(my===gen)hide()})},250)});
+ input.addEventListener('keydown',e=>{if(list.hidden)return;if(e.key==='ArrowDown'){e.preventDefault();cur=Math.min(cur+1,items.length-1);show()}else if(e.key==='ArrowUp'){e.preventDefault();cur=Math.max(cur-1,0);show()}else if(e.key==='Enter'&&cur>=0){e.preventDefault();pick(cur)}else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();hide()}});
  list.addEventListener('mousedown',e=>{const li=e.target.closest('li');if(li){e.preventDefault();pick(+li.dataset.i)}});
  input.addEventListener('blur',()=>setTimeout(hide,150))}
-cart.addEventListener('click',e=>{const a=e.target.closest('[data-login]');if(a&&a.getAttribute('href')==='#'){e.preventDefault();a.textContent='';a.insertAdjacentHTML('beforeend','Бот подключим вместе с оплатой');a.style.pointerEvents='none'}});
-function orderPayload(f){const v=n=>(f.elements[n]?f.elements[n].value.trim():'');const d=ORD.mode==='delivery';
- const when=v('when');const asap=when==='asap';const whenLabel=asap?'':f.elements.when.selectedOptions[0].textContent;
+function orderPayload(f){const v=n=>(f.elements[n]?String(f.elements[n].value).trim():'');const d=ORD.mode==='delivery';
+ const when=v('when');const asap=when==='asap';const whenLabel=asap?'':(f.elements.when&&f.elements.when.selectedOptions[0]?f.elements.when.selectedOptions[0].textContent:'');
  const items=[];CART.forEach((r,k)=>items.push({key:k,name:r.name,label:r.label||'',price:r.price,qty:r.qty,amount:r.price*r.qty}));
- return {source:'site',mode:ORD.mode,asap,when:asap?null:when,whenLabel,
+ const sd=ORD.sugData&&ORD.sugData.value===v('address')?ORD.sugData.data||{}:null;
+ return {source:'site',attemptId:ORD.attemptId,mode:ORD.mode,asap,when:asap?null:when,whenLabel,
   guest:{name:v('name'),phone:v('phone'),email:v('email')},
-  address:d?{full:v('address'),courierComment:v('courier'),...(ORD.sugData&&ORD.sugData.value===v('address')?{fiasId:ORD.sugData.data.fias_id,flat:ORD.sugData.data.flat,house:ORD.sugData.data.house,lat:ORD.sugData.data.geo_lat,lon:ORD.sugData.data.geo_lon}:{})}:null,
-  cutlery:+v('cutlery')||0,comment:v('comment'),items,sum:cartSum(),pdConsent:!!f.elements.pd.checked,createdAt:new Date().toISOString()}}
-function submitOrder(e){e.preventDefault();const f=e.target;const o=orderPayload(f);const err=[];f.querySelectorAll('.fl').forEach(x=>x.classList.remove('bad'));
- const bad=k=>{const l=f.querySelector(`[data-k=${k}]`);if(l)l.classList.add('bad')};
- if(!o.guest.name){err.push('имя');bad('name')}
- if(o.guest.phone.replace(/\D/g,'').length!==11){err.push('телефон');bad('phone')}
- if(o.mode==='delivery'&&o.address.full.length<5){err.push('адрес доставки');bad('address')}
- if(o.guest.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.guest.email))err.push('email');
- if(!o.pdConsent)err.push('согласие на обработку данных');
- const eb=f.querySelector('#orderErr');if(err.length){eb.hidden=false;eb.textContent='Проверьте: '+err.join(', ');const fi=f.querySelector('.bad input')||f.elements.pd;fi.focus({preventScroll:true});fi.scrollIntoView({block:'center',behavior:'smooth'});return}
- eb.hidden=true;
+  address:d?{full:v('address'),courierComment:v('courier'),...(sd?{fiasId:sd.fias_id,flat:sd.flat,house:sd.house,lat:sd.geo_lat,lon:sd.geo_lon}:{})}:null,
+  cutleryRaw:v('cutlery'),cutlery:Number(v('cutlery')),comment:v('comment'),items,sum:cartSum(),pdConsent:!!(f.elements.pd&&f.elements.pd.checked),createdAt:new Date().toISOString()}}
+function showErr(f,msg){const eb=f.querySelector('#orderErr');if(!eb)return;eb.hidden=!msg;eb.textContent=msg||''}
+function submitOrder(e){e.preventDefault();const f=e.target;if(ORD.submitting)return;const o=orderPayload(f);const err=[];
+ f.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'));f.querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));
+ const bad=(k,label)=>{err.push(label);const l=f.querySelector(`[data-k="${k}"]`);if(l){l.classList.add('bad');const i=l.querySelector('input,select');if(i)i.setAttribute('aria-invalid','true')}};
+ if(!o.guest.name)bad('name','имя');
+ if(o.guest.phone.replace(/\D/g,'').length!==11)bad('phone','телефон');
+ if(o.mode==='delivery'&&o.address.full.length<5)bad('address','адрес доставки');
+ if(!o.asap&&!o.when)bad('when','время');if(o.asap&&!isOpenNow())bad('when','время: сейчас закрыто');
+ if(!o.when&&!o.asap){}else if(!o.asap){const t=Date.parse(o.when);if(!(t>Date.now()+20*60000))bad('when','время уже прошло')}
+ if(!/^\d{1,2}$/.test(o.cutleryRaw)||o.cutlery<0||o.cutlery>20)bad('cutlery','приборы');
+ if(o.guest.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.guest.email))bad('email','email');
+ if(!o.pdConsent)bad('pd','согласие на обработку данных');
+ if(err.length){showErr(f,'Проверьте: '+err.join(', '));const fi=f.querySelector('.bad input,.bad select');(fi||f.elements.pd).focus({preventScroll:true});(fi||f.querySelector('.chk')).scrollIntoView({block:'center',behavior:'smooth'});return}
+ showErr(f,'');delete o.cutleryRaw;
  Object.assign(GUEST,o.guest,o.address?{address:o.address.full}:{},{cutlery:o.cutlery,pd:true});saveGuest(GUEST);
- const past=pastOrders();const n=String(1000+past.length+1+Math.floor(Math.random()*9));const dt=new Date();
- const rec={n,dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?o.address.full:'',items:o.items,payload:o};
- ORD.last=rec;try{localStorage.setItem('cb-pending',JSON.stringify(rec))}catch(e){}
- const btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Переходим к оплате…';
- if(window.CB_ORDER_URL){fetch(window.CB_ORDER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(r=>r.json()).then(j=>{if(j&&j.paymentUrl)location.href=j.paymentUrl;else throw 0}).catch(()=>{btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`})}
- else{/* ссылка на оплату Т-Банка ещё не задана: кнопка возвращается в исходное состояние */setTimeout(()=>{btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`},1200)}}
-/* возврат со страницы оплаты (SuccessURL = …?paid=1): показываем «Заказ принят» и очищаем поднос */
-function paidReturn(){const q=new URLSearchParams(location.search);if(q.get('paid')!=='1')return;let rec=null;try{rec=JSON.parse(localStorage.getItem('cb-pending')||'null')}catch(e){}if(!rec)return;
- const past=pastOrders();if(!past.some(x=>x.n===rec.n)){past.unshift(rec);try{localStorage.setItem('cb-orders',JSON.stringify(past.slice(0,10)))}catch(e){}}
- try{localStorage.removeItem('cb-pending')}catch(e){}ORD.last=rec;CART.clear();renderBadge();saveCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done');history.replaceState(null,'',location.pathname)}
+ if(!ORD.attemptId)ORD.attemptId=uid();o.attemptId=ORD.attemptId;   /* A3-07/10: один черновик = один идентификатор попытки, сервер дедуплицирует по нему */
+ const dt=new Date();const rec={uid:o.attemptId,n:String(dt.getTime()).slice(-6),dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long',timeZone:TZ})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',timeZone:TZ}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?o.address.full:'',items:o.items,payload:o};
+ ORD.last=rec;writeJSON('cb-pending',rec);
+ const btn=f.querySelector('button[type=submit]');const unlock=(msg)=>{ORD.submitting=false;btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`;f.querySelectorAll('[data-mode]').forEach(x=>x.disabled=false);if(msg)showErr(f,msg)};
+ if(!window.CB_ORDER_URL){showErr(f,'Онлайн-оплата ещё не подключена, заказ не отправлен. Позвоните нам: '+SHOP.phone);return}
+ ORD.submitting=true;btn.disabled=true;btn.textContent='Переходим к оплате…';f.querySelectorAll('[data-mode]').forEach(x=>x.disabled=true);
+ const c=new AbortController();const tm=setTimeout(()=>c.abort(),15000);
+ fetch(window.CB_ORDER_URL,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(o)})
+  .then(r=>r.ok?r.json():Promise.reject(new Error('http '+r.status))).then(j=>{clearTimeout(tm);if(j&&j.paymentUrl){ORD.submitting=false;location.href=j.paymentUrl}else throw new Error('no url')})
+  .catch(er=>{clearTimeout(tm);unlock(er&&er.name==='AbortError'?'Банк не ответил вовремя. Заказ не оплачен, попробуйте ещё раз через минуту.':'Не удалось перейти к оплате. Заказ не оплачен и не создан, попробуйте ещё раз или позвоните: '+SHOP.phone)})}
+/* возврат со страницы оплаты (A3-01): SuccessURL = …?paid=<attemptId>. Успех подтверждает сервер: GET CB_ORDER_URL?status=<attemptId> → {status:'paid'|'pending'|'failed'}. Без сервера «оплачено» не показываем; ?demo=paid рисует экран-образец с пометкой */
+function finishPaid(rec,demo){const past=pastOrders();if(!past.some(x=>x.uid===rec.uid)){past.unshift(rec);writeJSON('cb-orders',past.slice(0,10))}
+ dropKey('cb-pending');clearDraft();ORD.attemptId=null;ORD.last=Object.assign({},rec,demo?{demo:true}:{});CART.clear();renderBadge();saveCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done')}
+function paidReturn(){const q=new URLSearchParams(location.search);const id=q.get('paid');const demo=q.get('demo')==='paid';if(!id&&!demo)return;history.replaceState(null,'',location.pathname);
+ if(demo&&!window.CB_ORDER_URL){const rec={uid:'demo',n:'000000',dateLabel:'',sum:cartSum()||850,mode:'delivery',asap:true,whenLabel:'',address:'Причальный проезд, д 8, кв 14',items:CART.size?[...CART.values()].map(r=>({name:r.name,qty:r.qty})):[{name:'Блины с вареньем',qty:2}]};ORD.last=Object.assign(rec,{demo:true});cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done');return}
+ const rec=pendingRec();if(!rec||rec.uid!==id||!window.CB_ORDER_URL)return;
+ cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('wait');let tries=0;
+ const check=()=>fetch(window.CB_ORDER_URL+(window.CB_ORDER_URL.includes('?')?'&':'?')+'status='+encodeURIComponent(id),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(j=>{
+  if(j.status==='paid')finishPaid(rec);else if(j.status==='failed'){setStep('tray');alert('Оплата не прошла. Поднос сохранён, попробуйте ещё раз.')}else if(++tries<10)setTimeout(check,2000);else{setStep('tray');alert('Банк пока не подтвердил оплату. Если деньги списались, мы увидим это и позвоним вам.')}}).catch(()=>{if(++tries<10)setTimeout(check,3000);else setStep('tray')});
+ check()}
 setTimeout(paidReturn,300);
 cart.addEventListener('click',e=>{const t=e.target.closest('[data-checkout],[data-backtray],[data-repeat],[data-login-open],[data-logout]');if(!t)return;
- if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');else if(t.hasAttribute('data-login-open'))setStep('login');else if(t.hasAttribute('data-logout')){for(const k of Object.keys(GUEST))delete GUEST[k];saveGuest(GUEST);try{localStorage.removeItem('cb-orders')}catch(e){}renderCart()}
+ const f=cart.querySelector('#orderForm');if(f)saveDraft(f);
+ if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');else if(t.hasAttribute('data-login-open'))setStep('login');
+ else if(t.hasAttribute('data-logout')){for(const k of Object.keys(GUEST))delete GUEST[k];saveGuest(GUEST);dropKey('cb-orders');dropKey('cb-pending');clearDraft();ORD.last=null;ORD.attemptId=null;renderCart()}
  else if(t.hasAttribute('data-repeat')){const o=pastOrders()[+t.dataset.repeat];if(!o)return;o.items.forEach(x=>{const c=lineOf(x.key);if(c&&c.price!=null)addItem(x.key,x.qty)});setStep('tray')}});
-function openCart(){if(CSTEP==='done')CSTEP='tray';setStep(CSTEP);cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){cart.hidden=true;cartDim.hidden=true;dlgClose(cart);if(CSTEP==='done')CSTEP='tray'}
+function openCart(){if(CSTEP==='done'||CSTEP==='wait')CSTEP='tray';setStep(CSTEP);cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){const f=cart.querySelector('#orderForm');if(f)saveDraft(f);cart.hidden=true;cartDim.hidden=true;dlgClose(cart);if(CSTEP==='done')CSTEP='tray'}
 document.getElementById('basketBtn').addEventListener('click',openCart);cartDim.addEventListener('click',closeCart);
 
 /* ---------- оглавление ---------- */
