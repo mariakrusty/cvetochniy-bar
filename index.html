@@ -761,7 +761,7 @@ function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSe
   for(let h=SHOP.hours[0];h<SHOP.hours[1];h++)for(const m of [0,30]){const x=new Date(base);x.setHours(h,m,0,0);if(x<t0)continue;const lbl=(day?'завтра ':'сегодня ')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');out.push([x.toISOString(),lbl])}}
  return out}
 function renderCart(){const b=document.getElementById('cartBody');
- if(CSTEP==='done'){const o=ORD.last;b.innerHTML=`<div class="done"><div class="num">№ ${o.n}</div><p>${o.mode==='delivery'?`Доставка: ${esc(o.address)}`:`Самовывоз: ${SHOP.addr}`}<br>${o.asap?'как можно скорее':'ко времени '+esc(o.whenLabel)} · ${o.sum} руб.</p><div class="stub">Здесь откроется страница оплаты Т-Банка: карта, СБП, T-Pay. Терминал подключим, когда получим доступы, пока заказ сохранён в этом браузере.</div></div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
+ if(CSTEP==='done'){const o=ORD.last;b.innerHTML=`<div class="done"><div class="num">№ ${o.n}</div><p>${o.mode==='delivery'?`Доставка: ${esc(o.address)}`:`Самовывоз: ${SHOP.addr}`}<br>${o.asap?'как можно скорее':'ко времени '+esc(o.whenLabel)} · ${o.sum} руб.</p><p>Оплата прошла. Готовим и ${o.mode==='delivery'?'привезём':'ждём вас'}.</p></div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
  if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${o.sum} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');document.getElementById('cartSteps').hidden=true;return}
  let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${k}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
  const sum=cartSum();
@@ -806,10 +806,15 @@ function submitOrder(e){e.preventDefault();const f=e.target;const o=orderPayload
  Object.assign(GUEST,o.guest,o.address||{},{cutlery:o.cutlery,pd:true});saveGuest(GUEST);
  const past=pastOrders();const n=String(1000+past.length+1+Math.floor(Math.random()*9));const dt=new Date();
  const rec={n,dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?[o.address.street,o.address.building&&'к. '+o.address.building,'кв. '+o.address.flat].filter(Boolean).join(', '):'',items:o.items,payload:o};
- past.unshift(rec);try{localStorage.setItem('cb-orders',JSON.stringify(past.slice(0,10)))}catch(e){}
- ORD.last=rec;
- if(window.CB_ORDER_URL){fetch(window.CB_ORDER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(r=>r.json()).then(j=>{if(j&&j.paymentUrl)location.href=j.paymentUrl}).catch(()=>{})}
- CART.clear();renderBadge();saveCart();setStep('done')}
+ ORD.last=rec;try{localStorage.setItem('cb-pending',JSON.stringify(rec))}catch(e){}
+ const btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Переходим к оплате…';
+ if(window.CB_ORDER_URL){fetch(window.CB_ORDER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(r=>r.json()).then(j=>{if(j&&j.paymentUrl)location.href=j.paymentUrl;else throw 0}).catch(()=>{btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`})}
+ else{/* ссылка на оплату Т-Банка ещё не задана: кнопка возвращается в исходное состояние */setTimeout(()=>{btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`},1200)}}
+/* возврат со страницы оплаты (SuccessURL = …?paid=1): показываем «Заказ принят» и очищаем поднос */
+function paidReturn(){const q=new URLSearchParams(location.search);if(q.get('paid')!=='1')return;let rec=null;try{rec=JSON.parse(localStorage.getItem('cb-pending')||'null')}catch(e){}if(!rec)return;
+ const past=pastOrders();if(!past.some(x=>x.n===rec.n)){past.unshift(rec);try{localStorage.setItem('cb-orders',JSON.stringify(past.slice(0,10)))}catch(e){}}
+ try{localStorage.removeItem('cb-pending')}catch(e){}ORD.last=rec;CART.clear();renderBadge();saveCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done');history.replaceState(null,'',location.pathname)}
+setTimeout(paidReturn,300);
 cart.addEventListener('click',e=>{const t=e.target.closest('[data-checkout],[data-backtray],[data-repeat]');if(!t)return;
  if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');
  else if(t.hasAttribute('data-repeat')){const o=pastOrders()[+t.dataset.repeat];if(!o)return;o.items.forEach(x=>{const c=lineOf(x.key);if(c&&c.price!=null)addItem(x.key,x.qty)});setStep('tray')}});
