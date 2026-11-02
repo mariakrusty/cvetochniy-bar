@@ -53,21 +53,15 @@ body{overflow-x:hidden}
 .tabs .t.season.cur{background:linear-gradient(90deg,#6e5440,#5d4533);color:#fff;box-shadow:1px 0 0 #4e3a2b,2px 0 0 #684228,3px 1px 0 #5c3a22,4px 3px 7px rgba(40,25,15,.45),inset 1px 0 0 rgba(255,255,255,.3)}
 /* ---------- «О нас»: тёмное дерево с фото, картинка + текст ---------- */
 .about{background:#f8f8f8}
-.taste{background:var(--paper,#f4efe8)}
-.taste .timg{position:absolute;left:0;right:0;top:0;height:54%;background:#e9e0d4 center 45%/cover no-repeat}
-.taste .timg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,239,232,0) 62%,var(--paper,#f4efe8) 100%)}
-.taste .tlbl{position:absolute;left:0;right:0;top:calc(54% - 34px);text-align:center;z-index:1}
-.taste .tlbl .caps{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--sflag,#5d4533)}
-.taste .tlbl .script{font:400 clamp(54px,9vh,76px)/1 var(--script);color:var(--blue);margin-top:4px}
-.taste .tdish{text-align:center;margin-top:10px;font:500 20px/1.2 var(--serif);letter-spacing:.04em;color:var(--ink)}
-.taste .tdish small{display:block;font:600 10px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--blue-text);margin-top:4px}
-.taste .tmore{position:absolute;left:18px;right:18px;top:calc(54% + 118px);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;z-index:1}
-.taste .tmore .ti{text-align:center;font:500 13px/1.2 var(--serif);color:var(--ink)}
-.taste .tmore .ti img{display:block;width:min(24vw,96px);height:min(24vw,96px);border-radius:50%;object-fit:cover;object-position:50% 48%;margin:0 auto 8px;box-shadow:0 10px 22px -12px rgba(60,40,20,.55);background:#fff}
-.taste .tmore .ti small{display:block;font:600 9px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9a948a;margin-top:2px}
-.taste .tgo{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 26px);display:flex;justify-content:center;z-index:1}
-.taste .tgo .lk{font:500 15px/1 var(--serif);letter-spacing:.34em;margin-right:-.34em}
-@media (max-height:700px){.taste .timg{height:46%}.taste .tlbl{top:calc(46% - 28px)}.taste .tlbl .script{font-size:44px}.taste .tdish{font-size:17px;margin-top:6px}.taste .tmore{top:calc(46% + 98px);gap:6px}.taste .tmore .ti{font-size:12px}.taste .tmore .ti img{width:18vw;height:18vw;margin-bottom:6px}.taste .tgo{bottom:calc(env(safe-area-inset-bottom) + 18px)}}
+.taste{background:#1d1410 url(assets/deserty-live.jpg?v=5ce6b8dd) 50% 42%/cover no-repeat}
+.taste::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 52%,rgba(20,12,8,.82) 100%)}
+.taste .tt{position:absolute;left:26px;right:26px;bottom:calc(env(safe-area-inset-bottom) + 34px);z-index:1;color:#fdf6ec;text-align:center}
+.taste .tt .caps{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#d9c9b0}
+.taste .tt h2{font:500 clamp(30px,4.6vh,40px)/1.1 var(--serif);letter-spacing:.06em;margin-top:14px}
+.taste .tt p{font:400 16px/1.45 var(--serif);color:#e9ddcb;margin-top:12px}
+.taste .tt .lk{display:inline-flex;margin-top:24px;color:#fdf6ec;font:500 14px/1 var(--serif);letter-spacing:.34em;margin-right:-.34em}
+.taste .tt .lk i{background:#fdf6ec}
+@media (max-height:700px){.taste .tt{bottom:calc(env(safe-area-inset-bottom) + 22px)}.taste .tt h2{font-size:28px}.taste .tt p{font-size:15px}.taste .tt .lk{margin-top:16px}}
 
 .about .aimg{position:absolute;left:0;right:0;top:0;height:42%;background:#f8f8f8 url(assets/about-baba.jpg?v=35670991) center 40%/cover no-repeat;z-index:1}
 .about .aimg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,253,251,0) 70%,#f8f8f8 100%)}
@@ -595,13 +589,11 @@ for(const p of M.pages){const c=CHAP[p.chapter];
    <div class="alinks"><span class="lk main" data-go="toc">Меню<i></i></span><a class="lk" href="tel:+79295888778">Позвонить<i></i></a></div></div>
    <span class="xclose" data-about-close>Закрыть ×</span></section>`;}
  else if(p.kind==='footer'){
-  if(!isDesk){const sc=M.chapters.find(x=>x.theme);const big=ITEMS['sezon-03']||null;const rest=['sezon-04','sezon-01','sezon-02'].map(id=>ITEMS[id]).filter(Boolean);
-   if(sc&&big)html+=`<section class="pg taste" id="pg-taste" aria-label="Сезонное предложение" style="--paper:${sc.theme.paper};--sflag:${sc.theme.flag}" data-go="sezon">
-    <div class="timg" style="background-image:url(${big.macro})" role="img" aria-label="${esc(big.name)}"></div>
-    <div class="tlbl"><div class="caps">${esc(sc.theme.caps||'Сезонное предложение')} · ${esc(sc.theme.name)} ${esc(sc.theme.year||'')}</div><div class="script">${esc(sc.theme.name)}</div>
-     <div class="tdish">${esc(big.name)}<small>${big.price!=null?big.price+' руб.':''}</small></div></div>
-    <div class="tmore">${rest.map(i=>`<div class="ti"><img src="${i.m||i.macro}" alt="" loading="lazy">${esc(i.name)}<small>${i.price!=null?i.price+' руб.':''}</small></div>`).join('')}</div>
-    <div class="tgo"><span class="lk main">Смотреть меню сезона<i></i></span></div></section>`;}
+  if(!isDesk){const d=ITEMS['deserty-02']||null;
+   html+=`<section class="pg taste" id="pg-taste" aria-label="Попробуйте десерт" data-go="deserty" role="img">
+    <div class="tt"><div class="caps">Десерты · к чаю и кофе</div><h2>Попробуйте десерт</h2>
+     <p>${d?esc(d.name)+(d.price!=null?', '+d.price+' руб.':''):'Чиа с малиной'}: готовим каждое утро, к чаю и с собой</p>
+     <span class="lk">Смотреть десерты<i></i></span></div></section>`;}
   html+=`<section class="pg footer" id="${p.id}" aria-label="Контакты и документы"><div class="fv"><div class="fgrid">
    <div class="fcol"><img class="flogo" src="assets/monogram-white.svg?v=70da6a98" alt="Цветочный бар"><div class="addr">Цветочный бар<br>Москва, Причальный проезд, 10к2<br>ЖК Level Причальный</div><img class="slog" src="assets/slogan-caps-cream.png?v=871dbcce" alt="И чай попить, и цветы купить"></div>
    <div class="fcol"><h4>Контакты</h4><a href="tel:+79295888778">+7 929 588-87-78</a><span class="l">Почта: на домене, уточняется</span><span class="l" data-info="write">Написать в мессенджер</span><span class="l">Ежедневно 8:00–21:00</span></div>
@@ -683,7 +675,7 @@ function render(p){
  p=Math.max(0,Math.min(N-1,p));if(RM&&isDesk)p=Math.round(p);   /* A2-07: без 3D-поворотов при reduce */
  const i=Math.floor(p),t=p-i,th=180*t,s=Math.sin(rad(th));
  const ci=isDesk?Math.round(p):activeK();curI=ci;const cur=ORDER[ci];const near=isDesk?p:ci;
- chrome.classList.toggle('off',near<2.5);stage.classList.toggle('closed',near<2.5);tabs.classList.toggle('off',near<2.5||cur==='toc'||cur==='book');stage.classList.toggle('onbook',cur==='book'&&p<ORDER.indexOf('book')+0.5);const tn=document.getElementById('topnav');tn.classList.toggle('off',near>=2.5);tn.classList.toggle('dark',near>=0.5&&near<1.5);tn.classList.toggle('oncover',near<0.5);setChapter(cur);
+ const PRE=ORDER.indexOf('footer')+0.5;   /* всё до подвала включительно = «до книги»: шапка книги и ярлыки скрыты */chrome.classList.toggle('off',near<PRE);stage.classList.toggle('closed',near<PRE);tabs.classList.toggle('off',near<PRE||cur==='toc'||cur==='book');stage.classList.toggle('onbook',cur==='book'&&p<ORDER.indexOf('book')+0.5);const tn=document.getElementById('topnav');tn.classList.toggle('off',near>=PRE);tn.classList.toggle('dark',near>=0.5&&near<1.5);tn.classList.toggle('oncover',near<0.5);setChapter(cur);
  for(let k=Math.max(0,i-1);k<=Math.min(N-1,i+2);k++){load(L[k]);load(R[k])}
  if(!isDesk)return;
  /* A2-01: состояние каждого слоя задаётся явно в каждом кадре, результат не зависит от истории вызовов; A2-02: фокус только на текущем развороте */
