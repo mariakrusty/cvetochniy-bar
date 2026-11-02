@@ -53,6 +53,22 @@ body{overflow-x:hidden}
 .tabs .t.season.cur{background:linear-gradient(90deg,#6e5440,#5d4533);color:#fff;box-shadow:1px 0 0 #4e3a2b,2px 0 0 #684228,3px 1px 0 #5c3a22,4px 3px 7px rgba(40,25,15,.45),inset 1px 0 0 rgba(255,255,255,.3)}
 /* ---------- «О нас»: тёмное дерево с фото, картинка + текст ---------- */
 .about{background:#f8f8f8}
+.taste{background:var(--paper,#f4efe8)}
+.taste .timg{position:absolute;left:0;right:0;top:0;height:54%;background:#e9e0d4 center 45%/cover no-repeat}
+.taste .timg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,239,232,0) 62%,var(--paper,#f4efe8) 100%)}
+.taste .tlbl{position:absolute;left:0;right:0;top:calc(54% - 34px);text-align:center;z-index:1}
+.taste .tlbl .caps{font:600 10px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--sflag,#5d4533)}
+.taste .tlbl .script{font:400 clamp(54px,9vh,76px)/1 var(--script);color:var(--blue);margin-top:4px}
+.taste .tdish{text-align:center;margin-top:10px;font:500 20px/1.2 var(--serif);letter-spacing:.04em;color:var(--ink)}
+.taste .tdish small{display:block;font:600 10px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--blue-text);margin-top:4px}
+.taste .tmore{position:absolute;left:18px;right:18px;top:calc(54% + 118px);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;z-index:1}
+.taste .tmore .ti{text-align:center;font:500 13px/1.2 var(--serif);color:var(--ink)}
+.taste .tmore .ti img{display:block;width:min(24vw,96px);height:min(24vw,96px);border-radius:50%;object-fit:cover;object-position:50% 48%;margin:0 auto 8px;box-shadow:0 10px 22px -12px rgba(60,40,20,.55);background:#fff}
+.taste .tmore .ti small{display:block;font:600 9px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9a948a;margin-top:2px}
+.taste .tgo{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 26px);display:flex;justify-content:center;z-index:1}
+.taste .tgo .lk{font:500 15px/1 var(--serif);letter-spacing:.34em;margin-right:-.34em}
+@media (max-height:700px){.taste .timg{height:46%}.taste .tlbl{top:calc(46% - 28px)}.taste .tlbl .script{font-size:44px}.taste .tdish{font-size:17px;margin-top:6px}.taste .tmore{top:calc(46% + 98px);gap:6px}.taste .tmore .ti{font-size:12px}.taste .tmore .ti img{width:18vw;height:18vw;margin-bottom:6px}.taste .tgo{bottom:calc(env(safe-area-inset-bottom) + 18px)}}
+
 .about .aimg{position:absolute;left:0;right:0;top:0;height:42%;background:#f8f8f8 url(assets/about-baba.jpg?v=35670991) center 40%/cover no-repeat;z-index:1}
 .about .aimg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,253,251,0) 70%,#f8f8f8 100%)}
 .about .atxt{position:absolute;left:26px;right:26px;top:calc(42% + 14px);bottom:calc(env(safe-area-inset-bottom) + 16px);color:var(--ink);z-index:1;overflow:auto;-webkit-overflow-scrolling:touch}
@@ -452,7 +468,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  .about .xclose{position:fixed;right:16px;top:calc(env(safe-area-inset-top) + 14px);padding:9px 13px 9px 15px;border-radius:20px;background:rgba(248,248,248,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--blue-text);z-index:3}
  .topnav.aboutopen{opacity:0;visibility:hidden}
  .pg::before,.pg::after{display:none}
- #stage:not(.bookopen) .pg:nth-of-type(n+4){display:none}
+ #stage:not(.bookopen) .pg:nth-of-type(n+5){display:none}
 }
 @media (max-width:899px) and (max-height:600px){
  .cover .hbg{background-position:50% 26%}.cover .mtop{top:calc(env(safe-area-inset-top) + 16px)}.cover .mtop img{width:min(40%,220px)}.cover .mtop .menu{margin-top:14px;font-size:16px}
@@ -579,6 +595,13 @@ for(const p of M.pages){const c=CHAP[p.chapter];
    <div class="alinks"><span class="lk main" data-go="toc">Меню<i></i></span><a class="lk" href="tel:+79295888778">Позвонить<i></i></a></div></div>
    <span class="xclose" data-about-close>Закрыть ×</span></section>`;}
  else if(p.kind==='footer'){
+  if(!isDesk){const sc=M.chapters.find(x=>x.theme);const big=ITEMS['sezon-03']||null;const rest=['sezon-04','sezon-01','sezon-02'].map(id=>ITEMS[id]).filter(Boolean);
+   if(sc&&big)html+=`<section class="pg taste" id="pg-taste" aria-label="Сезонное предложение" style="--paper:${sc.theme.paper};--sflag:${sc.theme.flag}" data-go="sezon">
+    <div class="timg" style="background-image:url(${big.macro})" role="img" aria-label="${esc(big.name)}"></div>
+    <div class="tlbl"><div class="caps">${esc(sc.theme.caps||'Сезонное предложение')} · ${esc(sc.theme.name)} ${esc(sc.theme.year||'')}</div><div class="script">${esc(sc.theme.name)}</div>
+     <div class="tdish">${esc(big.name)}<small>${big.price!=null?big.price+' руб.':''}</small></div></div>
+    <div class="tmore">${rest.map(i=>`<div class="ti"><img src="${i.m||i.macro}" alt="" loading="lazy">${esc(i.name)}<small>${i.price!=null?i.price+' руб.':''}</small></div>`).join('')}</div>
+    <div class="tgo"><span class="lk main">Смотреть меню сезона<i></i></span></div></section>`;}
   html+=`<section class="pg footer" id="${p.id}" aria-label="Контакты и документы"><div class="fv"><div class="fgrid">
    <div class="fcol"><img class="flogo" src="assets/monogram-white.svg?v=70da6a98" alt="Цветочный бар"><div class="addr">Цветочный бар<br>Москва, Причальный проезд, 10к2<br>ЖК Level Причальный</div><img class="slog" src="assets/slogan-caps-cream.png?v=871dbcce" alt="И чай попить, и цветы купить"></div>
    <div class="fcol"><h4>Контакты</h4><a href="tel:+79295888778">+7 929 588-87-78</a><span class="l">Почта: на домене, уточняется</span><span class="l" data-info="write">Написать в мессенджер</span><span class="l">Ежедневно 8:00–21:00</span></div>
@@ -630,8 +653,8 @@ stage.insertAdjacentHTML('beforeend',html);
 const chLi=M.chapters.map(ch=>`<li class="${ch.theme?'season':''}" data-go="${ch.key}">${ch.title}<small>${ch.n}</small></li>`).join('');
 document.getElementById('navChapters').innerHTML=chLi;
 
-const ORDER=['cover',...M.pages.map(p=>p.id.replace(/^pg-/,''))];
-const PAGECH={};M.pages.forEach(p=>PAGECH[p.id.replace(/^pg-/,'')]=p.chapter||'');
+const ORDER=['cover',...M.pages.map(p=>p.id.replace(/^pg-/,''))];if(!isDesk&&document.getElementById('pg-taste')){const fi=ORDER.indexOf('footer');ORDER.splice(fi<0?ORDER.length:fi,0,'taste')}
+const PAGECH={taste:''};M.pages.forEach(p=>PAGECH[p.id.replace(/^pg-/,'')]=p.chapter||'');
 const tabs=document.getElementById('tabs');tabs.innerHTML=M.chapters.map((ch,k,arr)=>`<span class="t${ch.theme?' season':''}" data-go="${ch.key}" data-ch="${ch.key}" style="z-index:${arr.length-k}">${ch.tab||ch.title}</span>`).join('');
 let curCh='';function setChapter(id){const ch=PAGECH[id]||'';if(ch===curCh)return;curCh=ch;tabs.querySelectorAll('.t').forEach(t=>t.classList.toggle('cur',t.dataset.ch===ch));const c=CHAP[ch];chrome.classList.toggle('season',!!(c&&c.theme));if(c&&c.theme)chrome.style.setProperty('--sflag',c.theme.flag)}
 
