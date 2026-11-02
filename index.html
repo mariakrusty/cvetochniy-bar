@@ -222,6 +222,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .bhead .slash{display:none}
 .bhead .caps{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--blue);margin-top:8px}
 .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);margin-top:2vh;min-height:0}
+@media (max-width:899px){.grid.c4{grid-template-columns:repeat(3,1fr)!important}.grid.c4 .cell{grid-column:auto!important}.grid.c4 .cell:nth-child(7){grid-column:2!important}}
 .grid.few{align-content:stretch}.grid.few .cell{justify-content:center}.grid.few .cell .ph{flex:0 0 auto;height:min(42vh,300px);width:min(100%,300px)}.grid.few .cell .buy{margin-top:8px}.grid.few .cell h4{height:auto;margin-top:10px}
 /* 30.10, Мария: без линий-разделителей в сетке витрин («делают грязь») */
 .cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 6px;border:0;text-align:center;min-height:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -499,7 +500,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div id="cartBody"></div>
 </div>
 
-<script src="assets/menu-data.js?v=2ae8b5ea"></script>
+<script src="assets/menu-data.js?v=7e115fd9"></script>
 <script>
 /* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
 const MENU_OK=!!(window.MENU&&window.MENU.items&&window.MENU.chapters&&window.MENU.pages);
@@ -563,7 +564,7 @@ for(const p of M.pages){const c=CHAP[p.chapter];
   html+=`<section class="pg grid-pg${thm(c)}" id="${p.id}" data-hero="${hero.card}">
    <div class="live"><div class="bg"></div><div class="cap"><b>${esc(c.title)}</b><span>${esc(c.caps)}</span></div><div class="lcard card"><span class="back" data-close>← Витрина</span><div class="cbody"></div></div></div>
    <div class="page"><div class="bhead"><div class="script">${c.title}</div><span class="slash"></span><div class="caps">${c.caps}</div></div>
-    <div class="grid${its.length<=3?' few':''}" style="grid-template-rows:repeat(${its.length<=3?1:(p.rows||3)},${its.length<=3?'minmax(0,1fr)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':''}">${its.map(i=>`<div class="cell" data-id="${i.id}"><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
+    <div class="grid${its.length<=3?' few':''}${its.length===7?' c4':''}" style="grid-template-rows:repeat(${its.length<=3?1:its.length===7?2:(p.rows||3)},${its.length<=3?'minmax(0,1fr)':'1fr'})${its.length<=3?';grid-template-columns:repeat('+its.length+',1fr)':its.length===7?';grid-template-columns:repeat(8,1fr)':''}">${its.map((i,k)=>`<div class="cell" data-id="${i.id}"${its.length===7?` style="grid-column:${k===4?'2 / span 2':'span 2'}"`:''}><div class="ph"><img data-src="${i.tile}" alt=""></div><h4>${esc(i.name)}</h4><div class="buy">${priceHTML(i)}${i.variants?`<span class="add" data-open="${i.id}">+</span>`:addHTML(i)}</div></div>`).join('')}</div>
     <div class="pager">${p.pager}</div></div></section>`;}
  else if(p.kind==='plist'){const its=p.items.map(id=>ITEMS[id]); const hero=its[0];
   const rows=its.map(i=>`<div class="trow" data-id="${i.id}"><span class="nm">${esc(i.name)}</span><span class="dots"></span><span class="pr">${i.price!=null?i.price+'<small>руб.</small>':''}</span><span class="add" data-open="${i.id}" aria-label="Выбрать: ${esc(i.name)}">+</span></div>`).join('');
@@ -654,7 +655,7 @@ function fitSheets(){document.querySelectorAll('.sheet .list,.kside').forEach(li
 function fitDesc(){document.querySelectorAll('.desc,.extra,.card p').forEach(el=>{el.classList.remove('one');const lh=parseFloat(getComputedStyle(el).lineHeight)||18;el.classList.toggle('one',el.scrollHeight<lh*1.6)})}
 function fitCellNames(){document.querySelectorAll('.cell h4').forEach(h=>{h.style.fontSize='';let fs=parseFloat(getComputedStyle(h).fontSize);const lim=()=>parseFloat(getComputedStyle(h).lineHeight)*(isDesk?2.3:3.45);
  while(h.scrollHeight>lim()+1&&fs>(isDesk?9:11.5)){fs-=.5;h.style.fontSize=fs+'px'}})}
-function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:3;const rows=Math.ceil(n/cols);
+function fixGrids(){fitCellNames();document.querySelectorAll('.grid').forEach(g=>{const cells=[...g.querySelectorAll('.cell')];const n=cells.length;if(!n)return;const cols=g.classList.contains('few')?n:g.classList.contains('c4')?4:3;const rows=Math.ceil(n/cols);
  cells.forEach((c,i)=>{c.classList.toggle('nr',(i+1)%cols===0||i===n-1&&!(n%cols===1&&n>cols));c.classList.toggle('nb',i>=(rows-1)*cols);c.classList.remove('center')});
  if(cols===3&&n%3===1&&n>3){const last=cells[n-1];last.classList.add('center');last.classList.remove('nr');const r0=(rows-2)*cols;for(let i=r0;i<r0+cols;i++)cells[i].classList.toggle('nb',i%cols!==1)}})}
 function fitPages(){if(isDesk)return;document.querySelectorAll('.pg.tocpg,.pg.divider').forEach(pg=>{const box=pg.querySelector('.tv,.dv');if(!box)return;let f=1;pg.style.setProperty('--fit','1');while(f>0.66&&box.scrollHeight>box.clientHeight+1){f-=0.03;pg.style.setProperty('--fit',f.toFixed(2))}})}
