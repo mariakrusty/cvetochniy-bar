@@ -320,6 +320,10 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .done .num{font:500 42px/1 var(--serif);letter-spacing:.06em}
 .cart .done p{font:400 15px/1.5 var(--serif);color:var(--muted);margin-top:14px}
 .cart .done .stub{margin-top:16px;padding:14px 16px;border:1px dashed var(--blue);border-radius:12px;font:500 12.5px/1.45 var(--serif);color:var(--blue-text)}
+.cart .sug{position:relative}.cart .sug ul{position:absolute;left:0;right:0;top:100%;z-index:3;margin:0;padding:6px 0;list-style:none;background:#fff;border:1px solid rgba(38,35,31,.15);border-radius:10px;box-shadow:0 14px 30px -14px rgba(0,0,0,.35);max-height:220px;overflow:auto}
+.cart .sug ul[hidden]{display:none}.cart .sug li{padding:9px 14px;font:500 15px/1.3 var(--serif);cursor:pointer}.cart .sug li:hover,.cart .sug li.on{background:#eef3f8}
+.cart .sug li small{display:block;font:400 11.5px/1.3 var(--serif);color:var(--muted)}
+.cart .note{font:400 12px/1.4 var(--serif);color:#9a948a;margin-top:6px}
 .cart .past{margin-top:22px}.cart .past h4{font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a;text-align:center}
 .cart .past .po{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 15px/1.3 var(--serif)}
 .cart .past .po small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
@@ -753,7 +757,7 @@ function cartSum(){let s=0;CART.forEach(r=>s+=r.price*r.qty);return s}
 function setStep(s){CSTEP=s;const st=document.getElementById('cartSteps');st.hidden=(s==='tray'&&!CART.size);[...st.children].forEach((x,i)=>x.classList.toggle('on',i===['tray','form','done'].indexOf(s)));
  document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':'Заказ принят';
  document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':doneSub();renderCart()}
-function doneSub(){const o=ORD.last;if(!o)return 'Спасибо, что выбрали нас';const when=o.asap?(o.mode==='delivery'?' за 20 минут':' как можно скорее'):' '+o.whenLabel.replace(/^сегодня /,'к ').replace(/^завтра /,'завтра к ');return o.mode==='delivery'?`Доставим до ${o.address}${when}`:`Ждём вас: ${SHOP.addr}${when}`}
+function doneSub(){const o=ORD.last;if(!o)return 'Спасибо, что выбрали нас';const when=o.asap?(o.mode==='delivery'?' за 20 минут':' как можно скорее'):' '+o.whenLabel.replace(/^сегодня /,'к ').replace(/^завтра /,'завтра к ');return o.mode==='delivery'?`Доставим до ${o.address.replace(/^г\.?\s*Москва,\s*/i,'')}${when}`:`Ждём вас: ${SHOP.addr}${when}`}
 function fmtPhone(v){const d=v.replace(/\D/g,'').replace(/^8/,'7').replace(/^(?!7)/,'7').slice(0,11);let o='+7';if(d.length>1)o+=' ('+d.slice(1,4);if(d.length>=4)o+=') '+d.slice(4,7);if(d.length>=7)o+='-'+d.slice(7,9);if(d.length>=9)o+='-'+d.slice(9,11);return o}
 function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSeconds(0,0);d.setMinutes(d.getMinutes()<30?30:60,0);d.setMinutes(Math.ceil((d.getMinutes()+30)/30)*30%60||0);
  /* ближайший слот не раньше чем через 40 минут, шаг 30, до закрытия */
@@ -772,13 +776,11 @@ function renderCart(){const b=document.getElementById('cartBody');
  b.innerHTML=`<form id="orderForm" novalidate>
   <div class="seg" role="group" aria-label="Способ получения"><button type="button" data-mode="delivery" class="${d?'on':''}">Доставка</button><button type="button" data-mode="pickup" class="${d?'':'on'}">Самовывоз</button></div>
   <div class="f f2"><label class="fl" data-k="name"><span>Имя</span><input name="name" autocomplete="name" value="${esc(g.name||'')}"></label><label class="fl" data-k="phone"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (" value="${esc(g.phone||'')}"></label></div>
-  ${d?`<div class="f"><label class="fl" data-k="street"><span>Улица и дом</span><input name="street" autocomplete="street-address" placeholder="${esc(SHOP.zone)}, …" value="${esc(g.street||'')}"></label></div>
-  <div class="f f3"><label class="fl"><span>Корпус</span><input name="building" value="${esc(g.building||'')}"></label><label class="fl" data-k="flat"><span>Квартира</span><input name="flat" value="${esc(g.flat||'')}"></label><label class="fl"><span>Подъезд</span><input name="entrance" value="${esc(g.entrance||'')}"></label></div>
-  <div class="f f3"><label class="fl"><span>Этаж</span><input name="floor" value="${esc(g.floor||'')}"></label><label class="fl"><span>Домофон</span><input name="intercom" value="${esc(g.intercom||'')}"></label><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>
-  <div class="f"><label class="fl"><span>Комментарий курьеру</span><input name="courier" placeholder="Код от калитки, не звонить в дверь…"></label></div>`
-  :`<div class="f"><label class="fl"><span>Забрать по адресу</span><input value="${esc(SHOP.addr)}" readonly></label></div><div class="f"><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>`}
-  <div class="f f2"><label class="fl"><span>Когда</span><select name="when"><option value="asap"${ORD.asap?' selected':''}>Как можно скорее</option>${sl.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></label><label class="fl"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(g.email||'')}"></label></div>
-  <div class="f"><label class="fl"><span>Комментарий к заказу</span><textarea name="comment" placeholder="Аллергии, пожелания к блюдам"></textarea></label></div>
+  ${d?`<div class="f"><label class="fl sug" data-k="address"><span>Адрес доставки</span><input name="address" autocomplete="off" placeholder="Улица, дом, квартира" value="${esc(g.address||'')}"><ul id="sugList" hidden></ul></label><div class="note">Начните печатать, подскажем адрес. Квартиру и подъезд допишите в строке</div></div>
+  <div class="f"><label class="fl"><span>Комментарий курьеру</span><input name="courier" placeholder="Код домофона, не звонить в дверь, оставить у двери…"></label></div>`
+  :`<div class="f"><label class="fl"><span>Забрать по адресу</span><input value="${esc(SHOP.addr)}" readonly></label></div>`}
+  <div class="f f2"><label class="fl"><span>Когда</span><select name="when"><option value="asap"${ORD.asap?' selected':''}>Как можно скорее</option>${sl.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></label><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>
+  <div class="f f2"><label class="fl"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(g.email||'')}"></label><label class="fl"><span>Пожелания кухне</span><input name="comment" placeholder="Аллергии, без лука…"></label></div>
   <label class="chk"><input type="checkbox" name="pd" ${g.pd?'checked':''}><span>Даю согласие ИП Мкртычева Тамара Аркадьевна на обработку персональных данных для оформления и выполнения заказа. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</span></label>
   <div class="sumline"><span>${CART.size} ${plural(CART.size)} · ${d?'доставка по '+esc(SHOP.zone)+' бесплатно':'самовывоз'}</span><b>${sum} руб.</b></div>
   <div class="err" id="orderErr" hidden></div>
@@ -787,26 +789,37 @@ function renderCart(){const b=document.getElementById('cartBody');
  </form>`;
  const ph=b.querySelector('[name=phone]');if(ph)ph.addEventListener('input',e=>{const el=e.target;el.value=el.value.replace(/\D/g,'')?fmtPhone(el.value):''});
  b.querySelectorAll('[data-mode]').forEach(x=>x.addEventListener('click',()=>{ORD.mode=x.dataset.mode;renderCart()}));
+ const ai=b.querySelector('[name=address]');if(ai)bindSuggest(ai,b.querySelector('#sugList'));
  b.querySelector('#orderForm').addEventListener('submit',submitOrder)}
+/* подсказки адреса: DaData «Подсказки» (ключ в window.CB_DADATA_KEY); без ключа поле обычное */
+function bindSuggest(input,list){let timer=null,items=[],cur=-1;
+ const hide=()=>{list.hidden=true;list.innerHTML='';items=[];cur=-1};
+ const pick=i=>{const s=items[i];if(!s)return;input.value=s.value;ORD.sugData=s;hide();input.dispatchEvent(new Event('change'))};
+ const show=()=>{if(!items.length)return hide();list.innerHTML=items.map((s,i)=>`<li data-i="${i}"${i===cur?' class="on"':''}>${esc(s.value)}${s.data&&s.data.postal_code?`<small>${esc(s.data.city_with_type||'')}${s.data.postal_code?', '+s.data.postal_code:''}</small>`:''}</li>`).join('');list.hidden=false};
+ input.addEventListener('input',()=>{ORD.sugData=null;const q=input.value.trim();clearTimeout(timer);if(!window.CB_DADATA_KEY||q.length<3)return hide();
+  timer=setTimeout(()=>fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json','Authorization':'Token '+window.CB_DADATA_KEY},body:JSON.stringify({query:q,count:6,locations:[{city:'Москва'}],from_bound:{value:'street'},to_bound:{value:'flat'}})}).then(r=>r.json()).then(j=>{items=(j.suggestions||[]);cur=-1;show()}).catch(hide),250)});
+ input.addEventListener('keydown',e=>{if(list.hidden)return;if(e.key==='ArrowDown'){e.preventDefault();cur=Math.min(cur+1,items.length-1);show()}else if(e.key==='ArrowUp'){e.preventDefault();cur=Math.max(cur-1,0);show()}else if(e.key==='Enter'&&cur>=0){e.preventDefault();pick(cur)}else if(e.key==='Escape'){hide()}});
+ list.addEventListener('mousedown',e=>{const li=e.target.closest('li');if(li){e.preventDefault();pick(+li.dataset.i)}});
+ input.addEventListener('blur',()=>setTimeout(hide,150))}
 function orderPayload(f){const v=n=>(f.elements[n]?f.elements[n].value.trim():'');const d=ORD.mode==='delivery';
  const when=v('when');const asap=when==='asap';const whenLabel=asap?'':f.elements.when.selectedOptions[0].textContent;
  const items=[];CART.forEach((r,k)=>items.push({key:k,name:r.name,label:r.label||'',price:r.price,qty:r.qty,amount:r.price*r.qty}));
  return {source:'site',mode:ORD.mode,asap,when:asap?null:when,whenLabel,
   guest:{name:v('name'),phone:v('phone'),email:v('email')},
-  address:d?{street:v('street'),building:v('building'),flat:v('flat'),entrance:v('entrance'),floor:v('floor'),intercom:v('intercom'),courierComment:v('courier')}:null,
+  address:d?{full:v('address'),courierComment:v('courier'),...(ORD.sugData&&ORD.sugData.value===v('address')?{fiasId:ORD.sugData.data.fias_id,flat:ORD.sugData.data.flat,house:ORD.sugData.data.house,lat:ORD.sugData.data.geo_lat,lon:ORD.sugData.data.geo_lon}:{})}:null,
   cutlery:+v('cutlery')||0,comment:v('comment'),items,sum:cartSum(),pdConsent:!!f.elements.pd.checked,createdAt:new Date().toISOString()}}
 function submitOrder(e){e.preventDefault();const f=e.target;const o=orderPayload(f);const err=[];f.querySelectorAll('.fl').forEach(x=>x.classList.remove('bad'));
  const bad=k=>{const l=f.querySelector(`[data-k=${k}]`);if(l)l.classList.add('bad')};
  if(!o.guest.name){err.push('имя');bad('name')}
  if(o.guest.phone.replace(/\D/g,'').length!==11){err.push('телефон');bad('phone')}
- if(o.mode==='delivery'){if(!o.address.street){err.push('улица и дом');bad('street')}if(!o.address.flat){err.push('квартира');bad('flat')}}
+ if(o.mode==='delivery'&&o.address.full.length<5){err.push('адрес доставки');bad('address')}
  if(o.guest.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.guest.email))err.push('email');
  if(!o.pdConsent)err.push('согласие на обработку данных');
  const eb=f.querySelector('#orderErr');if(err.length){eb.hidden=false;eb.textContent='Проверьте: '+err.join(', ');const fi=f.querySelector('.bad input')||f.elements.pd;fi.focus({preventScroll:true});fi.scrollIntoView({block:'center',behavior:'smooth'});return}
  eb.hidden=true;
- Object.assign(GUEST,o.guest,o.address||{},{cutlery:o.cutlery,pd:true});saveGuest(GUEST);
+ Object.assign(GUEST,o.guest,o.address?{address:o.address.full}:{},{cutlery:o.cutlery,pd:true});saveGuest(GUEST);
  const past=pastOrders();const n=String(1000+past.length+1+Math.floor(Math.random()*9));const dt=new Date();
- const rec={n,dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?[o.address.street,o.address.building&&'к. '+o.address.building,'кв. '+o.address.flat].filter(Boolean).join(', '):'',items:o.items,payload:o};
+ const rec={n,dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?o.address.full:'',items:o.items,payload:o};
  ORD.last=rec;try{localStorage.setItem('cb-pending',JSON.stringify(rec))}catch(e){}
  const btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Переходим к оплате…';
  if(window.CB_ORDER_URL){fetch(window.CB_ORDER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(r=>r.json()).then(j=>{if(j&&j.paymentUrl)location.href=j.paymentUrl;else throw 0}).catch(()=>{btn.disabled=false;btn.textContent=`Оплатить ${o.sum} руб.`})}
