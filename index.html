@@ -293,6 +293,38 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart .go{text-decoration:none;text-align:center;width:max-content}.cart .hint{font:400 12.5px/1.45 var(--serif);color:var(--muted);text-align:center;margin-top:12px}
 .cart .pd{font:400 12px/1.45 var(--serif);color:var(--muted);margin-top:16px}.cart .pd a{color:var(--blue-text)}
 .cart .addr{font:500 10.5px/1.5 var(--sans);letter-spacing:.1em;color:#9a948a;text-align:center;margin-top:12px}
+/* оформление заказа (в подносе) */
+.cart .steps{display:flex;justify-content:center;gap:18px;margin-top:14px;font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a}
+.cart .steps span.on{color:var(--blue-text)}.cart .steps span.on::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:8px;vertical-align:middle}
+.cart .seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--blue);border-radius:27px;overflow:hidden;margin-top:18px}
+.cart .seg button{height:44px;border:0;background:#fff;color:var(--blue-text);font:600 10px/44px var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+.cart .seg button.on{background:var(--blue);color:#fff}
+.cart .f{display:grid;gap:12px;margin-top:16px}
+.cart .f2{grid-template-columns:1fr 1fr}.cart .f3{grid-template-columns:1fr 1fr 1fr}
+.cart label.fl{display:block}
+.cart label.fl span{display:block;font:600 9px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#9a948a;margin-bottom:4px}
+.cart input,.cart select,.cart textarea{width:100%;background:#fff;border:0;border-bottom:1px solid rgba(38,35,31,.25);border-radius:0;padding:9px 0 8px;font:500 17px/1.25 var(--serif);color:var(--ink);outline:0;-webkit-appearance:none;appearance:none}
+.cart select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234a6a92' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 4px center;padding-right:22px}
+.cart textarea{min-height:52px;resize:vertical}
+.cart input:focus,.cart select:focus,.cart textarea:focus{border-bottom-color:var(--blue-text)}
+.cart .f .bad input,.cart .f .bad select{border-bottom-color:#b4463c}
+.cart .err{font:500 12px/1.4 var(--serif);color:#b4463c;margin-top:10px;text-align:center}
+.cart .chk{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;margin-top:16px;font:400 12.5px/1.45 var(--serif);color:var(--muted)}
+.cart .chk input{width:18px;height:18px;margin-top:1px;border:1px solid var(--blue);border-radius:4px;padding:0;-webkit-appearance:auto;appearance:auto;accent-color:var(--blue-text)}
+.cart .chk a{color:var(--blue-text)}
+.cart .sumline{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid rgba(38,35,31,.15);font:500 15px/1.3 var(--serif);color:var(--muted)}
+.cart .sumline b{color:var(--ink)}
+.cart .go.sec{background:#fff;color:var(--blue-text);border:1px solid var(--blue)}
+.cart .back{display:block;margin:14px auto 0;font:600 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--blue-text);background:none;border:0;cursor:pointer}
+.cart .done{text-align:center;margin-top:22px}
+.cart .done .num{font:500 42px/1 var(--serif);letter-spacing:.06em}
+.cart .done p{font:400 15px/1.5 var(--serif);color:var(--muted);margin-top:14px}
+.cart .done .stub{margin-top:16px;padding:14px 16px;border:1px dashed var(--blue);border-radius:12px;font:500 12.5px/1.45 var(--serif);color:var(--blue-text)}
+.cart .past{margin-top:22px}.cart .past h4{font:600 9px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#9a948a;text-align:center}
+.cart .past .po{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(38,35,31,.15);font:500 15px/1.3 var(--serif)}
+.cart .past .po small{display:block;font:400 12px/1.3 var(--serif);color:var(--muted)}
+.cart .past .po button{height:32px;padding:0 14px;border-radius:16px;border:1px solid var(--blue);background:#fff;color:var(--blue-text);font:600 9px/32px var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+
 
 /* ---------- десктоп: развороты ---------- */
 @media (min-width:900px){
@@ -496,7 +528,8 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 <div class="dim" id="cartDim" hidden></div>
 <div class="cart" id="cart" hidden>
  <div class="grip"></div><span class="xclose" data-cartclose>Закрыть ×</span>
- <h3>Ваш поднос</h3><div class="sub">Доставим по ЖК Level Причальный за 20 минут</div>
+ <h3 id="cartTitle">Ваш поднос</h3><div class="sub" id="cartSub">Доставим по ЖК Level Причальный за 20 минут</div>
+ <div class="steps" id="cartSteps" hidden><span class="on">Поднос</span><span>Доставка</span><span>Оплата</span></div>
  <div id="cartBody"></div>
 </div>
 
@@ -676,7 +709,7 @@ function openToc(){toc.hidden=false;dlgOpen(toc)}function closeToc(){toc.hidden=
 function closeTop(){const el=DLG[DLG.length-1];if(!el)return false;if(el===info)closeInfo();else if(el===cart)closeCart();else if(el===cardDlg)closeCard();else if(el===toc)closeToc();else if(el===sheetnav)closeNav();else if(el===aboutEl)closeAbout();return true}
 document.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&closeTop()){e.preventDefault();return}
- if(e.key==='Tab'&&DLG.length){const el=DLG[DLG.length-1];const f=[...el.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.hidden&&x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===el)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}return}
+ if(e.key==='Tab'&&DLG.length){const el=DLG[DLG.length-1];const f=[...el.querySelectorAll('a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.hidden&&x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===el)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}return}
  if((e.key==='Enter'||e.key===' ')&&e.target.getAttribute('role')==='button'){e.preventDefault();e.target.click()}});
 document.fonts.ready.then(()=>{fitAll();requestAnimationFrame(fitAll);setTimeout(fitAll,600)});
 let rT;addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(fitAll,120)});
@@ -708,10 +741,79 @@ function addItem(key,delta=1){if(!key.includes('#'))key+='#0';const c=lineOf(key
 function saveCart(){try{sessionStorage.setItem('cb-cart',JSON.stringify([...CART].map(([k,r])=>[k,r.qty])))}catch(e){}}
 function restoreCart(){try{const raw=sessionStorage.getItem('cb-cart');if(!raw)return;for(const [k,q] of JSON.parse(raw)){const c=lineOf(k);if(c&&c.price!=null&&q>0)CART.set(k,{...c,qty:q})}}catch(e){}if(CART.size){renderBadge();renderCart()}}
 function renderBadge(){let n=0;CART.forEach(r=>n+=r.qty);badge.textContent=n;badge.hidden=!n;badge.classList.add('pulse');setTimeout(()=>badge.classList.remove('pulse'),200)}
-function renderCart(){const b=document.getElementById('cartBody');if(!CART.size){b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>';return}
- let sum=0,rows='';CART.forEach((r,k)=>{sum+=r.price*r.qty;rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}">−</button><span>${r.qty}</span><button data-inc="${k}">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
- b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><div class="pd">Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</div><a class="go" href="tel:+79295888778">Позвонить и заказать</a><div class="hint">Онлайн-оформление ещё не подключено. Назовите блюда из подноса по телефону, заказ примем сразу.</div><div class="addr">Причальный проезд, 10к2 · 8:00–21:00 · доставка по ЖК за 20 минут</div>`}
-function openCart(){renderCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){cart.hidden=true;cartDim.hidden=true;dlgClose(cart)}
+/* ---------- поднос → оформление → оплата ---------- */
+const PD_TXT='Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.';
+const SHOP={addr:'Причальный проезд, 10к2',hours:[8,21],phone:'+7 929 588-87-78',zone:'ЖК Level Причальный'};
+let CSTEP='tray';   /* tray | form | done */
+const ORD={mode:'delivery',asap:true};
+const GUEST=(()=>{try{return JSON.parse(localStorage.getItem('cb-guest')||'{}')}catch(e){return {}}})();
+function saveGuest(g){try{localStorage.setItem('cb-guest',JSON.stringify(g))}catch(e){}}
+function pastOrders(){try{return JSON.parse(localStorage.getItem('cb-orders')||'[]')}catch(e){return []}}
+function cartSum(){let s=0;CART.forEach(r=>s+=r.price*r.qty);return s}
+function setStep(s){CSTEP=s;const st=document.getElementById('cartSteps');st.hidden=(s==='tray'&&!CART.size);[...st.children].forEach((x,i)=>x.classList.toggle('on',i===['tray','form','done'].indexOf(s)));
+ document.getElementById('cartTitle').textContent=s==='tray'?'Ваш поднос':s==='form'?'Доставка и оплата':'Заказ принят';
+ document.getElementById('cartSub').textContent=s==='tray'?`Доставим по ${SHOP.zone} за 20 минут`:s==='form'?'Заполните адрес, оплата онлайн':'Спасибо, что выбрали нас';renderCart()}
+function fmtPhone(v){const d=v.replace(/\D/g,'').replace(/^8/,'7').replace(/^(?!7)/,'7').slice(0,11);let o='+7';if(d.length>1)o+=' ('+d.slice(1,4);if(d.length>=4)o+=') '+d.slice(4,7);if(d.length>=7)o+='-'+d.slice(7,9);if(d.length>=9)o+='-'+d.slice(9,11);return o}
+function slots(){const now=new Date();const out=[];const d=new Date(now);d.setSeconds(0,0);d.setMinutes(d.getMinutes()<30?30:60,0);d.setMinutes(Math.ceil((d.getMinutes()+30)/30)*30%60||0);
+ /* ближайший слот не раньше чем через 40 минут, шаг 30, до закрытия */
+ const t0=new Date(now.getTime()+40*60000);t0.setSeconds(0,0);t0.setMinutes(Math.ceil(t0.getMinutes()/30)*30);
+ for(let day=0;day<2&&out.length<30;day++){const base=new Date(now);base.setDate(base.getDate()+day);
+  for(let h=SHOP.hours[0];h<SHOP.hours[1];h++)for(const m of [0,30]){const x=new Date(base);x.setHours(h,m,0,0);if(x<t0)continue;const lbl=(day?'завтра ':'сегодня ')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');out.push([x.toISOString(),lbl])}}
+ return out}
+function renderCart(){const b=document.getElementById('cartBody');
+ if(CSTEP==='done'){const o=ORD.last;b.innerHTML=`<div class="done"><div class="num">№ ${o.n}</div><p>${o.mode==='delivery'?`Доставка: ${esc(o.address)}`:`Самовывоз: ${SHOP.addr}`}<br>${o.asap?'как можно скорее':'ко времени '+esc(o.whenLabel)} · ${o.sum} руб.</p><div class="stub">Здесь откроется страница оплаты Т-Банка: карта, СБП, T-Pay. Терминал подключим, когда получим доступы, пока заказ сохранён в этом браузере.</div></div><button class="go" data-cartclose style="margin-top:22px">Вернуться в меню</button>`;return}
+ if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${o.sum} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');document.getElementById('cartSteps').hidden=true;return}
+ let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${k}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${k}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
+ const sum=cartSum();
+ if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div><button class="go" data-checkout>Оформить заказ</button><div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
+ /* форма */
+ const g=GUEST;const d=ORD.mode==='delivery';const sl=slots();
+ b.innerHTML=`<form id="orderForm" novalidate>
+  <div class="seg" role="group" aria-label="Способ получения"><button type="button" data-mode="delivery" class="${d?'on':''}">Доставка</button><button type="button" data-mode="pickup" class="${d?'':'on'}">Самовывоз</button></div>
+  <div class="f f2"><label class="fl" data-k="name"><span>Имя</span><input name="name" autocomplete="name" value="${esc(g.name||'')}"></label><label class="fl" data-k="phone"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (" value="${esc(g.phone||'')}"></label></div>
+  ${d?`<div class="f"><label class="fl" data-k="street"><span>Улица и дом</span><input name="street" autocomplete="street-address" placeholder="${esc(SHOP.zone)}, …" value="${esc(g.street||'')}"></label></div>
+  <div class="f f3"><label class="fl"><span>Корпус</span><input name="building" value="${esc(g.building||'')}"></label><label class="fl" data-k="flat"><span>Квартира</span><input name="flat" value="${esc(g.flat||'')}"></label><label class="fl"><span>Подъезд</span><input name="entrance" value="${esc(g.entrance||'')}"></label></div>
+  <div class="f f3"><label class="fl"><span>Этаж</span><input name="floor" value="${esc(g.floor||'')}"></label><label class="fl"><span>Домофон</span><input name="intercom" value="${esc(g.intercom||'')}"></label><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>
+  <div class="f"><label class="fl"><span>Комментарий курьеру</span><input name="courier" placeholder="Код от калитки, не звонить в дверь…"></label></div>`
+  :`<div class="f"><label class="fl"><span>Забрать по адресу</span><input value="${esc(SHOP.addr)}" readonly></label></div><div class="f"><label class="fl"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" inputmode="numeric" value="${g.cutlery!=null?g.cutlery:1}"></label></div>`}
+  <div class="f f2"><label class="fl"><span>Когда</span><select name="when"><option value="asap"${ORD.asap?' selected':''}>Как можно скорее</option>${sl.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></label><label class="fl"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(g.email||'')}"></label></div>
+  <div class="f"><label class="fl"><span>Комментарий к заказу</span><textarea name="comment" placeholder="Аллергии, пожелания к блюдам"></textarea></label></div>
+  <label class="chk"><input type="checkbox" name="pd" ${g.pd?'checked':''}><span>Даю согласие ИП Мкртычева Тамара Аркадьевна на обработку персональных данных для оформления и выполнения заказа. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</span></label>
+  <div class="sumline"><span>${CART.size} ${plural(CART.size)} · ${d?'доставка по '+esc(SHOP.zone)+' бесплатно':'самовывоз'}</span><b>${sum} руб.</b></div>
+  <div class="err" id="orderErr" hidden></div>
+  <button class="go" type="submit">Оплатить ${sum} руб.</button>
+  <button class="back" type="button" data-backtray>← Вернуться к подносу</button>
+ </form>`;
+ const ph=b.querySelector('[name=phone]');if(ph)ph.addEventListener('input',e=>{const el=e.target;el.value=el.value.replace(/\D/g,'')?fmtPhone(el.value):''});
+ b.querySelectorAll('[data-mode]').forEach(x=>x.addEventListener('click',()=>{ORD.mode=x.dataset.mode;renderCart()}));
+ b.querySelector('#orderForm').addEventListener('submit',submitOrder)}
+function orderPayload(f){const v=n=>(f.elements[n]?f.elements[n].value.trim():'');const d=ORD.mode==='delivery';
+ const when=v('when');const asap=when==='asap';const whenLabel=asap?'':f.elements.when.selectedOptions[0].textContent;
+ const items=[];CART.forEach((r,k)=>items.push({key:k,name:r.name,label:r.label||'',price:r.price,qty:r.qty,amount:r.price*r.qty}));
+ return {source:'site',mode:ORD.mode,asap,when:asap?null:when,whenLabel,
+  guest:{name:v('name'),phone:v('phone'),email:v('email')},
+  address:d?{street:v('street'),building:v('building'),flat:v('flat'),entrance:v('entrance'),floor:v('floor'),intercom:v('intercom'),courierComment:v('courier')}:null,
+  cutlery:+v('cutlery')||0,comment:v('comment'),items,sum:cartSum(),pdConsent:!!f.elements.pd.checked,createdAt:new Date().toISOString()}}
+function submitOrder(e){e.preventDefault();const f=e.target;const o=orderPayload(f);const err=[];f.querySelectorAll('.fl').forEach(x=>x.classList.remove('bad'));
+ const bad=k=>{const l=f.querySelector(`[data-k=${k}]`);if(l)l.classList.add('bad')};
+ if(!o.guest.name){err.push('имя');bad('name')}
+ if(o.guest.phone.replace(/\D/g,'').length!==11){err.push('телефон');bad('phone')}
+ if(o.mode==='delivery'){if(!o.address.street){err.push('улица и дом');bad('street')}if(!o.address.flat){err.push('квартира');bad('flat')}}
+ if(o.guest.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(o.guest.email))err.push('email');
+ if(!o.pdConsent)err.push('согласие на обработку данных');
+ const eb=f.querySelector('#orderErr');if(err.length){eb.hidden=false;eb.textContent='Проверьте: '+err.join(', ');const fi=f.querySelector('.bad input')||f.elements.pd;fi.focus({preventScroll:true});fi.scrollIntoView({block:'center',behavior:'smooth'});return}
+ eb.hidden=true;
+ Object.assign(GUEST,o.guest,o.address||{},{cutlery:o.cutlery,pd:true});saveGuest(GUEST);
+ const past=pastOrders();const n=String(1000+past.length+1+Math.floor(Math.random()*9));const dt=new Date();
+ const rec={n,dateLabel:dt.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})+' '+dt.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),sum:o.sum,mode:o.mode,asap:o.asap,whenLabel:o.whenLabel,address:o.address?[o.address.street,o.address.building&&'к. '+o.address.building,'кв. '+o.address.flat].filter(Boolean).join(', '):'',items:o.items,payload:o};
+ past.unshift(rec);try{localStorage.setItem('cb-orders',JSON.stringify(past.slice(0,10)))}catch(e){}
+ ORD.last=rec;
+ if(window.CB_ORDER_URL){fetch(window.CB_ORDER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}).then(r=>r.json()).then(j=>{if(j&&j.paymentUrl)location.href=j.paymentUrl}).catch(()=>{})}
+ CART.clear();renderBadge();saveCart();setStep('done')}
+cart.addEventListener('click',e=>{const t=e.target.closest('[data-checkout],[data-backtray],[data-repeat]');if(!t)return;
+ if(t.hasAttribute('data-checkout'))setStep('form');else if(t.hasAttribute('data-backtray'))setStep('tray');
+ else if(t.hasAttribute('data-repeat')){const o=pastOrders()[+t.dataset.repeat];if(!o)return;o.items.forEach(x=>{const c=lineOf(x.key);if(c&&c.price!=null)addItem(x.key,x.qty)});setStep('tray')}});
+function openCart(){if(CSTEP==='done')CSTEP='tray';setStep(CSTEP);cart.hidden=false;cartDim.hidden=false;dlgOpen(cart)}function closeCart(){cart.hidden=true;cartDim.hidden=true;dlgClose(cart);if(CSTEP==='done')CSTEP='tray'}
 document.getElementById('basketBtn').addEventListener('click',openCart);cartDim.addEventListener('click',closeCart);
 
 /* ---------- оглавление ---------- */
