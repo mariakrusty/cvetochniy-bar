@@ -297,6 +297,7 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
 .cart{position:fixed;left:0;right:0;bottom:0;background:#f8f8f8;border-radius:18px 18px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.35);padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);z-index:31;max-height:84dvh;overflow:auto}
 .cart[hidden]{display:none}
 .cart h3{font:500 30px/1.05 var(--serif);letter-spacing:.1em;text-align:center;margin-top:6px}
+.cart .paynote{text-align:center;margin:10px 0 2px}.cart .paynote a{color:var(--blue-text);text-decoration:underline;text-underline-offset:3px}
 .cart .sub{font:400 15px/1.4 var(--serif);color:var(--muted);text-align:center;margin-top:6px}
 .cart .empty{font:500 18px/1.3 var(--serif);color:var(--muted);text-align:center;margin:26px 0 10px}
 .cart table{width:100%;border-collapse:collapse;margin-top:16px}
@@ -831,7 +832,8 @@ function restoreCart(){try{const raw=sessionStorage.getItem('cb-cart');if(!raw)r
 function renderBadge(){let n=0;CART.forEach(r=>n+=r.qty);badge.textContent=n;badge.hidden=!n;document.querySelectorAll('.cfoot .cnt').forEach(c=>{c.textContent=n;c.hidden=!n});badge.classList.add('pulse');setTimeout(()=>badge.classList.remove('pulse'),200)}
 /* ---------- поднос → оформление → оплата ---------- */
 const PD_TXT='Для оформления и выполнения заказа ИП Мкртычева Тамара Аркадьевна обрабатывает необходимые персональные данные. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.';
-const SHOP={addr:'Причальный проезд, 10к2',hours:[8,21],phone:'+7 929 588-87-78',zone:'ЖК Level Причальный'};
+const SHOP={addr:'Причальный проезд, 10к2',hours:[8,21],phone:'+7 929 588-87-78',zone:'ЖК Level Причальный'};const PHONE_HREF='tel:'+SHOP.phone.replace(/[^\d+]/g,'');   /* 05.11: раньше в шаблоне была экранированная \\d → tel:+ без цифр */
+const payNote=()=>window.CB_ORDER_URL?'':`<div class="note paynote">Онлайн-оплата подключается. Пока заказ принимаем по телефону <a href="${PHONE_HREF}">${esc(SHOP.phone)}</a></div>`;
 let CSTEP='tray';   /* tray | form | done */
 const ORD={mode:'delivery',asap:true};
 /* ---------- данные гостя, черновик, история (A3-09: всё из storage нормализуется) ---------- */
@@ -885,11 +887,11 @@ function renderCart(){const b=document.getElementById('cartBody');
  if(!CART.size){const past=pastOrders();b.innerHTML='<p class="empty">Пока пусто. Нажмите «+» рядом с блюдом</p>'+(past.length?`<div class="past"><h4>Ваши прошлые заказы</h4>${past.slice(0,3).map((o,i)=>`<div class="po"><div>${o.items.map(x=>esc(x.name)).slice(0,3).join(', ')}${o.items.length>3?'…':''}<small>${esc(o.dateLabel)} · ${esc(o.sum)} руб.</small></div><button data-repeat="${i}">Повторить</button></div>`).join('')}</div>`:'');return}
  let rows='';CART.forEach((r,k)=>{rows+=`<tr><td>${esc(r.name)}${r.label?`<small>${esc(r.label)}</small>`:''}</td><td class="q"><button data-dec="${esc(k)}" aria-label="Убрать одну">−</button><span>${r.qty}</span><button data-inc="${esc(k)}" aria-label="Добавить одну">+</button></td><td class="p">${r.price*r.qty} <small>руб.</small></td></tr>`});
  const sum=cartSum();
- if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div>${whoHTML()}<button class="go" data-checkout>Оформить заказ</button><div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
+ if(CSTEP==='tray'){b.innerHTML=`<table aria-label="Поднос">${rows}</table><div class="total"><span>Итого</span><b>${sum}<small>руб.</small></b></div>${whoHTML()}<button class="go" data-checkout>Оформить заказ</button>${payNote()}<div class="addr">${SHOP.addr} · ${SHOP.hours[0]}:00–${SHOP.hours[1]}:00 · доставка по ${SHOP.zone}</div>`;return}
  /* форма */
  const g=GUEST;if(ORD.draft.mode)ORD.mode=ORD.draft.mode;const d=ORD.mode==='delivery';const sl=slots();const open=isOpenNow();const sugOn=!!window.CB_DADATA_KEY;const payOn=!!window.CB_ORDER_URL;
  const whenSel=dv('when',ORD.asap?'asap':'');
- b.innerHTML=`<form id="orderForm" novalidate>
+ b.innerHTML=`<form id="orderForm" novalidate>${payNote()}
   <div class="seg" role="group" aria-label="Способ получения"><button type="button" data-mode="delivery" class="${d?'on':''}" aria-pressed="${d}">Доставка</button><button type="button" data-mode="pickup" class="${d?'':'on'}" aria-pressed="${!d}">Самовывоз</button></div>
   <div class="f f2"><label class="fl" data-k="name"><span>Имя</span><input name="name" autocomplete="name" value="${esc(dv('name',g.name||''))}" aria-describedby="fe-name">${fieldErr('name','Напишите имя')}</label><label class="fl" data-k="phone"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (999) 000-00-00" value="${esc(dv('phone',g.phone||''))}" aria-describedby="fe-phone">${fieldErr('phone','Нужен номер из 11 цифр')}</label></div>
   ${d?`<div class="f"><label class="fl sug" data-k="address"><span>Адрес доставки</span><input name="address" autocomplete="off" placeholder="Улица, дом, квартира" value="${esc(dv('address',g.address||''))}" aria-describedby="fe-address"><ul id="sugList" hidden role="listbox"></ul>${fieldErr('address','Укажите улицу, дом и квартиру')}</label><div class="note">${sugOn?'Начните печатать, подскажем адрес. Квартиру и подъезд допишите в строке':'Улица, дом, квартира, подъезд одной строкой'}</div></div>
@@ -898,10 +900,9 @@ function renderCart(){const b=document.getElementById('cartBody');
   <div class="f f2"><label class="fl" data-k="when"><span>Когда</span><select name="when" aria-describedby="fe-when">${open?`<option value="asap"${whenSel==='asap'?' selected':''}>Как можно скорее</option>`:''}${sl.map(([v,l])=>`<option value="${v}"${whenSel===v?' selected':''}>${l}</option>`).join('')}</select>${fieldErr('when','Сейчас закрыто, выберите время')}${open?'':'<em class="fe on">Сейчас закрыто, время московское '+SHOP.hours[0]+':00–'+SHOP.hours[1]+':00. Ближайшее: '+(sl[0]?sl[0][1]:'завтра')+'</em>'}</label><label class="fl" data-k="cutlery"><span>Приборы</span><input name="cutlery" type="number" min="0" max="20" step="1" inputmode="numeric" value="${esc(dv('cutlery',g.cutlery!=null?g.cutlery:1))}" aria-describedby="fe-cutlery">${fieldErr('cutlery','Целое число от 0 до 20')}</label></div>
   <div class="f f2"><label class="fl" data-k="email"><span>Email для чека</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="необязательно" value="${esc(dv('email',g.email||''))}" aria-describedby="fe-email">${fieldErr('email','Проверьте адрес почты')}</label><label class="fl"><span>Пожелания кухне</span><input name="comment" placeholder="Аллергии, без лука…" value="${esc(dv('comment'))}"></label></div>
   <label class="chk" data-k="pd"><input type="checkbox" name="pd" ${dv('pd',!!g.pd)?'checked':''} aria-describedby="fe-pd"><span>Даю согласие ИП Мкртычева Тамара Аркадьевна на обработку персональных данных для оформления и выполнения заказа. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.${fieldErr('pd','Без согласия заказ оформить нельзя')}</span></label>
-  <div class="sumline"><span>${CART.size} ${plural(CART.size)} · ${d?'доставка по '+esc(SHOP.zone)+' бесплатно':'самовывоз'}</span><b>${sum} руб.</b></div>
+  <div class="sumline"><span>${CART.size} ${plural(CART.size)} · ${d?'доставка по '+esc(SHOP.zone):'самовывоз'}</span><b>${sum} руб.</b></div>
   <div class="err" id="orderErr" hidden role="alert"></div>
-  <button class="go" type="submit">Оплатить ${sum} руб.</button>
-  ${payOn?'':`<div class="note" style="text-align:center">Онлайн-оплата подключается. Пока заказ принимаем по телефону <a href="tel:${SHOP.phone.replace(/[^\\d+]/g,'')}">${esc(SHOP.phone)}</a></div>`}
+  ${payOn?`<button class="go" type="submit">Оплатить ${sum} руб.</button>`:`<a class="go" href="${PHONE_HREF}">Заказать по телефону</a>`}
   <button class="back" type="button" data-backtray>← Вернуться к подносу</button>
  </form>`;
  const f=b.querySelector('#orderForm');
