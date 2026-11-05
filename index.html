@@ -961,8 +961,8 @@ function submitOrder(e){e.preventDefault();const f=e.target;if(ORD.submitting)re
  ORD.submitting=true;btn.disabled=true;btn.textContent='Переходим к оплате…';f.querySelectorAll('[data-mode]').forEach(x=>x.disabled=true);
  const c=new AbortController();const tm=setTimeout(()=>c.abort(),15000);
  fetch(window.CB_ORDER_URL,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(o)})
-  .then(r=>r.ok?r.json():Promise.reject(new Error('http '+r.status))).then(j=>{clearTimeout(tm);if(j&&j.paymentUrl){ORD.submitting=false;location.href=j.paymentUrl}else throw new Error('no url')})
-  .catch(er=>{clearTimeout(tm);unlock(er&&er.name==='AbortError'?'Банк не ответил вовремя. Заказ не оплачен, попробуйте ещё раз через минуту.':'Не удалось перейти к оплате. Заказ не оплачен и не создан, попробуйте ещё раз или позвоните: '+SHOP.phone)})}
+  .then(r=>r.ok?r.json():r.json().catch(()=>({})).then(j=>Promise.reject(Object.assign(new Error(j&&j.error||('http '+r.status)),{shown:!!(j&&j.error)})))).then(j=>{clearTimeout(tm);if(j&&j.paymentUrl){ORD.submitting=false;location.href=j.paymentUrl}else throw new Error('no url')})
+  .catch(er=>{clearTimeout(tm);unlock(er&&er.name==='AbortError'?'Банк не ответил вовремя. Заказ не оплачен, попробуйте ещё раз через минуту.':er&&er.shown?er.message:'Не удалось перейти к оплате. Заказ не оплачен и не создан, попробуйте ещё раз или позвоните: '+SHOP.phone)})}
 /* возврат со страницы оплаты (A3-01): SuccessURL = …?paid=<attemptId>. Успех подтверждает сервер: GET CB_ORDER_URL?status=<attemptId> → {status:'paid'|'pending'|'failed'}. Без сервера «оплачено» не показываем; ?demo=paid рисует экран-образец с пометкой */
 function finishPaid(rec,demo){const past=pastOrders();if(!past.some(x=>x.uid===rec.uid)){past.unshift(rec);writeJSON('cb-orders',past.slice(0,10))}
  dropKey('cb-pending');clearDraft();ORD.attemptId=null;ORD.last=Object.assign({},rec,demo?{demo:true}:{});CART.clear();renderBadge();saveCart();cart.hidden=false;cartDim.hidden=false;dlgOpen(cart);setStep('done')}
