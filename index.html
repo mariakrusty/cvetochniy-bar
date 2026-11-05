@@ -725,6 +725,13 @@ let rafPending=false;addEventListener('scroll',()=>{if(frozen||rafPending)return
 /* AN-04: на десктопе лист укладывается скриптом, а не CSS mandatory snap: короткий шаг колеса в сторону = следующий лист, микродвижение = возврат, трекпад и инерция остаются естественными */
 let settling=null,sT=0,sGuard=0,idleP=0;
 function settleTo(top){clearTimeout(sT);sT=0;if(RM){settling=null;scrollTo({top,behavior:'instant'});if(isDesk)idleP=Math.round(top/vh());render(curP());return}settling=top;scrollTo({top,behavior:'smooth'});clearTimeout(sGuard);sGuard=setTimeout(()=>{settling=null},1500)}
+/* 05.11, Мария: на телефоне каждый свайп = ровно один экран (хиро → второй экран → подвал → …), экраны поднимаются по очереди, свободной прокрутки нет. CSS-снап выключен, листание ведёт скрипт */
+if(!isDesk){document.documentElement.classList.add('jsnap');
+ let tY=0,tX=0,tOn=false,busy=0;const SKIP='.drawer,.cart,.toc,.info,.sheetnav,.pg.about,.cookie,.toast,.fail,.legal,[data-nopage]';
+ addEventListener('touchstart',e=>{tOn=!(DLG.length||frozen||(e.target.closest&&e.target.closest(SKIP)));if(!tOn)return;const t=e.touches[0];tY=t.clientY;tX=t.clientX},{passive:true});
+ addEventListener('touchmove',e=>{if(tOn&&e.cancelable)e.preventDefault()},{passive:false});
+ addEventListener('touchend',e=>{if(!tOn)return;tOn=false;const t=e.changedTouches[0];const dy=tY-t.clientY,dx=tX-t.clientX;if(Math.abs(dy)<36||Math.abs(dx)>Math.abs(dy)*1.2||busy)return;const d=dy>0?1:-1;let j=curI;do{j+=d}while(j>=0&&j<N&&!pvis(j));if(j<0||j>=N)return;busy=1;setTimeout(()=>{busy=0},560);settleTo(ptop(j))},{passive:true});
+ addEventListener('touchcancel',()=>{tOn=false},{passive:true});}
 if(isDesk){document.documentElement.classList.add('jsnap');
  const intent=()=>{settling=null};addEventListener('wheel',intent,{passive:true});addEventListener('touchstart',intent,{passive:true});addEventListener('pointerdown',intent,{passive:true});
  function settle(){sT=0;if(frozen||DLG.length||settling!==null)return;const p=curP();const d=p-idleP;let t=Math.abs(d)<0.06?idleP:(d>0?Math.ceil(p-0.002):Math.floor(p+0.002));t=Math.max(0,Math.min(N-1,t));if(Math.abs(p-t)<0.002){idleP=t;return}settleTo(t*vh())}
