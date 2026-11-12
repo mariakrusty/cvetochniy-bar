@@ -578,9 +578,9 @@ h1{font:500 clamp(26px,4.7vh,40px)/1.08 var(--serif);letter-spacing:.06em}
  <div id="cartBody"></div>
 </div>
 
-<script src="assets/menu-data.js?v=19ee903c"></script>
+<script src="assets/menu-data.js?v=0b0b8dd6"></script>
 <script>
-/* ---------- данные из assets/menu-data.js (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
+/* ---------- данные из assets/menu-data.js?v=0b0b8dd6 (собирает _src/build_site.py из таблиц КБЖУ) ---------- */
 const MENU_OK=!!(window.MENU&&window.MENU.items&&window.MENU.chapters&&window.MENU.pages);
 if(!MENU_OK){document.body.insertAdjacentHTML('beforeend','<div class="fail" role="alert"><b>Меню не загрузилось</b><span>Проверьте связь и попробуйте ещё раз. Заказ и вопросы принимаем по телефону.</span><div><a href="tel:+79295888778">Позвонить</a><button onclick="location.reload()">Обновить</button></div></div>')}
 const M=MENU_OK?window.MENU:{items:{},chapters:[],pages:[]}, ITEMS=M.items, CHAP=Object.fromEntries(M.chapters.map(c=>[c.key,c]));
